@@ -18,7 +18,7 @@ extern void LCD_Binarization();
 extern void move();
 extern void steer_control();
 
-
+//fuck you K60
 
 void main()
 {
