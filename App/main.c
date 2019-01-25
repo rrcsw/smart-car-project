@@ -23,6 +23,7 @@ extern void steer_control();
 void main()
 {
 
+  
      all_init();                                       //≥ı ºªØ
 
 /**********     
