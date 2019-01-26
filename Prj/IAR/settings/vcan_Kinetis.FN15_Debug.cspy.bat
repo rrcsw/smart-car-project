@@ -21,11 +21,11 @@
 
 @echo off 
 
-if not "%1" == "" goto debugFile 
+if not "%~1" == "" goto debugFile 
 
 @echo on 
 
-"D:\Program Files (x86)\common\bin\cspybat" -f "G:\十四届智能车实验室纳新\光电、电磁、直立入门资料\电磁组入门资料\LCD_线性CCD\Prj\IAR\settings\vcan_Kinetis.FN15_Debug.general.xcl" --backend -f "G:\十四届智能车实验室纳新\光电、电磁、直立入门资料\电磁组入门资料\LCD_线性CCD\Prj\IAR\settings\vcan_Kinetis.FN15_Debug.driver.xcl" 
+"E:\IAR\common\bin\cspybat" -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.FN15_Debug.general.xcl" --backend -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.FN15_Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"D:\Program Files (x86)\common\bin\cspybat" -f "G:\十四届智能车实验室纳新\光电、电磁、直立入门资料\电磁组入门资料\LCD_线性CCD\Prj\IAR\settings\vcan_Kinetis.FN15_Debug.general.xcl" "--debug_file=%1" --backend -f "G:\十四届智能车实验室纳新\光电、电磁、直立入门资料\电磁组入门资料\LCD_线性CCD\Prj\IAR\settings\vcan_Kinetis.FN15_Debug.driver.xcl" 
+"E:\IAR\common\bin\cspybat" -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.FN15_Debug.general.xcl" "--debug_file=%~1" --backend -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.FN15_Debug.driver.xcl" 
 
 @echo off 
 :end

@@ -1,49 +1,49 @@
-"E:\SMART CAR\RUN3\Chip\src\MK60_ftm.c"
+"E:\SMART CAR\smart-car-project\Chip\src\MK60_ftm.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -I
-E:\SMART CAR\RUN3\Chip\src
+E:\SMART CAR\smart-car-project\Chip\src
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\App
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\App
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\App\Inc
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\App\Inc
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\Board\Inc
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\Board\Inc
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\Chip\inc
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\Chip\inc
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\Chip\inc\IAR
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\Chip\inc\IAR
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\Chip\inc\kinetis
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\Chip\inc\kinetis
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\Lib\CMSIS\Inc
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\Lib\CMSIS\Inc
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\Lib\FatFs
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\Lib\FatFs
 -I
-E:\SMART CAR\RUN3\Prj\IAR\..\..\Lib\USB
+E:\IAR\arm\..\..\SMART CAR\smart-car-project\Lib\USB
 -I
 E:\IAR\arm\inc
 -I
 E:\IAR\arm\inc\c
 -I
-E:\SMART CAR\RUN3\App
+E:\SMART CAR\smart-car-project\App
 -I
-E:\SMART CAR\RUN3\App\Inc
+E:\SMART CAR\smart-car-project\App\Inc
 -I
-E:\SMART CAR\RUN3\Board\Inc
+E:\SMART CAR\smart-car-project\Board\Inc
 -I
-E:\SMART CAR\RUN3\Chip\inc
+E:\SMART CAR\smart-car-project\Chip\inc
 -I
-E:\SMART CAR\RUN3\Chip\inc\IAR
+E:\SMART CAR\smart-car-project\Chip\inc\IAR
 -I
-E:\SMART CAR\RUN3\Chip\inc\kinetis
+E:\SMART CAR\smart-car-project\Chip\inc\kinetis
 -I
-E:\SMART CAR\RUN3\Lib\CMSIS\Inc
+E:\SMART CAR\smart-car-project\Lib\CMSIS\Inc
 -I
-E:\SMART CAR\RUN3\Lib\FatFs
+E:\SMART CAR\smart-car-project\Lib\FatFs
 -I
-E:\SMART CAR\RUN3\Lib\USB
+E:\SMART CAR\smart-car-project\Lib\USB
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=127
 -D__CHAR_MIN__=(-__CHAR_MAX__-1)

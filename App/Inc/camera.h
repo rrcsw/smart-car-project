@@ -3,8 +3,8 @@
 
 /*** 宏定义 ****/ 
 
-#define Black_Point 0
-#define White_Point 255
+//#define Black_Point 0
+//#define White_Point 255
 #define RowMax	    60	  //行数
 #define ColumnMax	80	  //列数
 
@@ -28,7 +28,7 @@ extern int DropRow;
 
 extern  int   RightEdge[RowMax+1];
 extern  int   LeftEdge[RowMax+1];
-extern  int   MiddleLine[RowMax+1];
+extern  uint8   mid_line[RowMax+1];
 extern int   LastLine;
 extern int   Width[RowMax+1];
 extern int   LeftLose;

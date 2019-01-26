@@ -22,7 +22,7 @@ uint8 left_black[60];
 
 /*********define for SearchCenterBlackline**********/
 
-int   MiddleLine[RowMax+1];
+ 
 int   RightEdge[RowMax+1];
 int   LeftEdge[RowMax+1];
 int   Width[RowMax+1];//={2,3,3,3,4,4,5,5,6,6,
@@ -137,9 +137,23 @@ void move()
         
 }
 ***********/
+void SetInitVal()
+{
+  int i;
+  
+  for(i=0;i<RowMax;i++)//赋初值             
+  { 
+      RightEdge[i]  = ColumnMax;
+      LeftEdge[i]   = 0;
+      mid_line[i] = ColumnMax/2;
+      Width[i]  = 20+i*1/2;     //动态路宽
+      
+  }
+  
+} 
 
 
-void SearchCenterBlackline(void)
+void SearchCenterBlackline()
 {
 
   int16 i         = 0;
@@ -152,7 +166,7 @@ void SearchCenterBlackline(void)
   AllLose         = 0;
   WhiteNum        = 0;
 
-  MiddleLine[RowMax]  = ColumnMax/2;//第60行
+  mid_line[RowMax]  = ColumnMax/2;//第60行 
   LeftEdge[RowMax]    = 0;
   RightEdge[RowMax]   = ColumnMax;
   Width[RowMax]       = 60;
@@ -169,15 +183,15 @@ void SearchCenterBlackline(void)
     } 
     else
     {
-        j = MiddleLine[i+1];//否则就以上一行中点的位置作为本行扫描起点
+        j = mid_line[i+1];//否则就以上一行中点的位置作为本行扫描起点
     }   
-    if(j <= 2)
+    if(j <= 2)         //补线
     {
         j = 2;
     } 
     while(j >= 2)//j>=2有效范围内进行搜寻 
     {
-        if(img[i][j]==White_Point&& img[i][j-1]==Black_Point&&img[i][j-2]==Black_Point)//从右向左找到白白黑跳变 
+        if(img[i][j]==WHITE&& img[i][j-1]==BLACK&&img[i][j-2]==BLACK)//从右向左找到白白黑跳变 
         {
              LeftEdge[i] =j;//找到则赋值 找不到保持原值0      
              break;//跳出本行寻线
@@ -190,7 +204,7 @@ void SearchCenterBlackline(void)
      }          
      else
      {
-        j = MiddleLine[i+1];//否则从上一行中心位置开始搜寻
+        j = mid_line[i+1];//否则从上一行中心位置开始搜寻
      }
      if(j >=ColumnMax-2)//j >=ColumnMax-2有效范围内搜寻右线
      {
@@ -199,7 +213,7 @@ void SearchCenterBlackline(void)
      while(j <= ColumnMax-2)
      {
          
-        if(img[i][j]==White_Point && img[i][j+1]==Black_Point && img[i][j+2]==Black_Point)//从左向右找到白白黑跳变点
+        if(img[i][j]==WHITE && img[i][j+1]==BLACK && img[i][j+2]==BLACK)//从左向右找到白白黑跳变点
         {
                RightEdge[i] = j;//找到则赋值   找不到保持原值
                break;//跳出本行寻线
@@ -208,7 +222,7 @@ void SearchCenterBlackline(void)
      }
      if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)//中线判断，没有丢线
      {
-          MiddleLine[i] = (LeftEdge[i] + RightEdge[i])/2;  
+          mid_line[i] = (LeftEdge[i] + RightEdge[i])/2;  
      }
      else if(LeftEdge[i]!=0 && RightEdge[i]==ColumnMax)//丢了右线,没有丢左线
      {
@@ -218,11 +232,11 @@ void SearchCenterBlackline(void)
 
         if((RightEdge[i]-LeftEdge[i]) >=(RightEdge[i+1]-LeftEdge[i+1]+5))//突变
         {
-                MiddleLine[i] = MiddleLine[i+1]+2;
+                mid_line[i] = mid_line[i+1]+2;
         }
         else 
         {
-                MiddleLine[i] = LeftEdge[i] + Width[i]/2+5;//正常的话就用半宽补
+                mid_line[i] = LeftEdge[i] + Width[i]/2+5;//正常的话就用半宽补
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//丢了左线
@@ -230,11 +244,11 @@ void SearchCenterBlackline(void)
            
         if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+1))//突变      
         {
-                MiddleLine[i] = MiddleLine[i+1]-1; 
+                mid_line[i] = mid_line[i+1]-1; 
         } 
         else 
         {
-                MiddleLine[i] = RightEdge[i] - Width[i]/2-5;//线宽
+                mid_line[i] = RightEdge[i] - Width[i]/2-5;//线宽
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边都丢了的话  
@@ -243,27 +257,27 @@ void SearchCenterBlackline(void)
              
         if(i ==RowMax-1)//如果是首行就以图像中心作为中点
         {
-                MiddleLine[i] = MidPri;
+                mid_line[i] = MidPri;
         }       
         else 
         {
-                MiddleLine[i] = MiddleLine[i+1];//如果不是首行就用上一行的中线作为本行中点
+                mid_line[i] = mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
         }             
       }
     
     
     
-     if(MiddleLine[RowMax-1] >=70)
+     if(mid_line[RowMax-1] >=70)
      {
          MidPri = 70;
      }          
-     else if(MiddleLine[RowMax-1] <=10)
+     else if(mid_line[RowMax-1] <=10)
      {
          MidPri = 10;
      }         
      else
      {
-          MidPri = MiddleLine[RowMax-1];//记录本帧图像第59行的中线值，作为下一幅图像的59行扫描起始点
+          MidPri = mid_line[RowMax-1];//记录本帧图像第59行的中线值，作为下一幅图像的59行扫描起始点
      }
     
   }   
@@ -275,7 +289,7 @@ void SearchCenterBlackline(void)
          jj = ((LeftEdge[i+1]-5) <= 1)? 1:(LeftEdge[i+1]-5);        
       while(j >= jj)       
       {       
-          if(img[i][j]==White_Point && img[i][j-1]==Black_Point&& img[i][j-2]==Black_Point)  
+          if(img[i][j]==WHITE && img[i][j-1]==BLACK&& img[i][j-2]==BLACK)  
           {
                LeftEdge[i] = j;
                break;
@@ -286,7 +300,7 @@ void SearchCenterBlackline(void)
          jj = ((RightEdge[i+1]+5) >= ColumnMax-2)? ColumnMax-2:(RightEdge[i+1]+5);    
       while(j <= jj)             
       {
-          if(img[i][j]==White_Point&& img[i][j+1]==Black_Point&& img[i][j+2]==Black_Point) 
+          if(img[i][j]==WHITE&& img[i][j+1]==BLACK&& img[i][j+2]==BLACK) 
           {
                RightEdge[i] = j;
                break;    
@@ -300,21 +314,21 @@ void SearchCenterBlackline(void)
          jj = ((LeftEdge[i+1]-5) <= 1)? 1:(LeftEdge[i+1]-5);              
       while(j >= jj)   
       {     
-          if(img[i][j]==White_Point && img[i][j-1]==Black_Point && img[i][j-2]==Black_Point)
+          if(img[i][j]==WHITE && img[i][j-1]==BLACK && img[i][j-2]==BLACK)
           {
                LeftEdge[i] = j;
                break;
           }
          j--;   
       }     
-         j = MiddleLine[i+1];//上一行丢了右边界用全行扫描 
+         j = mid_line[i+1];//上一行丢了右边界用全行扫描 
       if(j >= 78)
       {
            j = 78;
       }
       while(j <= ColumnMax-2)      
       {    
-          if(img[i][j]==White_Point && img[i][j+1]==Black_Point&&img[i][j+2]==Black_Point)
+          if(img[i][j]==WHITE && img[i][j+1]==BLACK&&img[i][j+2]==BLACK)
           {
                RightEdge[i] = j;
                break;
@@ -329,21 +343,21 @@ void SearchCenterBlackline(void)
          jj = ((RightEdge[i+1]+5) >= ColumnMax-2)? ColumnMax-2:(RightEdge[i+1]+5);            
        while(j <= jj)  
        {    
-            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point&&img[i][j+2]==Black_Point)
+            if(img[i][j]==WHITE&&img[i][j+1]==BLACK&&img[i][j+2]==BLACK)
             {
                  RightEdge[i] = j;
                  break;
             }
            j++;     
        }   
-           j = MiddleLine[i+1]; //全行扫描找左边界
+           j = mid_line[i+1]; //全行扫描找左边界
         if(j < 2)
         {
              j = 2;
         }  
        while(j >= 1)  
        {  
-            if(img[i][j]==White_Point && img[i][j-1]==Black_Point&& img[i][j-2]==Black_Point)       
+            if(img[i][j]==WHITE && img[i][j-1]==BLACK&& img[i][j-2]==BLACK)       
             {
                  LeftEdge[i] = j;
                  break;
@@ -354,20 +368,20 @@ void SearchCenterBlackline(void)
     else if(LeftEdge[i+1]==0 && RightEdge[i+1]==ColumnMax)  //上一行没找到边界，可能是十字或者环形  
     {
         
-          j = MiddleLine[i+1];   //找全行找左边界
+          j = mid_line[i+1];   //找全行找左边界
         while(j >= 1)  
         {
-             if(img[i][j]==White_Point && img[i][j-1]==Black_Point&& img[i][j-2]==Black_Point)     
+             if(img[i][j]==WHITE && img[i][j-1]==BLACK&& img[i][j-2]==BLACK)     
              {
                   LeftEdge[i] = j;
                   break;
              }
             j--;
         }
-         j = MiddleLine[i+1];   //全行找右边界   
+         j = mid_line[i+1];   //全行找右边界   
        while(j <=ColumnMax-2)       
        {   
-            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point)
+            if(img[i][j]==WHITE&&img[i][j+1]==BLACK)
             {
                   RightEdge[i] = j;  
                   break;
@@ -378,40 +392,40 @@ void SearchCenterBlackline(void)
     }
     if( (RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+3) )//不满足畸变 
     {      
-          MiddleLine[i] = MiddleLine[i+1];//用上一行
+          mid_line[i] = mid_line[i+1];//用上一行
     }
     else
     {
             if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)   
             {
-                     MiddleLine[i] = (LeftEdge[i] + RightEdge[i])/2+5;
+                     mid_line[i] = (LeftEdge[i] + RightEdge[i])/2+5;
                      //对斜出十字进行纠正
                      
-                 if( MiddleLine[i]-MiddleLine[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//中线向右突变
+                 if( mid_line[i]-mid_line[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//中线向右突变
                  {
                            uint8 ii = i;
                     
                       while(1)
                       {
-                               MiddleLine[ii+1] = MiddleLine[ii]-1; 
+                               mid_line[ii+1] = mid_line[ii]-1; 
                                ii++; 
                                
-                           if( ii>=50 || (MiddleLine[ii]-MiddleLine[ii+1]<=1) )
+                           if( ii>=50 || (mid_line[ii]-mid_line[ii+1]<=1) )
                            {
                                  break;
                            }          
                        }
                  }
-                 if( (MiddleLine[i+1]-MiddleLine[i]>8)&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)))&& i>=30)
+                 if( (mid_line[i+1]-mid_line[i]>8)&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)))&& i>=30)
                  {
                            uint8 ii = i;
                           
                       while(1)
                       {
-                               MiddleLine[ii+1] = MiddleLine[ii]+1;
+                               mid_line[ii+1] = mid_line[ii]+1;
                                ii++;
                                
-                           if( ii>=50 || (MiddleLine[ii+1]-MiddleLine[ii]<=1) )
+                           if( ii>=50 || (mid_line[ii+1]-mid_line[ii]<=1) )
                            { 
                                  break;
                            }       
@@ -425,11 +439,11 @@ void SearchCenterBlackline(void)
                      
                  if(LeftEdge[i+1] != 0)
                  {
-                               MiddleLine[i] = MiddleLine[i+1]+LeftEdge[i]-LeftEdge[i+1]+5;
+                               mid_line[i] = mid_line[i+1]+LeftEdge[i]-LeftEdge[i+1]+5;
                  }        
                  else
                  {
-                                MiddleLine[i]  = LeftEdge[i] + Width[i]/2+5;
+                                mid_line[i]  = LeftEdge[i] + Width[i]/2+5;
                  }
             }
             
@@ -441,12 +455,12 @@ void SearchCenterBlackline(void)
                  if(RightEdge[i+1] !=ColumnMax)
                  {
                   
-                                 MiddleLine[i] = MiddleLine[i+1]+RightEdge[i]-RightEdge[i+1]-5;
+                                 mid_line[i] = mid_line[i+1]+RightEdge[i]-RightEdge[i+1]-5;
                  }
                  else
                  {
                  
-                                 MiddleLine[i] = RightEdge[i] - Width[i]/2-5;
+                                 mid_line[i] = RightEdge[i] - Width[i]/2-5;
                  }
             }
            else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边丢线    
@@ -458,7 +472,7 @@ void SearchCenterBlackline(void)
                  {   
                                   WhiteStart = i;
                  }         
-                        MiddleLine[i] = MiddleLine[i+1];
+                        mid_line[i] = mid_line[i+1];
            }
             
        }
@@ -469,7 +483,7 @@ void SearchCenterBlackline(void)
             LastLine  = 0;  
             break;
     }
-           uint16 m = MiddleLine[i];
+           uint16 m = mid_line[i];
     if(m < 5)
     { 
             m = 5;
@@ -478,7 +492,7 @@ void SearchCenterBlackline(void)
     {
             m = 75;
     }
-    if( (LeftEdge[i]!=0 && LeftEdge[i]>=65) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== Black_Point)) //最后一行              
+    if( (LeftEdge[i]!=0 && LeftEdge[i]>=65) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== BLACK)) //最后一行              
     {
             LastLine = i;//最后一行，动态前瞻
             AvaliableLines = 60 - i;//有效行数

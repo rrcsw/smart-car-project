@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"E:\IAR\common\bin\cspybat" -f "C:\Users\housol\Desktop\smart-car-project-master\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.general.xcl" --backend -f "C:\Users\housol\Desktop\smart-car-project-master\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.driver.xcl" 
+"E:\IAR\common\bin\cspybat" -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.general.xcl" --backend -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"E:\IAR\common\bin\cspybat" -f "C:\Users\housol\Desktop\smart-car-project-master\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\housol\Desktop\smart-car-project-master\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.driver.xcl" 
+"E:\IAR\common\bin\cspybat" -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.general.xcl" "--debug_file=%~1" --backend -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.driver.xcl" 
 
 @echo off 
 :end
