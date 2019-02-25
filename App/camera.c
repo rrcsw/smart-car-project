@@ -153,7 +153,7 @@ void SetInitVal()
 } 
 
 
-void SearchCenterBlackline()
+void SearchCenterline()
 {
 
   int16 i         = 0;
