@@ -1,5 +1,5 @@
-#ifndef __CAMERA_H__
-#define __CAMERA_H__
+#ifndef __FINDTRACK_H__
+#define __FINDTRACK_H__
 
 /*** ∫Í∂®“Â ****/ 
 
@@ -28,7 +28,7 @@ extern int DropRow;
 
 extern  int   RightEdge[RowMax+1];
 extern  int   LeftEdge[RowMax+1];
-extern  uint8   mid_line[RowMax+1];
+extern  int   MiddleLine[RowMax+1];
 extern int   LastLine;
 extern int   Width[RowMax+1];
 extern int   LeftLose;

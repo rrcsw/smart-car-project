@@ -15,7 +15,7 @@ void img_extract(uint8 *dst, uint8 *src, uint32 srclen);
 extern void all_init();   
 extern void Binarization();
 extern void LCD_Binarization();
-extern void move();
+extern void SearchCenterline();
 extern void steer_control();
 
 //fuck you K60
@@ -40,8 +40,10 @@ void main()
 while(1)
     {  
       StartingLineFlag=0;
-       Binarization();                  //摄像头二值化
-       LCD_Binarization();              //LCD显示二值化
+      Binarization();                  //摄像头二值化
+      LCD_Binarization();              //LCD显示二值化
+      SearchCenterline();              //寻找中线
+      GetBlackEndParam();             //获取黑线截止行
        //move();
        
               

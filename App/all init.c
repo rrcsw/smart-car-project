@@ -28,8 +28,9 @@ void all_init()
       /*****配置中断服务函数**********/
       set_vector_handler(PORTA_VECTORn , PORTA_IRQHandler);   //设置 PORTA 的中断服务函数为 PORTA_IRQHandler
       set_vector_handler(DMA0_VECTORn , DMA0_IRQHandler);     //设置 DMA0 的中断服务函数为 PORTA_IRQHandler
-    
+      /********舵机初始化***********/
       ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, STEER_MID);    //舵机 PWM 模块初始化
+      /********电机初始化**********/
       ftm_pwm_init(MOTOR_FTM, MOTOR3_PWM,MOTOR_HZ,60);           //初始化 电机3 PWM
       ftm_pwm_init(MOTOR_FTM, MOTOR4_PWM,MOTOR_HZ,60);           //初始化 电机4 PWM
 }  

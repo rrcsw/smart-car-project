@@ -166,7 +166,7 @@ void SearchCenterBlackline()
   AllLose         = 0;
   WhiteNum        = 0;
 
-  mid_line[RowMax]  = ColumnMax/2;//第60行 
+  mid_line[RowMax]  = ColumnMax/2;//第60行
   LeftEdge[RowMax]    = 0;
   RightEdge[RowMax]   = ColumnMax;
   Width[RowMax]       = 60;
@@ -185,13 +185,13 @@ void SearchCenterBlackline()
     {
         j = mid_line[i+1];//否则就以上一行中点的位置作为本行扫描起点
     }   
-    if(j <= 2)         //补线
+    if(j <= 2)
     {
         j = 2;
     } 
     while(j >= 2)//j>=2有效范围内进行搜寻 
     {
-        if(img[i][j]==WHITE&& img[i][j-1]==BLACK&&img[i][j-2]==BLACK)//从右向左找到白白黑跳变 
+        if(img[i][j]==White_Point&& img[i][j-1]==Black_Point&&img[i][j-2]==Black_Point)//从右向左找到白白黑跳变 
         {
              LeftEdge[i] =j;//找到则赋值 找不到保持原值0      
              break;//跳出本行寻线
@@ -213,7 +213,7 @@ void SearchCenterBlackline()
      while(j <= ColumnMax-2)
      {
          
-        if(img[i][j]==WHITE && img[i][j+1]==BLACK && img[i][j+2]==BLACK)//从左向右找到白白黑跳变点
+        if(img[i][j]==White_Point && img[i][j+1]==Black_Point && img[i][j+2]==Black_Point)//从左向右找到白白黑跳变点
         {
                RightEdge[i] = j;//找到则赋值   找不到保持原值
                break;//跳出本行寻线
@@ -289,7 +289,7 @@ void SearchCenterBlackline()
          jj = ((LeftEdge[i+1]-5) <= 1)? 1:(LeftEdge[i+1]-5);        
       while(j >= jj)       
       {       
-          if(img[i][j]==WHITE && img[i][j-1]==BLACK&& img[i][j-2]==BLACK)  
+          if(img[i][j]==White_Point && img[i][j-1]==Black_Point&& img[i][j-2]==Black_Point)  
           {
                LeftEdge[i] = j;
                break;
@@ -300,7 +300,7 @@ void SearchCenterBlackline()
          jj = ((RightEdge[i+1]+5) >= ColumnMax-2)? ColumnMax-2:(RightEdge[i+1]+5);    
       while(j <= jj)             
       {
-          if(img[i][j]==WHITE&& img[i][j+1]==BLACK&& img[i][j+2]==BLACK) 
+          if(img[i][j]==White_Point&& img[i][j+1]==Black_Point&& img[i][j+2]==Black_Point) 
           {
                RightEdge[i] = j;
                break;    
@@ -314,7 +314,7 @@ void SearchCenterBlackline()
          jj = ((LeftEdge[i+1]-5) <= 1)? 1:(LeftEdge[i+1]-5);              
       while(j >= jj)   
       {     
-          if(img[i][j]==WHITE && img[i][j-1]==BLACK && img[i][j-2]==BLACK)
+          if(img[i][j]==White_Point && img[i][j-1]==Black_Point && img[i][j-2]==Black_Point)
           {
                LeftEdge[i] = j;
                break;
@@ -328,7 +328,7 @@ void SearchCenterBlackline()
       }
       while(j <= ColumnMax-2)      
       {    
-          if(img[i][j]==WHITE && img[i][j+1]==BLACK&&img[i][j+2]==BLACK)
+          if(img[i][j]==White_Point && img[i][j+1]==Black_Point&&img[i][j+2]==Black_Point)
           {
                RightEdge[i] = j;
                break;
@@ -343,7 +343,7 @@ void SearchCenterBlackline()
          jj = ((RightEdge[i+1]+5) >= ColumnMax-2)? ColumnMax-2:(RightEdge[i+1]+5);            
        while(j <= jj)  
        {    
-            if(img[i][j]==WHITE&&img[i][j+1]==BLACK&&img[i][j+2]==BLACK)
+            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point&&img[i][j+2]==Black_Point)
             {
                  RightEdge[i] = j;
                  break;
@@ -357,7 +357,7 @@ void SearchCenterBlackline()
         }  
        while(j >= 1)  
        {  
-            if(img[i][j]==WHITE && img[i][j-1]==BLACK&& img[i][j-2]==BLACK)       
+            if(img[i][j]==White_Point && img[i][j-1]==Black_Point&& img[i][j-2]==Black_Point)       
             {
                  LeftEdge[i] = j;
                  break;
@@ -371,7 +371,7 @@ void SearchCenterBlackline()
           j = mid_line[i+1];   //找全行找左边界
         while(j >= 1)  
         {
-             if(img[i][j]==WHITE && img[i][j-1]==BLACK&& img[i][j-2]==BLACK)     
+             if(img[i][j]==White_Point && img[i][j-1]==Black_Point&& img[i][j-2]==Black_Point)     
              {
                   LeftEdge[i] = j;
                   break;
@@ -381,7 +381,7 @@ void SearchCenterBlackline()
          j = mid_line[i+1];   //全行找右边界   
        while(j <=ColumnMax-2)       
        {   
-            if(img[i][j]==WHITE&&img[i][j+1]==BLACK)
+            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point)
             {
                   RightEdge[i] = j;  
                   break;
@@ -392,40 +392,40 @@ void SearchCenterBlackline()
     }
     if( (RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+3) )//不满足畸变 
     {      
-          mid_line[i] = mid_line[i+1];//用上一行
+           mid_line[i] =  mid_line[i+1];//用上一行
     }
     else
     {
             if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)   
             {
-                     mid_line[i] = (LeftEdge[i] + RightEdge[i])/2+5;
+                      mid_line[i] = (LeftEdge[i] + RightEdge[i])/2+5;
                      //对斜出十字进行纠正
                      
-                 if( mid_line[i]-mid_line[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//中线向右突变
+                 if(  mid_line[i]- mid_line[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//中线向右突变
                  {
                            uint8 ii = i;
                     
                       while(1)
                       {
-                               mid_line[ii+1] = mid_line[ii]-1; 
+                                mid_line[ii+1] =  mid_line[ii]-1; 
                                ii++; 
                                
-                           if( ii>=50 || (mid_line[ii]-mid_line[ii+1]<=1) )
+                           if( ii>=50 || ( mid_line[ii]- mid_line[ii+1]<=1) )
                            {
                                  break;
                            }          
                        }
                  }
-                 if( (mid_line[i+1]-mid_line[i]>8)&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)))&& i>=30)
+                 if( ( mid_line[i+1]- mid_line[i]>8)&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)))&& i>=30)
                  {
                            uint8 ii = i;
                           
                       while(1)
                       {
-                               mid_line[ii+1] = mid_line[ii]+1;
+                                mid_line[ii+1] =  mid_line[ii]+1;
                                ii++;
                                
-                           if( ii>=50 || (mid_line[ii+1]-mid_line[ii]<=1) )
+                           if( ii>=50 || ( mid_line[ii+1]- mid_line[ii]<=1) )
                            { 
                                  break;
                            }       
@@ -439,11 +439,11 @@ void SearchCenterBlackline()
                      
                  if(LeftEdge[i+1] != 0)
                  {
-                               mid_line[i] = mid_line[i+1]+LeftEdge[i]-LeftEdge[i+1]+5;
+                                mid_line[i] =  mid_line[i+1]+LeftEdge[i]-LeftEdge[i+1]+5;
                  }        
                  else
                  {
-                                mid_line[i]  = LeftEdge[i] + Width[i]/2+5;
+                                 mid_line[i]  = LeftEdge[i] + Width[i]/2+5;
                  }
             }
             
@@ -455,12 +455,12 @@ void SearchCenterBlackline()
                  if(RightEdge[i+1] !=ColumnMax)
                  {
                   
-                                 mid_line[i] = mid_line[i+1]+RightEdge[i]-RightEdge[i+1]-5;
+                                  mid_line[i] =  mid_line[i+1]+RightEdge[i]-RightEdge[i+1]-5;
                  }
                  else
                  {
                  
-                                 mid_line[i] = RightEdge[i] - Width[i]/2-5;
+                                  mid_line[i] = RightEdge[i] - Width[i]/2-5;
                  }
             }
            else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边丢线    
@@ -472,7 +472,7 @@ void SearchCenterBlackline()
                  {   
                                   WhiteStart = i;
                  }         
-                        mid_line[i] = mid_line[i+1];
+                         mid_line[i] =  mid_line[i+1];
            }
             
        }
@@ -483,7 +483,7 @@ void SearchCenterBlackline()
             LastLine  = 0;  
             break;
     }
-           uint16 m = mid_line[i];
+           uint16 m =  mid_line[i];
     if(m < 5)
     { 
             m = 5;
@@ -492,7 +492,7 @@ void SearchCenterBlackline()
     {
             m = 75;
     }
-    if( (LeftEdge[i]!=0 && LeftEdge[i]>=65) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== BLACK)) //最后一行              
+    if( (LeftEdge[i]!=0 && LeftEdge[i]>=65) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== Black_Point)) //最后一行              
     {
             LastLine = i;//最后一行，动态前瞻
             AvaliableLines = 60 - i;//有效行数
@@ -502,3 +502,100 @@ void SearchCenterBlackline()
    
   }
 }
+ 
+
+
+void GetBlackEndParam()//获取黑线截止行
+{
+  
+  unsigned char LEndFlag  = 0;//标志位
+  unsigned char MEndFlag  = 0;
+  unsigned char REndFlag  = 0;	
+  unsigned char MREndFlag = 0;
+  unsigned char MLEndFlag = 0;
+  unsigned char LLEndFlag = 0;
+  unsigned char RREndFlag = 0;
+
+  int i=0;
+
+  BlackEndMR   = 0;//清零
+  BlackEndML   = 0;
+  BlackEndLL   = 0;
+  BlackEndRR   = 0;
+  BlackEndL    = 0;
+  BlackEndM    = 0;
+  BlackEndR    = 0;
+  
+  for (i = RowMax-1; i >= 3 ; i--)
+  {
+	if(img[i][ColumnMax/2] == White_Point && !MEndFlag )//!MEndFlag=1 //40
+        {
+		BlackEndM++;//中黑线截至行
+        }
+	else if(i > 1 && img[i-1][ColumnMax/2] == Black_Point && img[i-2][ColumnMax/2] == Black_Point)//连续两行是黑色        
+        {
+		MEndFlag = 1;
+        }
+	if(img[i][ColumnMax/4] == White_Point && !LEndFlag )//20
+        {
+		BlackEndL++;//左黑线截至行
+        }
+	else if(i > 1 && img[i-1][ColumnMax/4] == Black_Point && img[i-2][ColumnMax/4] == Black_Point)
+        {
+		LEndFlag = 1;
+        }
+	if(img[i][ColumnMax*3/4] == White_Point && !REndFlag )//60
+        {
+		BlackEndR++;//右黑线截至行
+	}
+	else if(i > 1 && img[i-1][ColumnMax*3/4] == Black_Point && img[i-2][ColumnMax*3/4] == Black_Point)
+        {
+		REndFlag = 1;
+        }
+        if(img[i][30] == White_Point && !MLEndFlag )
+        {
+		BlackEndML++;
+        }
+	else if(i > 1 && img[i-1][30] == Black_Point && img[i-2][30] == Black_Point)
+        {
+		MLEndFlag = 1;
+        }
+	if(img[i][50] == White_Point && !MREndFlag )
+        {
+		BlackEndMR++;
+        }
+	else if(i > 1 && img[i-1][50] == Black_Point && img[i-2][50] == Black_Point)
+        {
+		MREndFlag = 1;
+	}
+        if(img[i][10] == White_Point && !LLEndFlag )
+        {
+		BlackEndLL++;
+	}
+	else if(i > 1 && img[i-1][10] == Black_Point && img[i-2][10] == Black_Point)
+        {
+		LLEndFlag = 1;
+	}
+        if(img[i][70] == White_Point && !RREndFlag )
+        {
+		BlackEndRR++;
+	}
+	else if(i > 1 && img[i-1][70] == Black_Point && img[i-2][70] == Black_Point)
+        {
+		RREndFlag = 1;
+	}
+   }
+        
+    
+        BlackEndMax =MAX(BlackEndL,BlackEndM);//取大值
+        BlackEndMax =MAX(BlackEndMax,BlackEndR);
+        BlackEndMaxMax =MAX(BlackEndMax,BlackEndMR);
+        BlackEndMaxMax =MAX(BlackEndMax,BlackEndML);
+        BlackEndMaxMax =MAX(BlackEndMax,BlackEndLL);
+        BlackEndMaxMax =MAX(BlackEndMax,BlackEndRR);
+        if(BlackEndMaxMax>=60)
+        {
+            BlackEndMaxMax=58;
+        }
+        DropRow=60-BlackEndMaxMax;//封顶的行数      
+ }
