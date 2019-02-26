@@ -23,11 +23,11 @@ void DMA0_IRQHandler();
 void all_init()
 {
       camera_init(imgbuff);                                     //初始化摄像头
-      LCD_init();                                                //液晶初始化
-     
-      /*****配置中断服务函数**********/
+       /*****配置中断服务函数**********/
       set_vector_handler(PORTA_VECTORn , PORTA_IRQHandler);   //设置 PORTA 的中断服务函数为 PORTA_IRQHandler
       set_vector_handler(DMA0_VECTORn , DMA0_IRQHandler);     //设置 DMA0 的中断服务函数为 PORTA_IRQHandler
+      
+      LCD_Init();                                                //液晶初始化
       /********舵机初始化***********/
       ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, STEER_MID);    //舵机 PWM 模块初始化
       /********电机初始化**********/

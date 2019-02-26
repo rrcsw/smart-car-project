@@ -48,3 +48,19 @@ void LCD_Display()
          }
        }
 }
+
+void LCD_Init()
+{
+    /*LCD液晶变量定义*/
+    Site_t site = {0, 0};                           //LCD显示图像左上角位置
+    Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCD图像大小
+    Size_t size={80,60};                                //LCD显示区域图像大小
+    LCD_init();   //显示屏初始化  
+    LCD_str  (site,"Cam init ing",FCOLOUR,BCOLOUR);   //显示屏显示  （左上角坐标，字符串，字体颜色，背景颜色）
+
+    size.H = CAMERA_H;    //高      //（表示全屏显示）
+    size.W = CAMERA_W;    //宽
+  
+    LCD_str  (site,"Cam init OK!",FCOLOUR,BCOLOUR);   //显示屏显
+    LCD_clear(RED);     //清屏 （背景红色）
+}

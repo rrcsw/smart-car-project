@@ -39,13 +39,18 @@ void main()
 
 while(1)
     {  
-      StartingLineFlag=0;
+
       Binarization();                  //摄像头二值化
       LCD_Binarization();              //LCD显示二值化
       SearchCenterline();              //寻找中线
       GetBlackEndParam();             //获取黑线截止行
+      /*****if(!StartingLineFlag)
+              {
+                CrossRecognition(&Cross);//十字识别
+                CrossConduct();//十字补线
+              } 
        //move();
-       
+       *******/
               
            
         /********
