@@ -4,8 +4,8 @@
 #define  MotorControlPeriod   8     //电机控制值更新周期
 #define  SteetControlPeriod   20    //舵机控制周期
 
-#define  OpenLoop 0 //宏定义置1，速度开环控制
-#define  CloseLoop 1 //宏定义置1，速度闭环控制
+#define  OpenLoop 1 //宏定义置1，速度开环控制
+#define  CloseLoop 0 //宏定义置1，速度闭环控制
 
 
 

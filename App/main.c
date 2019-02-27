@@ -72,17 +72,39 @@ while(1)
         **********/
     
         /**舵机控制**/
-       steer_control();
+       //steer_control();
   
-/**************
-        site.x=0;site.y=65;
-        LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCD黑白图像显示
-*******/
-//#endif
+
+
+# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可
+             
+               RecognitionObstacle();
+#endif             
+             
+               SteerControl();
+#if OpenLoop              
+               
+              MotorControlOpenLoop(); 
+#endif
+              
+#if CloseLoop      
+               MotorControl();
+#endif
+               
+             
+             
+                 LCD_Display();//液晶显示
+                 
+               
+         }
+    
+}
+      
+
       //  pit_close  (PIT1);                    //关闭PIT（可选择是否关闭）
     
-    }
-}
+
+
 
 
 
