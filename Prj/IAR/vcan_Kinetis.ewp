@@ -6308,6 +6308,9 @@
             <name>$PROJ_DIR$\..\..\App\motor.c</name>
         </file>
         <file>
+            <name>$PROJ_DIR$\..\..\App\Inc\motor.h</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\App\Inc\PORT_cfg.h</name>
         </file>
         <file>
@@ -6318,6 +6321,15 @@
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\App\steer.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\App\Inc\steer.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\App\Track.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\App\Track.h</name>
         </file>
     </group>
     <group>

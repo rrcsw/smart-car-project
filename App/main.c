@@ -44,15 +44,13 @@ while(1)
       LCD_Binarization();              //LCD显示二值化
       SearchCenterline();              //寻找中线
       GetBlackEndParam();             //获取黑线截止行
-      /*****if(!StartingLineFlag)
+      if(!StartingLineFlag)
               {
                 CrossRecognition(&Cross);//十字识别
                 CrossConduct();//十字补线
+                LoopRecognition(&Loop);//圆环识别
+                FindLoopOptimalExit();//寻找圆环出口
               } 
-       //move();
-       *******/
-              
-           
         /********
           for(int i=59;i>=0;i--)//开始获取中线
     {
