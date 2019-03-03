@@ -31,7 +31,7 @@ void all_init()
       /********舵机初始化***********/
       ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, STEER_MID);    //舵机 PWM 模块初始化
       /********电机初始化**********/
-      ftm_pwm_init(MOTOR_FTM, MOTOR3_PWM,MOTOR_HZ,60);           //初始化 电机3 PWM
-      ftm_pwm_init(MOTOR_FTM, MOTOR4_PWM,MOTOR_HZ,60);           //初始化 电机4 PWM
+      ftm_pwm_init(MOTOR_FTM, MOTOR3_PWM,MOTOR_HZ,600);           //初始化 电机3 PWM
+      ftm_pwm_init(MOTOR_FTM, MOTOR4_PWM,MOTOR_HZ,600);           //初始化 电机4 PWM
 }  
 

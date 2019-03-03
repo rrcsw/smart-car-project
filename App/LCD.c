@@ -10,10 +10,10 @@ extern uint8 right_black[60];
 extern uint8 left_black[60];
 extern uint8 mid_line[61];
 
-/*LCD液晶变量定义*/
-Site_t site = {0, 0};                           //LCD显示图像左上角位置
-Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCD图像大小
-Size_t size={80,60};                                //LCD显示区域图像大小
+ /*LCD液晶变量定义*/
+    Site_t site = {0, 0};                           //LCD显示图像左上角位置
+    Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCD图像大小
+    Size_t size={80,60};                                //LCD显示区域图像大小
 
 
 void LCD_Binarization()
@@ -44,7 +44,8 @@ void LCD_Display()
          for(i=0;i<80;i++)//横向扫描打点
          {
            lcdsite.x=i;//控制横坐标
-           lcdsite.y=30;LCD_point(lcdsite,GREEN); //打角识别行
+           lcdsite.y=30;
+           LCD_point(lcdsite,GREEN); //打角识别行
          }
        }
 }

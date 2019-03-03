@@ -24,7 +24,7 @@ void main()
 {
 
      all_init();                                       //初始化
-
+    
 /**********     
       while(1)
       {
@@ -76,20 +76,20 @@ while(1)
   
 
 
-# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可
+//# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可
              
-               RecognitionObstacle();
-#endif             
+  //             RecognitionObstacle();
+//#endif             
              
                SteerControl();
-#if OpenLoop              
+//#if OpenLoop              
                
               MotorControlOpenLoop(); 
-#endif
+//#endif
               
-#if CloseLoop      
-               MotorControl();
-#endif
+//#if CloseLoop      
+  //             MotorControl();
+//#endif
                
              
              
@@ -103,14 +103,6 @@ while(1)
 
       //  pit_close  (PIT1);                    //关闭PIT（可选择是否关闭）
     
-
-
-
-
-
-
-
-
 
 
 

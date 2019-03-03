@@ -75,22 +75,22 @@ void MotorControlOpenLoop(void)
   
   
      OpendLoopPwmR=300;
-     OpendLoopPwmL=300;
+     OpendLoopPwmL=100;
+      /**
+      //差速
+      OpendLoopPwmL=(int)(OpendLoopPwmL-(OpendLoopPwmL*Error*000.1));
       
-//      //差速
-//      OpendLoopPwmL=(int)(OpendLoopPwmL-(OpendLoopPwmL*Error*000.1));
-//      
-//      if(OpendLoopPwmL>=890)  OpendLoopPwmL=890;
-//      if(OpendLoopPwmL<=200)    OpendLoopPwmL=200;
-//      
-//      OpendLoopPwmR=(int)(OpendLoopPwmR+(OpendLoopPwmR*Error*000.1));
-//            
-//      if(OpendLoopPwmR>=890)  OpendLoopPwmR=890;
-//      if(OpendLoopPwmR<=200)    OpendLoopPwmR=200;
+      if(OpendLoopPwmL>=890)  OpendLoopPwmL=890;
+      if(OpendLoopPwmL<=200)    OpendLoopPwmL=200;
       
-      ftm_pwm_duty(FTM0,FTM_CH0,OpendLoopPwmR);
-      ftm_pwm_duty(FTM0,FTM_CH1,OpendLoopPwmL); //PTC2,左电机 
-    
+      OpendLoopPwmR=(int)(OpendLoopPwmR+(OpendLoopPwmR*Error*000.1));
+            
+      if(OpendLoopPwmR>=890)  OpendLoopPwmR=890;
+      if(OpendLoopPwmR<=200)    OpendLoopPwmR=200;
+      **/
+      ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmR);
+      ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmL); //PTC2,左电机 
+;
   }
   
 
