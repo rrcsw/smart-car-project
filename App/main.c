@@ -84,7 +84,7 @@ while(1)
                SteerControl();
 //#if OpenLoop              
                
-              MotorControlOpenLoop(); 
+             // MotorControlOpenLoop(); 
 //#endif
               
 //#if CloseLoop      

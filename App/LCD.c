@@ -37,8 +37,8 @@ void LCD_Display()
          {
            lcdsite.y=i;//控制纵坐标
            lcdsite.x= mid_line[i]; LCD_point(lcdsite,RED); //红色中线
-           lcdsite.x= left_black[i]; LCD_point(lcdsite,BLUE); //蓝色左边界
-           lcdsite.x=right_black[i]; LCD_point(lcdsite,YELLOW); //黄色右边界
+           lcdsite.x= LeftEdge[i]; LCD_point(lcdsite,BLUE); //蓝色左边界
+           lcdsite.x= RightEdge[i]; LCD_point(lcdsite,YELLOW); //黄色右边界
            lcdsite.x=39; LCD_point(lcdsite,GREEN); //绿色中线误差判定标准
          }
          for(i=0;i<80;i++)//横向扫描打点
