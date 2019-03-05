@@ -111,14 +111,14 @@ void Binarization()
         pit_time_start  (PIT1);                                 //开始计时
         camera_get_img();                                      //摄像头获取图像
         time1 = pit_time_get_us    (PIT1);                      //摄像头获取图像时间
-        image_threshold = otsuThreshold(imgbuff);               //大津法计算阈值
-       //image_threshold =0x40;                                  //固定阈值
+        //image_threshold = otsuThreshold(imgbuff);               //大津法计算阈值
+        image_threshold =0x40;                                  //固定阈值
         MT9V032_Binarization(img,imgbuff,image_threshold);      //二值化
         time2 = pit_time_get_us(PIT1);                          //获取二值化计时时间
 }
-/*********
+/***
 void move()
-{       
+{     
     for(int i=59;i>=0;i--)                                     //开始获取中线
         {
         right_black[i]=79;left_black[i]=0;
@@ -136,7 +136,7 @@ void move()
         }
         
 }
-***********/
+********/
 void SetInitVal()
 {
   int i;
@@ -171,7 +171,7 @@ void SearchCenterline()
   RightEdge[RowMax]   = ColumnMax;
   Width[RowMax]       = 60;
   
-  SetInitVal();
+ // SetInitVal();
   
   //前十行，采用右左边往右边扫描的方法
   

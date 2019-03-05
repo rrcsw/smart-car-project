@@ -62,8 +62,8 @@ void MotorInit(void)
 
 #if OpenLoop//开环控制方式
 
-int32  OpendLoopPwmL; //开环左边电机的PWM值
-int32  OpendLoopPwmR; //开环右边电机的PWM值
+int32  OpendLoopPwmB; //开环左边电机的PWM值
+int32  OpendLoopPwmF; //开环右边电机的PWM值
 
 
 //开环控制分为两个档位，通过3号拨码开关选择
@@ -74,22 +74,22 @@ void MotorControlOpenLoop(void)
 //  int ErrorError=0;
   
   
-     OpendLoopPwmR=300;
-     OpendLoopPwmL=100;
-    /***  
+     OpendLoopPwmF=300;
+     OpendLoopPwmB=100;
+    
       //差速
-      OpendLoopPwmL=(int)(OpendLoopPwmL-(OpendLoopPwmL*Error*000.1));
+      OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
       
-      if(OpendLoopPwmL>=890)  OpendLoopPwmL=500;
-      if(OpendLoopPwmL<=200)    OpendLoopPwmL=200;
+      if(OpendLoopPwmB>=400)  OpendLoopPwmB=400;
+      if(OpendLoopPwmB<=200)    OpendLoopPwmB=200;
       
-      OpendLoopPwmR=(int)(OpendLoopPwmR+(OpendLoopPwmR*Error*000.1));
+      OpendLoopPwmF=(int)(OpendLoopPwmF+(OpendLoopPwmF*Error*000.1));
             
-      if(OpendLoopPwmR>=890)  OpendLoopPwmR=890;
-      if(OpendLoopPwmR<=200)    OpendLoopPwmR=200;
- ***/     
-      ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmR);
-      ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmL); //PTC2,左电机 
+      if(OpendLoopPwmF>=400)  OpendLoopPwmF=400;
+      if(OpendLoopPwmF<=200)    OpendLoopPwmF=200;
+      
+      ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmF);
+      ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmB); //PTC2,左电机 
 
   }
   

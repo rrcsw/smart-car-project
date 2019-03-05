@@ -41,7 +41,9 @@ while(1)
     {  
 
       Binarization();                  //摄像头二值化
-      LCD_Binarization();              //LCD显示二值化
+      LCD_Binarization();            //LCD显示二值化
+      
+
       SearchCenterline();              //寻找中线
       GetBlackEndParam();             //获取黑线截止行
       if(!StartingLineFlag)
@@ -50,6 +52,7 @@ while(1)
                 CrossConduct();//十字补线
                 LoopRecognition(&Loop);//圆环识别
                 FindLoopOptimalExit();//寻找圆环出口
+                TrackType();//主要赛道类型
               } 
         /********
           for(int i=59;i>=0;i--)//开始获取中线

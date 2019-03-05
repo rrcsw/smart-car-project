@@ -11,8 +11,8 @@
 /***************定义舵机端口************************/
 #define STEER_FTM   FTM1                                   //PTA12
 #define STEER_CH    FTM_CH0                                //舵机精度 10000
-#define STEER_HZ    (300)                                  //舵机频率 100 Hz 100
-#define STEER_MID   3940                               //理论中值，实际中值得在你们车装好之后细调 1520
+#define STEER_HZ    50                                  //舵机频率 100 Hz 100
+//define STEER_MID   3940                               //理论中值，实际中值得在你们车装好之后细调 1520
 
 /*******定义摄像头********/
 extern uint8 imgbuff[CAMERA_SIZE];                         
@@ -29,9 +29,9 @@ void all_init()
       
       LCD_Init();                                                //液晶初始化
       /********舵机初始化***********/
-      ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, STEER_MID);    //舵机 PWM 模块初始化
+      ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, SteerMidle);    //舵机 PWM 模块初始化
       /********电机初始化**********/
-      ftm_pwm_init(MOTOR_FTM, MOTOR3_PWM,MOTOR_HZ,400);           //初始化 电机3 PWM
+      ftm_pwm_init(MOTOR_FTM, MOTOR3_PWM,MOTOR_HZ,600);           //初始化 电机3 PWM
       ftm_pwm_init(MOTOR_FTM, MOTOR4_PWM,MOTOR_HZ,600);           //初始化 电机4 PWM
 }  
 
