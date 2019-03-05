@@ -19,12 +19,12 @@ extern void SearchCenterline();
 extern void steer_control();
 
 //fuck you K60
-
+//
 void main()
 {
 
      all_init();                                       //初始化
-    
+}    
 /**********     
       while(1)
       {
@@ -36,7 +36,7 @@ void main()
         steer_duty  = STEER_MID + steer_P * steer_error;  //计算舵机输出的 PWM
         ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, STEER_MID);  //舵机输出控制
 **********/ 
-
+/**
 while(1)
     {  
 
@@ -84,7 +84,7 @@ while(1)
   //             RecognitionObstacle();
 //#endif             
              
-               SteerControl();
+     //          SteerControl();
 //#if OpenLoop              
                
              // MotorControlOpenLoop(); 
@@ -96,12 +96,12 @@ while(1)
                
              
              
-                 LCD_Display();//液晶显示
+//                 LCD_Display();//液晶显示
                  
                
-         }
+  //       }
     
-}
+//}
       
 
       //  pit_close  (PIT1);                    //关闭PIT（可选择是否关闭）

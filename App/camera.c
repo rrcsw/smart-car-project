@@ -175,7 +175,7 @@ void SearchCenterline()
   
   //前十行，采用右左边往右边扫描的方法
   
-  for(i=RowMax-1;i>=50;i--)//首先找前十行，全行扫描
+  for(i=RowMax-1;i>=40;i--)//首先找前十行，全行扫描
   {
     if(i ==RowMax-1)//首行就以图像中心作为扫描起点
     {
