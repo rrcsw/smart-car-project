@@ -24,7 +24,6 @@ void main()
 {
 
      all_init();                                       //初始化
-}    
 /**********     
       while(1)
       {
@@ -36,7 +35,7 @@ void main()
         steer_duty  = STEER_MID + steer_P * steer_error;  //计算舵机输出的 PWM
         ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, STEER_MID);  //舵机输出控制
 **********/ 
-/**
+
 while(1)
     {  
 
@@ -48,11 +47,11 @@ while(1)
       GetBlackEndParam();             //获取黑线截止行
       if(!StartingLineFlag)
               {
-                CrossRecognition(&Cross);//十字识别
-                CrossConduct();//十字补线
-                LoopRecognition(&Loop);//圆环识别
-                FindLoopOptimalExit();//寻找圆环出口
-                TrackType();//主要赛道类型
+               CrossRecognition(&Cross);//十字识别
+               CrossConduct();//十字补线
+               LoopRecognition(&Loop);//圆环识别
+               FindLoopOptimalExit();//寻找圆环出口
+               TrackType();//主要赛道类型
               } 
         /********
           for(int i=59;i>=0;i--)//开始获取中线
@@ -74,38 +73,32 @@ while(1)
         ftm_pwm_duty( MOTOR_FTM, MOTOR_CH_2, 0); 
         **********/
     
-        /**舵机控制**/
-       //steer_control();
-  
-
-
+        
 //# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可
              
   //             RecognitionObstacle();
 //#endif             
              
-     //          SteerControl();
+               SteerControl();
 //#if OpenLoop              
                
-             // MotorControlOpenLoop(); 
+             MotorControlOpenLoop(); 
 //#endif
               
 //#if CloseLoop      
-  //             MotorControl();
+               //MotorControl();
 //#endif
                
              
              
-//                 LCD_Display();//液晶显示
+              LCD_Display();//液晶显示
                  
                
-  //       }
+         }
     
-//}
+}
       
 
-      //  pit_close  (PIT1);                    //关闭PIT（可选择是否关闭）
-    
 
 
 

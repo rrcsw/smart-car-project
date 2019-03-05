@@ -19,7 +19,10 @@ extern uint8 mid_line[61];                                //中线数组
 uint8 right_black[60];
 uint8 left_black[60];
 
-
+int16 i         = 0;
+  int16 j         = 0;
+  uint8 jj        = 0;
+  uint8 WhiteNum  = 0; 
 /*********define for SearchCenterBlackline**********/
 
  
@@ -111,8 +114,8 @@ void Binarization()
         pit_time_start  (PIT1);                                 //开始计时
         camera_get_img();                                      //摄像头获取图像
         time1 = pit_time_get_us    (PIT1);                      //摄像头获取图像时间
-        //image_threshold = otsuThreshold(imgbuff);               //大津法计算阈值
-        image_threshold =0x40;                                  //固定阈值
+        image_threshold = otsuThreshold(imgbuff);               //大津法计算阈值
+        //image_threshold =0x40;                                  //固定阈值
         MT9V032_Binarization(img,imgbuff,image_threshold);      //二值化
         time2 = pit_time_get_us(PIT1);                          //获取二值化计时时间
 }
@@ -171,11 +174,11 @@ void SearchCenterline()
   RightEdge[RowMax]   = ColumnMax;
   Width[RowMax]       = 60;
   
- // SetInitVal();
+  SetInitVal();
   
   //前十行，采用右左边往右边扫描的方法
   
-  for(i=RowMax-1;i>=40;i--)//首先找前十行，全行扫描
+  for(i=RowMax-1;i>=40;i--)//首先找前二十行，全行扫描
   {
     if(i ==RowMax-1)//首行就以图像中心作为扫描起点
     {
@@ -184,42 +187,14 @@ void SearchCenterline()
     else
     {
         j = mid_line[i+1];//否则就以上一行中点的位置作为本行扫描起点
-    }   
-    if(j <= 2)
-    {
-        j = 2;
-    } 
-    while(j >= 2)//j>=2有效范围内进行搜寻 
-    {
-        if(img[i][j]==White_Point&& img[i][j-1]==Black_Point&&img[i][j-2]==Black_Point)//从右向左找到白白黑跳变 
-        {
-             LeftEdge[i] =j;//找到则赋值 找不到保持原值0      
-             break;//跳出本行寻线
-        }
-             j--;//列数往左移动
-     }
-     if(i==RowMax-1) //再找右边界
-     {
-        j = MidPri;//如果首行，从图像中心开始搜寻
-     }          
-     else
-     {
-        j = mid_line[i+1];//否则从上一行中心位置开始搜寻
-     }
-     if(j >=ColumnMax-2)//j >=ColumnMax-2有效范围内搜寻右线
-     {
-        j = ColumnMax-2;
-     }
-     while(j <= ColumnMax-2)
-     {
-         
-        if(img[i][j]==White_Point && img[i][j+1]==Black_Point && img[i][j+2]==Black_Point)//从左向右找到白白黑跳变点
-        {
-               RightEdge[i] = j;//找到则赋值   找不到保持原值
-               break;//跳出本行寻线
-        }
-               j++;//列数往右移动
-     }
+    }
+  }  
+  
+      
+  NormalSearchingMidLine();
+} 
+   
+    /****
      if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)//中线判断，没有丢线
      {
           mid_line[i] = (LeftEdge[i] + RightEdge[i])/2;  
@@ -280,7 +255,7 @@ void SearchCenterline()
           MidPri = mid_line[RowMax-1];//记录本帧图像第59行的中线值，作为下一幅图像的59行扫描起始点
      }
     
-  }   
+     
   for(i=49; i>0; i--)//查找剩余行
   {   
     if(LeftEdge[i+1]!=0 && RightEdge[i+1]!=ColumnMax) //上一行两边都找到 启用边沿扫描     
@@ -502,7 +477,7 @@ void SearchCenterline()
    
   }
 }
- 
+***/
 
 
 void GetBlackEndParam()//获取黑线截止行
@@ -584,7 +559,7 @@ void GetBlackEndParam()//获取黑线截止行
         {
 		RREndFlag = 1;
 	}
-   }
+   
         
     
         BlackEndMax =MAX(BlackEndL,BlackEndM);//取大值
@@ -599,3 +574,54 @@ void GetBlackEndParam()//获取黑线截止行
         }
         DropRow=60-BlackEndMaxMax;//封顶的行数      
  }
+
+}
+
+void NormalSearchingMidLine()
+{
+  if(j<=2)
+  {
+    j=2;
+  }
+  while(j>=2)
+  {
+    
+    if(j <= 2)
+    {
+        j = 2;
+    } 
+    while(j >= 2)//j>=2有效范围内进行搜寻 
+    {
+        if(img[i][j]==White_Point&& img[i][j-1]==Black_Point&&img[i][j-2]==Black_Point)//从右向左找到白白黑跳变 
+        {
+             LeftEdge[i] =j;//找到则赋值 找不到保持原值0      
+             break;//跳出本行寻线
+        }
+             j--;//列数往左移动
+     }
+     if(i==RowMax-1) //再找右边界
+     {
+        j = MidPri;//如果首行，从图像中心开始搜寻
+     }          
+     else
+     {
+        j = mid_line[i+1];//否则从上一行中心位置开始搜寻
+     }
+     if(j >=ColumnMax-2)//j >=ColumnMax-2有效范围内搜寻右线
+     {
+        j = ColumnMax-2;
+     }
+     while(j <= ColumnMax-2)
+     {
+         
+        if(img[i][j]==White_Point && img[i][j+1]==Black_Point && img[i][j+2]==Black_Point)//从左向右找到白白黑跳变点
+        {
+               RightEdge[i] = j;//找到则赋值   找不到保持原值
+               break;//跳出本行寻线
+        }
+               j++;//列数往右移动
+     }
+    
+    
+  }
+}

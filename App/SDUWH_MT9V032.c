@@ -391,10 +391,10 @@ uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
 
     //遍历灰度级[0,255]  
     float w0, w1, u0tmp, u1tmp, u0, u1, u, deltaTmp, deltaMax = 0;
-    for (i = 0; i < GrayScale; i++)     // i作为阈值
+    for (i = 0; i < GrayScale; i=i+3)     // i作为阈值
     {
         w0 = w1 = u0tmp = u1tmp = u0 = u1 = u = deltaTmp = 0;
-        for (j = 0; j < GrayScale; j++)
+        for (j = 0; j < GrayScale; j=j+3)
         {
             if (j <= i)   //背景部分  
             {

@@ -41,5 +41,6 @@ extern void SearchCenterBlackline(void);
 extern void GetBlackEndParam();
 extern void DrawBlackline();
 extern void SetInitVal();
+extern void NormalSearchingMidLine();
 
 #endif
