@@ -20,6 +20,7 @@ extern void steer_control();
 
 //fuck you K60
 //
+
 void main()
 {
 
@@ -38,11 +39,8 @@ void main()
 
 while(1)
     {  
-
-      Binarization();                  //摄像头二值化
+      Binarization();                  //摄像头二值化      
       LCD_Binarization();            //LCD显示二值化
-      
-
       SearchCenterline();              //寻找中线
       GetEndParam();             //获取黑线截止行
       if(!StartingLineFlag)
@@ -95,7 +93,7 @@ while(1)
                  
                
          }
-    
+
 }
       
 

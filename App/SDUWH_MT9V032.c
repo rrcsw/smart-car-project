@@ -364,7 +364,7 @@ uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
     uint16 height = CAMERA_H;
     int pixelCount[GrayScale]={0};
     float pixelPro[GrayScale]={0};
-    int i, j, pixelSum = width * height/4;
+    int i, j, pixelSum = width * height;
     uint8 threshold = 0;
     uint8* data = image;  //指向像素数据的指针
     /*for (i = 0; i < GrayScale; i++)
@@ -374,9 +374,9 @@ uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
     }*/
     
     //统计灰度级中每个像素在整幅图像中的个数  
-    for (i = 1; i < height; i=i+2)
+    for (i = 0; i < height; i++)
     {
-        for (j = 1; j < width; j=i+2)
+        for (j = 0; j < width; j++)
         {
             pixelCount[(int)data[i * width + j]]++;  //将像素值作为计数数组的下标
         }
@@ -384,7 +384,7 @@ uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
 
     //计算每个像素在整幅图像中的比例  
     float maxPro = 0.0;
-    for (i = 1; i < GrayScale; i=i+2)
+    for (i = 0; i < GrayScale; i++)
     {
         pixelPro[i] = (float)pixelCount[i] / pixelSum;
         if (pixelPro[i] > maxPro)
@@ -395,10 +395,10 @@ uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
 
     //遍历灰度级[0,255]  
     float w0, w1, u0tmp, u1tmp, u0, u1, u, deltaTmp, deltaMax = 0;
-    for (i = 1; i < GrayScale; i++)     // i作为阈值
+    for (i = 0; i < GrayScale; i++)     // i作为阈值
     {
         w0 = w1 = u0tmp = u1tmp = u0 = u1 = u = deltaTmp = 0;
-        for (j = 1; j < GrayScale; j=j+2)
+        for (j = 0; j < GrayScale; j++)
         {
             if (j <= i)   //背景部分  
             {
@@ -421,6 +421,5 @@ uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
             threshold = i;
         }
     }
-
     return threshold;
 }

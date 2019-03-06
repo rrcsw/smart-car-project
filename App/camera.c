@@ -112,9 +112,9 @@ void DMA0_IRQHandler()
 void Binarization()
 {
         pit_time_start  (PIT1);                                 //开始计时
-        camera_get_img();                                      //摄像头获取图像
-        time1 = pit_time_get_us    (PIT1);                      //摄像头获取图像时间
-        image_threshold = otsuThreshold(imgbuff);               //大津法计算阈值
+        camera_get_img();//摄像头获取图像
+        time1 = pit_time_get_us    (PIT1); //摄像头获取图像时间
+        image_threshold = otsuThreshold(imgbuff);  //大津法计算阈值
         //image_threshold =0x40;                                  //固定阈值
         MT9V032_Binarization(img,imgbuff,image_threshold);      //二值化
         time2 = pit_time_get_us(PIT1);                          //获取二值化计时时间
@@ -178,18 +178,11 @@ void SearchCenterline()
   
   
   
-  
-  
     //二十行，采用右左边往右边扫描的方法    
   NormalSearchingMidLine();
-  
   LoseEdgeClose();
-   
   SearchMidLineNext();  
      
-    
-    
-  
     if( (RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+3) )//不满足畸变 
     {      
            mid_line[i] =  mid_line[i+1];//用上一行
@@ -234,6 +227,7 @@ void SearchCenterline()
             }
             ****/
             }
+	    
             else if(LeftEdge[i]!=0 && RightEdge[i]==ColumnMax)//find left
             { 
                          RightLose++;
@@ -278,7 +272,6 @@ void SearchCenterline()
            }
             
        }
-       
     if(i == 0)             
     {            
             AvaliableLines = 60;
