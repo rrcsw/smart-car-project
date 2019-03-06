@@ -176,7 +176,7 @@ void SearchCenterline()
   
   SetInitVal();
   
-  //前十行，采用右左边往右边扫描的方法
+  
   
   
   
@@ -200,7 +200,7 @@ void SearchCenterline()
             {
                       mid_line[i] = (LeftEdge[i] + RightEdge[i])/2+5;
                      //对斜出十字进行纠正
-                     
+                /****     
                  if(  mid_line[i]- mid_line[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//中线向右突变
                  {
                            uint8 ii = i;
@@ -231,6 +231,8 @@ void SearchCenterline()
                            }       
                        }
                   }
+            }
+            ****/
             }
             else if(LeftEdge[i]!=0 && RightEdge[i]==ColumnMax)//find left
             { 
@@ -415,6 +417,8 @@ void NormalSearchingMidLine()
         j = mid_line[i+1];//否则就以上一行中点的位置作为本行扫描起点
     }
   }  
+  
+  
   if(j<=2)
   {
     j=2;
@@ -474,9 +478,9 @@ void LoseEdgeClose()
           
           //如果当行的
 
-        if((RightEdge[i]-LeftEdge[i]) >=(RightEdge[i+1]-LeftEdge[i+1]+5))//突变
+        if((RightEdge[i]-LeftEdge[i]) >=(RightEdge[i+1]-LeftEdge[i+1]+10))//突变    原先数值5
         {
-                mid_line[i] = mid_line[i+1]+2;
+                mid_line[i] = mid_line[i+1]+5;         //原先数值 2
         }
         else 
         {
@@ -486,9 +490,9 @@ void LoseEdgeClose()
      else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//丢了左线
      {
            
-        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+1))//突变      
+        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+10))//突变      
         {
-                mid_line[i] = mid_line[i+1]-1; 
+                mid_line[i] = mid_line[i+1]-5; 
         } 
         else 
         {
