@@ -44,7 +44,7 @@ while(1)
       
 
       SearchCenterline();              //寻找中线
-      GetBlackEndParam();             //获取黑线截止行
+      GetEndParam();             //获取黑线截止行
       if(!StartingLineFlag)
               {
                CrossRecognition(&Cross);//十字识别

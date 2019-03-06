@@ -38,9 +38,11 @@ extern int   AllLose ;
 /*** º¯ÊýÉùÃ÷ ****/    
 
 extern void SearchCenterBlackline(void);
-extern void GetBlackEndParam();
+extern void GetEndParam();
 extern void DrawBlackline();
 extern void SetInitVal();
 extern void NormalSearchingMidLine();
+extern void LoseEdgeClose();
+extern void SearchMidLineNext();
 
 #endif
