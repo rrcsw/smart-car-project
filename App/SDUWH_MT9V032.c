@@ -367,11 +367,11 @@ uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
     int i, j, pixelSum = width * height;
     uint8 threshold = 0;
     uint8* data = image;  //指向像素数据的指针
-    /*for (i = 0; i < GrayScale; i++)
+    for (i = 0; i < GrayScale; i++)
     {
         pixelCount[i] = 0;
         pixelPro[i] = 0;
-    }*/
+    }
     
     //统计灰度级中每个像素在整幅图像中的个数  
     for (i = 0; i < height; i++)

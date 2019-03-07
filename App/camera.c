@@ -416,7 +416,7 @@ void NormalSearchingMidLine()
   {
     j=2;
   }
-  while(j>=2)
+  while(j>=2&&j<ColumnMax-2)
   {
     
     if(j <= 2)
@@ -454,7 +454,7 @@ void NormalSearchingMidLine()
         }
                j++;//列数往右移动
      }
-    
+    break;//跳出寻线程序
     
   }
 }
