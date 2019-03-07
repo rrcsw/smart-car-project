@@ -416,7 +416,7 @@ void NormalSearchingMidLine()
   {
     j=2;
   }
-  while(j>=2&&j<ColumnMax-2)
+  while(j>=2)
   {
     
     if(j <= 2)

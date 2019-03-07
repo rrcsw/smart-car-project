@@ -360,6 +360,8 @@ void MT9V032_Binarization(void *dst, void *src,uint8 threshold)
 uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
 {
     #define GrayScale 256
+    #define MAX_GrayScale 80
+    #define MIN_GrayScale 60
     uint16 width  = CAMERA_W;
     uint16 height = CAMERA_H;
     int pixelCount[GrayScale]={0};
@@ -393,9 +395,9 @@ uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
         }
     }
 
-    //遍历灰度级[0,255]  
+    //遍历灰度级[0,255](从60到80)  
     float w0, w1, u0tmp, u1tmp, u0, u1, u, deltaTmp, deltaMax = 0;
-    for (i = 0; i < GrayScale; i++)     // i作为阈值
+    for (i = MIN_GrayScale; i <= MAX_GrayScale; i++)     // i作为阈值
     {
         w0 = w1 = u0tmp = u1tmp = u0 = u1 = u = deltaTmp = 0;
         for (j = 0; j < GrayScale; j++)
