@@ -5,23 +5,23 @@
 -I
 E:\SMART CAR\smart-car-project\Board\src
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\App
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\App
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\App\Inc
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\App\Inc
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\Board\Inc
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\Board\Inc
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\Chip\inc
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\Chip\inc
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\Chip\inc\IAR
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\Chip\inc\IAR
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\Chip\inc\kinetis
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\Chip\inc\kinetis
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\Lib\CMSIS\Inc
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\Lib\CMSIS\Inc
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\Lib\FatFs
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\Lib\FatFs
 -I
-E:\IAR\arm\..\..\SMART CAR\smart-car-project\Lib\USB
+E:\SMART CAR\smart-car-project\Prj\IAR\..\..\Lib\USB
 -I
 E:\IAR\arm\inc
 -I
