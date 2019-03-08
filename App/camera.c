@@ -16,8 +16,8 @@ uint8 image_threshold;                                  //图像二值化阈值
 int32 time1=0,time2=0;                            //计时器
 extern uint8 imgbuff[CAMERA_SIZE];   
 extern uint8 mid_line[61];                                //中线数组
-uint8 right_black[60];
-uint8 left_black[60];
+//uint8 right_black[60];
+//uint8 left_black[60];
 
 int16 i         = 0;
   int16 j         = 0;
