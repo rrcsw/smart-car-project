@@ -180,120 +180,8 @@ void SearchCenterline()
   
     //二十行，采用右左边往右边扫描的方法    
   NormalSearchingMidLine();
-  LoseEdgeClose();
   SearchMidLineNext();  
      
-    if( (RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+3) )//不满足畸变 
-    {      
-           mid_line[i] =  mid_line[i+1];//用上一行
-    }
-    else
-    {
-            if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)   
-            {
-                      mid_line[i] = (LeftEdge[i] + RightEdge[i])/2+5;
-                     //对斜出十字进行纠正
-                /****     
-                 if(  mid_line[i]- mid_line[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//中线向右突变
-                 {
-                           uint8 ii = i;
-                    
-                      while(1)
-                      {
-                                mid_line[ii+1] =  mid_line[ii]-1; 
-                               ii++; 
-                               
-                           if( ii>=50 || ( mid_line[ii]- mid_line[ii+1]<=1) )
-                           {
-                                 break;
-                           }          
-                       }
-                 }
-                 if( ( mid_line[i+1]- mid_line[i]>8)&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)))&& i>=30)
-                 {
-                           uint8 ii = i;
-                          
-                      while(1)
-                      {
-                                mid_line[ii+1] =  mid_line[ii]+1;
-                               ii++;
-                               
-                           if( ii>=50 || ( mid_line[ii+1]- mid_line[ii]<=1) )
-                           { 
-                                 break;
-                           }       
-                       }
-                  }
-            }
-            ****/
-            }
-	    
-            else if(LeftEdge[i]!=0 && RightEdge[i]==ColumnMax)//find left
-            { 
-                         RightLose++;
-                         
-                     
-                 if(LeftEdge[i+1] != 0)
-                 {
-                                mid_line[i] =  mid_line[i+1]+LeftEdge[i]-LeftEdge[i+1]+5;
-                 }        
-                 else
-                 {
-                                 mid_line[i]  = LeftEdge[i] + Width[i]/2+5;
-                 }
-            }
-            
-            else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//find right
-            {
-                          LeftLose++;
-                          
-                      
-                 if(RightEdge[i+1] !=ColumnMax)
-                 {
-                  
-                                  mid_line[i] =  mid_line[i+1]+RightEdge[i]-RightEdge[i+1]-5;
-                 }
-                 else
-                 {
-                 
-                                  mid_line[i] = RightEdge[i] - Width[i]/2-5;
-                 }
-            }
-           else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边丢线    
-           {      
-                         WhiteNum++;
-                         AllLose++;
-                
-                 if(WhiteNum == 1)
-                 {   
-                                  WhiteStart = i;
-                 }         
-                         mid_line[i] =  mid_line[i+1];
-           }
-            
-       }
-    if(i == 0)             
-    {            
-            AvaliableLines = 60;
-            LastLine  = 0;  
-            //break;
-    }
-           uint16 m =  mid_line[i];
-    if(m < 5)
-    { 
-            m = 5;
-    }
-    if(m > 75)
-    {
-            m = 75;
-    }
-    if( (LeftEdge[i]!=0 && LeftEdge[i]>=65) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== Black_Point)) //最后一行              
-    {
-            LastLine = i;//最后一行，动态前瞻
-            AvaliableLines = 60 - i;//有效行数
-           // break;
-    }
-    
    
   }
 
@@ -399,7 +287,7 @@ void GetEndParam()//获取黑线截止行
 
 void NormalSearchingMidLine()
 {
-  for(i=RowMax-1;i>=40;i--)//首先找前二十行，全行扫描
+  for(i=RowMax-1;i>=40;i--)//首先找前十行，全行扫描
   {
     if(i ==RowMax-1)//首行就以图像中心作为扫描起点
     {
@@ -408,17 +296,7 @@ void NormalSearchingMidLine()
     else
     {
         j = mid_line[i+1];//否则就以上一行中点的位置作为本行扫描起点
-    }
-  }  
-  
-  
-  if(j<=2)
-  {
-    j=2;
-  }
-  while(j>=2)
-  {
-    
+    }   
     if(j <= 2)
     {
         j = 2;
@@ -454,14 +332,7 @@ void NormalSearchingMidLine()
         }
                j++;//列数往右移动
      }
-    break;//跳出寻线程序
-    
-  }
-}
-
-void LoseEdgeClose()
-{
-  if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)//中线判断，没有丢线
+     if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)//中线判断，没有丢线
      {
           mid_line[i] = (LeftEdge[i] + RightEdge[i])/2;  
      }
@@ -471,9 +342,9 @@ void LoseEdgeClose()
           
           //如果当行的
 
-        if((RightEdge[i]-LeftEdge[i]) >=(RightEdge[i+1]-LeftEdge[i+1]+10))//突变    原先数值5
+        if((RightEdge[i]-LeftEdge[i]) >=(RightEdge[i+1]-LeftEdge[i+1]+8))//突变
         {
-                mid_line[i] = mid_line[i+1]+5;         //原先数值 2
+                mid_line[i] = mid_line[i+1]+2;
         }
         else 
         {
@@ -483,9 +354,9 @@ void LoseEdgeClose()
      else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//丢了左线
      {
            
-        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+10))//突变      
+        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+8))//突变      
         {
-                mid_line[i] = mid_line[i+1]-5; 
+                mid_line[i] = mid_line[i+1]-2; 
         } 
         else 
         {
@@ -502,15 +373,33 @@ void LoseEdgeClose()
         }       
         else 
         {
-                mid_line[i] = mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
+                mid_line[i] = MidPri;//mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
         }             
       }
+    
+    
+    
+     if(mid_line[RowMax-1] >=70)
+     {
+         MidPri = 70;
+     }          
+     else if(mid_line[RowMax-1] <=10)
+     {
+         MidPri = 10;
+     }         
+     else
+     {
+          MidPri = mid_line[RowMax-1];//记录本帧图像第59行的中线值，作为下一幅图像的59行扫描起始点
+     }
+    
+  }   
 }
+
 
 void SearchMidLineNext()
 {
   
-  for(i=39;i>0; i--)//查找剩余行
+  for(i=39; i>0; i--)//查找剩余行
   {   
     if(LeftEdge[i+1]!=0 && RightEdge[i+1]!=ColumnMax) //上一行两边都找到 启用边沿扫描     
     {
@@ -619,5 +508,115 @@ void SearchMidLineNext()
               
        }         
     }
+    if( (RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+3) )//不满足畸变 
+    {      
+          mid_line[i] = mid_line[i+1];//用上一行
+    }
+    else
+    {
+            if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)   
+            {
+                     mid_line[i] = (LeftEdge[i] + RightEdge[i])/2+5;
+                     //对斜出十字进行纠正
+                     
+                 if( mid_line[i]-mid_line[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//中线向右突变
+                 {
+                           uint8 ii = i;
+                    
+                      while(1)
+                      {
+                               mid_line[ii+1] = mid_line[ii]-1; 
+                               ii++; 
+                               
+                           if( ii>=50 || (mid_line[ii]-mid_line[ii+1]<=1) )
+                           {
+                                 break;
+                           }          
+                       }
+                 }
+                 if( (mid_line[i+1]-mid_line[i]>8)&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)))&& i>=30)
+                 {
+                           uint8 ii = i;
+                          
+                      while(1)
+                      {
+                               mid_line[ii+1] = mid_line[ii]+1;
+                               ii++;
+                               
+                           if( ii>=50 || (mid_line[ii+1]-mid_line[ii]<=1) )
+                           { 
+                                 break;
+                           }       
+                       }
+                  }
+            }
+            else if(LeftEdge[i]!=0 && RightEdge[i]==ColumnMax)//find left
+            { 
+                         RightLose++;
+                         
+                     
+                 if(LeftEdge[i+1] != 0)
+                 {
+                               mid_line[i] = mid_line[i+1]+LeftEdge[i]-LeftEdge[i+1]+5;
+                 }        
+                 else
+                 {
+                                mid_line[i]  = LeftEdge[i] + Width[i]/2+5;
+                 }
+            }
+            
+            else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//find right
+            {
+                          LeftLose++;
+                          
+                      
+                 if(RightEdge[i+1] !=ColumnMax)
+                 {
+                  
+                                 mid_line[i] = mid_line[i+1]+RightEdge[i]-RightEdge[i+1]-5;
+                 }
+                 else
+                 {
+                 
+                                 mid_line[i] = RightEdge[i] - Width[i]/2-5;
+                 }
+            }
+           else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边丢线    
+           {      
+                         WhiteNum++;
+                         AllLose++;
+                
+                 if(WhiteNum == 1)
+                 {   
+                                  WhiteStart = i;
+                 }         
+                        mid_line[i] = mid_line[i+1];
+           }
+            
+       }
+       
+    if(i == 0)             
+    {            
+            AvaliableLines = 60;
+            LastLine  = 0;  
+            break;
+    }
+           uint16 m = mid_line[i];
+    if(m < 5)
+    { 
+            m = 5;
+    }
+    if(m > 75)
+    {
+            m = 75;
+    }
+    if( (LeftEdge[i]!=0 && LeftEdge[i]>=65) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== Black_Point)) //最后一行              
+    {
+            LastLine = i;//最后一行，动态前瞻
+            AvaliableLines = 60 - i;//有效行数
+            break;
+    }
+    
+   
   }
 }
