@@ -15,7 +15,7 @@ uint8 image_threshold;                                  //图像二值化阈值
 
 int32 time1=0,time2=0;                            //计时器
 extern uint8 imgbuff[CAMERA_SIZE];   
-extern uint8 mid_line[61];                                //中线数组
+extern  uint8 mid_line[RowMax+1];                               //中线数组
 //uint8 right_black[60];
 //uint8 left_black[60];
 
@@ -35,7 +35,7 @@ int   Width[RowMax+1];//={2,3,3,3,4,4,5,5,6,6,
                        //41,41,43,43,45,45,47,47,49,50,
                        //50,51,52,54,55,56,57,58,59,60,61};  // Width[i]  = 20+i*3/4;     //动态路宽
 
-int   MidPri         = 40;
+int   MidPri         = 45;
 int   LastLine       = 0;
 float AvaliableLines = 0;
 int   LeftLose       = 0;
@@ -287,11 +287,11 @@ void GetEndParam()//获取黑线截止行
 
 void NormalSearchingMidLine()
 {
-  for(i=RowMax-1;i>=40;i--)//首先找前十行，全行扫描
+  for(i=RowMax-1;i>=50;i--)//首先找前十行，全行扫描
   {
     if(i ==RowMax-1)//首行就以图像中心作为扫描起点
     {
-       j = MidPri;//40  
+       j = MidPri;//45  
     } 
     else
     {
@@ -373,7 +373,7 @@ void NormalSearchingMidLine()
         }       
         else 
         {
-                mid_line[i] = MidPri;//mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
+                mid_line[i] = mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
         }             
       }
     
@@ -399,7 +399,7 @@ void NormalSearchingMidLine()
 void SearchMidLineNext()
 {
   
-  for(i=39; i>0; i--)//查找剩余行
+  for(i=49; i>0; i--)//查找剩余行
   {   
     if(LeftEdge[i+1]!=0 && RightEdge[i+1]!=ColumnMax) //上一行两边都找到 启用边沿扫描     
     {

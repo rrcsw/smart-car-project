@@ -5,7 +5,7 @@
 
 #define Black_Point 0
 #define White_Point 255
-#define RowMax	    59	  //行数
+#define RowMax	    60	  //行数
 #define ColumnMax	79	  //列数
 
 

@@ -2,13 +2,16 @@
 #include "include.h"
 #include "math.h"
 
-
+extern int32 SteerPwm;
 extern int32 time1,time2;
 extern uint8 img[CAMERA_H][CAMERA_W];
 extern uint8 imgbuff[CAMERA_SIZE]; 
 extern uint8 right_black[60];
 extern uint8 left_black[60];
-extern uint8 mid_line[61];
+uint8  mid_line[61];
+extern float  Error;
+extern int RightLose;
+extern int AllLose;
 
  /*LCD液晶变量定义*/
     Site_t site = {0, 0};                           //LCD显示图像左上角位置
@@ -18,8 +21,8 @@ extern uint8 mid_line[61];
 
 void LCD_Binarization()
 {
-        site.x=80;site.y=0;
-        LCD_num_BC(site,time1,8,BLUE,RED);                 //us//获取图像时间
+        //site.x=80;site.y=0;
+        //LCD_num_BC(site,time1,8,BLUE,RED);                 //us//获取图像时间
         site.x=80;site.y=65;
         LCD_num_BC(site,time2,8,BLUE,RED);                 //us//二值化时间
         
@@ -27,6 +30,18 @@ void LCD_Binarization()
         LCD_Img_gray_Z(site, size, imgbuff,imgsize);            //LCD灰度图像显示
         site.x=0;site.y=65;
         LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCD黑白图像显示
+        
+        site.x=80;site.y=0;
+        LCD_num_BC(site,Error,8,BLUE,RED);
+        
+        site.x=80;site.y=25;
+        LCD_num_BC(site,SteerPwm,8,BLUE,RED);
+        
+        site.x=80;site.y=45;
+        LCD_num_BC(site,RightLose,8,BLUE,RED);
+        
+        site.x=80;site.y=85;
+        LCD_num_BC(site,AllLose,8,BLUE,RED);
 }
 
 void LCD_Display()
