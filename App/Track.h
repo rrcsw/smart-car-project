@@ -96,5 +96,7 @@ void FindInflectionPointL(InflectionPoint *prt ,unsigned char Start ,unsigned ch
 
 extern void RecognitionObstacle(void);
 extern void ObstacleRepair();
+extern void TurnBack();
+
 
 #endif

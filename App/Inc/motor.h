@@ -21,7 +21,7 @@ extern float  SteerPwmAdd;
 extern int ChangeFlag;
 extern int SpeedDropRow;
 extern  int32 SpeedSet;
-
+extern int BlackEndMaxMax;
 
 extern void MotorInit(void);
 void CalculateMotorSpeedError(float LeftMotorTarget,float RightMotorTarget);

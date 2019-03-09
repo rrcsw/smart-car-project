@@ -85,7 +85,8 @@ void CalculateError(void)
             CenterMeanValue=0;
             
             WeightSum=0; 
-            
+        
+       /****斜入十字判断****     
       if(Cross.LeftSideling) 
       {
         for(i=58;i>InflectionPointL.InflectionPointRow;i--)
@@ -104,7 +105,8 @@ void CalculateError(void)
         }
       
       }
-      else if(StrightIntoCrossL)
+    ****/
+      /***else***/ if(StrightIntoCrossL)
       {
          for(i=58;i>InflectionPointL.InflectionPointRow;i--)
         {
@@ -233,6 +235,7 @@ void SteerControl(void)
         if(SteerPwm<=SteerMin)
           
               SteerPwm=SteerMin;
+        TurnBack();
           
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
            

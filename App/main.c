@@ -43,13 +43,17 @@ while(1)
       LCD_Binarization();            //LCD显示二值化
       SearchCenterline();              //寻找中线
       GetEndParam();             //获取黑线截止行
+    
       if(!StartingLineFlag)
               {
                CrossRecognition(&Cross);//十字识别
                CrossConduct();//十字补线
                LoopRecognition(&Loop);//圆环识别
+               //LoopIntoRepair();//圆环补线
                FindLoopOptimalExit();//寻找圆环出口
                TrackType();//主要赛道类型
+               Stop();
+               TurnBack();
               } 
         /********
           for(int i=59;i>=0;i--)//开始获取中线
@@ -64,12 +68,8 @@ while(1)
       img[i*80+mid_line[i]]=0x0000;                       //中线置为黑色
     }
     //vcan_sendimg(imgbuff, sizeof(imgbuff));          //串口发送中线，注意接收模式
-   
-           /************  电机输出  *************/
-        /*******
-          ftm_pwm_duty( MOTOR_FTM, MOTOR_CH_1, 25);
-        ftm_pwm_duty( MOTOR_FTM, MOTOR_CH_2, 0); 
-        **********/
+   ***/
+          
     
         
 //# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可

@@ -35,7 +35,7 @@ int   Width[RowMax+1];//={2,3,3,3,4,4,5,5,6,6,
                        //41,41,43,43,45,45,47,47,49,50,
                        //50,51,52,54,55,56,57,58,59,60,61};  // Width[i]  = 20+i*3/4;     //动态路宽
 
-int   MidPri         = 45;
+int   MidPri         = 40;
 int   LastLine       = 0;
 float AvaliableLines = 0;
 int   LeftLose       = 0;
@@ -291,7 +291,7 @@ void NormalSearchingMidLine()
   {
     if(i ==RowMax-1)//首行就以图像中心作为扫描起点
     {
-       j = MidPri;//45  
+       j = MidPri;//40 
     } 
     else
     {
@@ -303,7 +303,7 @@ void NormalSearchingMidLine()
     } 
     while(j >= 2)//j>=2有效范围内进行搜寻 
     {
-        if(img[i][j]==White_Point&& img[i][j-1]==Black_Point&&img[i][j-2]==Black_Point)//从右向左找到白白黑跳变 
+        if(img[i][j]==White_Point && img[i][j-1]==Black_Point&&img[i][j-2]==Black_Point)//从右向左找到白白黑跳变 
         {
              LeftEdge[i] =j;//找到则赋值 找不到保持原值0      
              break;//跳出本行寻线
@@ -344,7 +344,7 @@ void NormalSearchingMidLine()
 
         if((RightEdge[i]-LeftEdge[i]) >=(RightEdge[i+1]-LeftEdge[i+1]+8))//突变
         {
-                mid_line[i] = mid_line[i+1]+2;
+                mid_line[i] = mid_line[i+1]+4;
         }
         else 
         {
@@ -356,7 +356,7 @@ void NormalSearchingMidLine()
            
         if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+8))//突变      
         {
-                mid_line[i] = mid_line[i+1]-2; 
+                mid_line[i] = mid_line[i+1]-4; 
         } 
         else 
         {
@@ -373,7 +373,7 @@ void NormalSearchingMidLine()
         }       
         else 
         {
-                mid_line[i] = mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
+                mid_line[i] = 40;//mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
         }             
       }
     

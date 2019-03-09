@@ -74,9 +74,9 @@ void MotorControlOpenLoop(void)
 //  int ErrorError=0;
   
   
-     OpendLoopPwmF=300;
      OpendLoopPwmB=100;
-    
+     OpendLoopPwmF=250;
+    /****
       //²îËÙ
       OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
       
@@ -87,16 +87,28 @@ void MotorControlOpenLoop(void)
             
       if(OpendLoopPwmF>=400)  OpendLoopPwmF=400;
       if(OpendLoopPwmF<=200)    OpendLoopPwmF=200;
-      
+      ***/
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmF);
       ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmB); //PTC2,×óµç»ú 
 
   }
-  
+#endif 
 
+void Stop()
+{
+  if (BlackEndMaxMax>=70)
+  {
+    ftm_pwm_duty(FTM0,FTM_CH5,100);
+    ftm_pwm_duty(FTM0,FTM_CH6,100);
+  }
+  else
+  {
+      ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmF);
+      ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmB);
+  }
 
- 
-#endif
+}
+
 
 
 

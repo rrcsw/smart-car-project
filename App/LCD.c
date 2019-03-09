@@ -12,6 +12,7 @@ uint8  mid_line[61];
 extern float  Error;
 extern int RightLose;
 extern int AllLose;
+extern int BlackEndM;
 
  /*LCD液晶变量定义*/
     Site_t site = {0, 0};                           //LCD显示图像左上角位置
@@ -23,8 +24,8 @@ void LCD_Binarization()
 {
         //site.x=80;site.y=0;
         //LCD_num_BC(site,time1,8,BLUE,RED);                 //us//获取图像时间
-        site.x=80;site.y=65;
-        LCD_num_BC(site,time2,8,BLUE,RED);                 //us//二值化时间
+       // site.x=80;site.y=65;
+        //LCD_num_BC(site,time2,8,BLUE,RED);                 //us//二值化时间
         
         site.x=0;site.y=0;
         LCD_Img_gray_Z(site, size, imgbuff,imgsize);            //LCD灰度图像显示
@@ -32,16 +33,22 @@ void LCD_Binarization()
         LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCD黑白图像显示
         
         site.x=80;site.y=0;
-        LCD_num_BC(site,Error,8,BLUE,RED);
+        LCD_num_BC(site,Error,8,BLUE,RED);           //偏差
         
         site.x=80;site.y=25;
-        LCD_num_BC(site,SteerPwm,8,BLUE,RED);
+        LCD_num_BC(site,SteerPwm,8,BLUE,RED);        //舵机输出  中值690
         
         site.x=80;site.y=45;
-        LCD_num_BC(site,RightLose,8,BLUE,RED);
+        LCD_num_BC(site,RightLose,8,BLUE,RED);         //右边界丢失数量
         
-        site.x=80;site.y=85;
-        LCD_num_BC(site,AllLose,8,BLUE,RED);
+        site.x=80;site.y=65;
+        LCD_num_BC(site,AllLose,8,BLUE,RED);            //两边全丢数量
+        
+        //site.x=80;site.y=85;
+        //LCD_num_BC(site,ADL_V,8,BLUE,RED);            //
+        
+        //site.x=80;site.y=105;
+       // LCD_num_BC(site,ADR_V,8,BLUE,RED);  
 }
 
 void LCD_Display()

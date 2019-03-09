@@ -1065,7 +1065,7 @@ void TrackType()
      if( Tracktype.LongStraightaway==1&&Tracktype.LongStraightawayIntoBend==0)//标记长直道
      {
         LongStraightawayCount++;
-       if(LongStraightawayCount>=40)//连续三十次
+       if(LongStraightawayCount>=30)//连续三十次
        {
          Tracktype.LongStraightawayIntoBend=1;
          LongStraightawayCount=0;
@@ -1496,6 +1496,27 @@ unsigned char StartingLineRecognition()
 
 
 
+void TurnBack()
+{
+  extern uint16 i;
+  extern uint32 SteerPwm;
+  for(i=RowMax-1;i>=55;i--)//首先找前十行，全行扫描
+  {
+    if(img[i][0]==White_Point && img[i][2]==White_Point&&img[i][80]==Black_Point&&img[i][78]==Black_Point)//从右向左找到白白黑跳变 
+    {
+      SteerPwm=SteerMin;
+    }
+     else if(img[i][0]==Black_Point && img[i][2]==Black_Point&&img[i][80]==White_Point&&img[i][78]==White_Point)
+     {
+       SteerPwm=SteerMax;
+     }
+     else 
+     {
+       i=i+0;
+     } 
+  }
+}
+       
 
 
 
