@@ -1499,21 +1499,55 @@ unsigned char StartingLineRecognition()
 void TurnBack()
 {
   extern uint16 i;
+  extern uint16 j;
   extern uint32 SteerPwm;
-  for(i=RowMax-1;i>=55;i--)//首先找前十行，全行扫描
+  int LoseLeft=0;
+  int LoseRight=0;
+  
+  for(i=RowMax;i>=55;i--)//首先找前五行，全行扫描
   {
-    if(img[i][0]==White_Point && img[i][2]==White_Point&&img[i][80]==Black_Point&&img[i][78]==Black_Point)//从右向左找到白白黑跳变 
+    if(img[60][j]==White_Point && img[60][j+1]==Black_Point&&img[60][j+2]==Black_Point)
     {
-      SteerPwm=SteerMin;
+      if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
+      {  
+      LoseLeft=80-j;
+      SteerPwm=SteerMin;//向左打死
+      }
+      else
+      {
+        LoseLeft=80-j;
+      }
     }
-     else if(img[i][0]==Black_Point && img[i][2]==Black_Point&&img[i][80]==White_Point&&img[i][78]==White_Point)
+     else if(img[60][j]==White_Point && img[60][j-1]==Black_Point&&img[60][j-2]==Black_Point)
      {
-       SteerPwm=SteerMax;
+       if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
+       {
+         LoseRight=j;
+         SteerPwm=SteerMax;//向右打死
+       }
+       else
+       {
+         LoseRight=j;
+       }
      }
-     else 
-     {
-       i=i+0;
-     } 
+      else
+      {
+        i=i+0;
+      }
+  
+      if(LoseLeft>=40)
+      {
+        SteerPwm=SteerMin;//向左打死
+      }
+      else if(LoseRight>=40)
+        {
+        SteerPwm=SteerMax;//向左打死
+      }
+       else
+       {
+         i=i+0;
+       }
+    
   }
 }
        
