@@ -35,7 +35,7 @@ int   Width[RowMax+1];//={2,3,3,3,4,4,5,5,6,6,
                        //41,41,43,43,45,45,47,47,49,50,
                        //50,51,52,54,55,56,57,58,59,60,61};  // Width[i]  = 20+i*3/4;     //动态路宽
 
-int   MidPri         = 40;
+int   MidPri         = 50;
 int   LastLine       = 0;
 float AvaliableLines = 0;
 int   LeftLose       = 0;
@@ -172,7 +172,7 @@ void SearchCenterline()
   mid_line[RowMax]  = ColumnMax/2;//第60行
   LeftEdge[RowMax]    = 0;
   RightEdge[RowMax]   = ColumnMax;
-  Width[RowMax]       = 60;
+  Width[RowMax]       = 80;
   
   SetInitVal();
   
@@ -373,15 +373,15 @@ void NormalSearchingMidLine()
         }       
         else 
         {
-                mid_line[i] = 40;//mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
+                mid_line[i] = mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
         }             
       }
     
     
     
-     if(mid_line[RowMax-1] >=70)
+     if(mid_line[RowMax-1] >=90)
      {
-         MidPri = 70;
+         MidPri = 90;
      }          
      else if(mid_line[RowMax-1] <=10)
      {
