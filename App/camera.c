@@ -287,7 +287,7 @@ void GetEndParam()//获取黑线截止行
 
 void NormalSearchingMidLine()
 {
-  for(i=RowMax-1;i>=50;i--)//首先找前十行，全行扫描
+  for(i=RowMax-1;i>=RowMax-10;i--)//首先找前十行，全行扫描
   {
     if(i ==RowMax-1)//首行就以图像中心作为扫描起点
     {
@@ -318,11 +318,11 @@ void NormalSearchingMidLine()
      {
         j = mid_line[i+1];//否则从上一行中心位置开始搜寻
      }
-     if(j >=ColumnMax-2)//j >=ColumnMax-2有效范围内搜寻右线
+     if(j >=ColumnMax-3)//j >=ColumnMax-2有效范围内搜寻右线
      {
-        j = ColumnMax-2;
+        j = ColumnMax-3;
      }
-     while(j <= ColumnMax-2)
+     while(j <= ColumnMax-3)
      {
          
         if(img[i][j]==White_Point && img[i][j+1]==Black_Point && img[i][j+2]==Black_Point)//从左向右找到白白黑跳变点
@@ -379,9 +379,9 @@ void NormalSearchingMidLine()
     
     
     
-     if(mid_line[RowMax-1] >=90)
+     if(mid_line[RowMax-1] >=ColumnMax-10)
      {
-         MidPri = 90;
+         MidPri = ColumnMax-10;
      }          
      else if(mid_line[RowMax-1] <=10)
      {
@@ -399,7 +399,7 @@ void NormalSearchingMidLine()
 void SearchMidLineNext()
 {
   
-  for(i=49; i>0; i--)//查找剩余行
+  for(i=RowMax-11; i>0; i--)//查找剩余行
   {   
     if(LeftEdge[i+1]!=0 && RightEdge[i+1]!=ColumnMax) //上一行两边都找到 启用边沿扫描     
     {
@@ -440,11 +440,11 @@ void SearchMidLineNext()
          j--;   
       }     
          j = mid_line[i+1];//上一行丢了右边界用全行扫描 
-      if(j >= 78)
+      if(j >= ColumnMax-3)
       {
-           j = 78;
+           j = ColumnMax-3;
       }
-      while(j <= ColumnMax-2)      
+      while(j <= ColumnMax-3)      
       {    
           if(img[i][j]==White_Point && img[i][j+1]==Black_Point&&img[i][j+2]==Black_Point)
           {
@@ -497,9 +497,9 @@ void SearchMidLineNext()
             j--;
         }
          j = mid_line[i+1];   //全行找右边界   
-       while(j <=ColumnMax-2)       
+       while(j <=ColumnMax-3)       
        {   
-            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point)
+            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point&& img[i][j+2]==Black_Point)
             {
                   RightEdge[i] = j;  
                   break;
