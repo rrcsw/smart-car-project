@@ -32,6 +32,8 @@ extern float  Error;
 void SteerInit(void);//¶æ»ú³õÊ¼»¯
 void CalculateError(void);
 extern void SteerControl(void);
+extern void TurnBack();
+extern void NormalControl();
 
 
 #endif

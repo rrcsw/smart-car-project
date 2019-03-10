@@ -213,9 +213,18 @@ void SteerControl(void)
 {
     
         CalculateError(); 
-        
-   
-       SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
+        NormalControl();
+        TurnBack();
+          
+           ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
+           
+           LastSteerSwm=SteerPwm;//记录pwm值
+                    
+}
+
+void NormalControl()
+{
+   SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
        
         if(SteerPwmAdd>=180)
           
@@ -235,10 +244,53 @@ void SteerControl(void)
         if(SteerPwm<=SteerMin)
           
               SteerPwm=SteerMin;
-        TurnBack();
-          
-           ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
-           
-           LastSteerSwm=SteerPwm;//记录pwm值
-                    
+}
+
+void TurnBack()
+{
+  extern uint16 i;
+  extern uint16 j;
+  extern uint32 SteerPwm;
+  int LoseLeft=0;
+  int LoseRight=0;
+  
+  for(i=RowMax;i>=55;i--)//首先找前五行，全行扫描
+  {
+    if(img[60][j]==White_Point && img[60][j+1]==Black_Point&&img[60][j+2]==Black_Point)
+    {
+      if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
+      {  
+      LoseLeft=80-j;
+      SteerPwm=SteerMin;//向左打死
+      }
+      else
+      {
+        LoseLeft=80-j;
+      }
+    }
+     else if(img[60][j]==White_Point && img[60][j-1]==Black_Point&&img[60][j-2]==Black_Point)
+     {
+       if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
+       {
+         LoseRight=j;
+         SteerPwm=SteerMax;//向右打死
+       }
+       else
+       {
+         LoseRight=j;
+       }
+     }
+     
+  
+      if(LoseLeft>=40)
+      {
+        SteerPwm=SteerMin;//向左打死
+      }
+      else if(LoseRight>=40)
+        {
+        SteerPwm=SteerMax;//向右打死
+      }
+    
+  }
+  
 }

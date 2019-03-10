@@ -1496,60 +1496,7 @@ unsigned char StartingLineRecognition()
 
 
 
-void TurnBack()
-{
-  extern uint16 i;
-  extern uint16 j;
-  extern uint32 SteerPwm;
-  int LoseLeft=0;
-  int LoseRight=0;
-  
-  for(i=RowMax;i>=55;i--)//首先找前五行，全行扫描
-  {
-    if(img[60][j]==White_Point && img[60][j+1]==Black_Point&&img[60][j+2]==Black_Point)
-    {
-      if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
-      {  
-      LoseLeft=80-j;
-      SteerPwm=SteerMin;//向左打死
-      }
-      else
-      {
-        LoseLeft=80-j;
-      }
-    }
-     else if(img[60][j]==White_Point && img[60][j-1]==Black_Point&&img[60][j-2]==Black_Point)
-     {
-       if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
-       {
-         LoseRight=j;
-         SteerPwm=SteerMax;//向右打死
-       }
-       else
-       {
-         LoseRight=j;
-       }
-     }
-      else
-      {
-        i=i+0;
-      }
-  
-      if(LoseLeft>=40)
-      {
-        SteerPwm=SteerMin;//向左打死
-      }
-      else if(LoseRight>=40)
-        {
-        SteerPwm=SteerMax;//向左打死
-      }
-       else
-       {
-         i=i+0;
-       }
-    
-  }
-}
+
        
 
 

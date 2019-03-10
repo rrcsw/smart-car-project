@@ -50,28 +50,12 @@ while(1)
                CrossConduct();//十字补线
                LoopRecognition(&Loop);//圆环识别
                //LoopIntoRepair();//圆环补线
-               FindLoopOptimalExit();//寻找圆环出口
+               //FindLoopOptimalExit();//寻找圆环出口
                TrackType();//主要赛道类型
                Stop();
-               TurnBack();
               } 
-        /********
-          for(int i=59;i>=0;i--)//开始获取中线
-    {
-      int right_black=79;
-      int left_black=0;
-      for(int j=40;j>=0;j--)
-        if(img[80*i+j]==0x00){ left_black=j;break;}
-      for(int j=41;j<80;j++)
-        if(img[i*80+j]==0x00){right_black=j;break;}
-      mid_line[i]=(right_black+left_black)/2;             //找到左右边界后获取中点
-      img[i*80+mid_line[i]]=0x0000;                       //中线置为黑色
-    }
-    //vcan_sendimg(imgbuff, sizeof(imgbuff));          //串口发送中线，注意接收模式
-   ***/
-          
-    
-        
+      
+    //vcan_sendimg(imgbuff, sizeof(imgbuff));          //串口发送中线，注意接收模式        
 //# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可
              
   //             RecognitionObstacle();
