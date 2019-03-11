@@ -5,8 +5,8 @@
 
 #define Black_Point 0
 #define White_Point 255
-#define RowMax	    80	  //行数
-#define ColumnMax	100	  //列数
+#define RowMax	    90	  //行数
+#define ColumnMax	120	  //列数
 
 
 /*** 外部函数变量申明 ****/  

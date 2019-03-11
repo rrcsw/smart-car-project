@@ -108,7 +108,7 @@ void CalculateError(void)
     ****/
       /***else***/ if(StrightIntoCrossL)
       {
-         for(i=58;i>InflectionPointL.InflectionPointRow;i--)
+         for(i=88;i>InflectionPointL.InflectionPointRow;i--)
         {
                CenterSum+=mid_line[i]*Weight[i];             
                WeightSum+=Weight[i];
@@ -118,7 +118,7 @@ void CalculateError(void)
       
       else if(StrightIntoCrossR)
       {
-        for(i=58;i>InflectionPointR.InflectionPointRow;i--)
+        for(i=88;i>InflectionPointR.InflectionPointRow;i--)
         {
                CenterSum+=mid_line[i]*Weight[i];             
                WeightSum+=Weight[i];
@@ -127,7 +127,7 @@ void CalculateError(void)
       }
       else if(StrightIntoCrossLR)
       {
-        for(i=58;i>(InflectionPointR.InflectionPointRow+InflectionPointR.InflectionPointRow)/2;i--)
+        for(i=88;i>(InflectionPointR.InflectionPointRow+InflectionPointR.InflectionPointRow)/2;i--)
         {
                CenterSum+=mid_line[i]*Weight[i];             
                WeightSum+=Weight[i];
@@ -149,7 +149,7 @@ void CalculateError(void)
       else
       {
             
-        for(i=57;i>LastLine;i--)
+        for(i=87;i>LastLine;i--)
           
         {      
                CenterSum+=mid_line[i]*Weight[i];
@@ -168,7 +168,7 @@ void CalculateError(void)
             
              LastError=Error;
       
-             Error=(40-CenterMeanValue);// 一场图像偏差值 
+             Error=(600-CenterMeanValue);// 一场图像偏差值 
              
              if(Error>=30.0)//偏差限幅
                 
@@ -226,13 +226,13 @@ void NormalControl()
 {
    SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
        
-        if(SteerPwmAdd>=180)
+        if(SteerPwmAdd>=150)
           
-           SteerPwmAdd=180;
+           SteerPwmAdd=150;
         
-        if(SteerPwmAdd<=-180)
+        if(SteerPwmAdd<=-150)
           
-           SteerPwmAdd=-180;
+           SteerPwmAdd=-150;
             
         SteerPwm=(uint32)(SteerPwmAdd+SteerMidle);
         
@@ -254,23 +254,23 @@ void TurnBack()
   int LoseLeft=0;
   int LoseRight=0;
   
-  for(i=RowMax;i>=55;i--)//首先找前五行，全行扫描
+  for(i=RowMax;i>=85;i--)//首先找前五行，全行扫描
   {
-    if(img[60][j]==White_Point && img[60][j+1]==Black_Point&&img[60][j+2]==Black_Point)
+    if(img[90][j]==White_Point && img[90][j+1]==Black_Point&&img[90][j+2]==Black_Point)
     {
-      if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
+      if(img[85][0]==Black_Point&&img[85][120]==Black_Point)
       {  
-      LoseLeft=80-j;
+      LoseLeft=120-j;
       SteerPwm=SteerMin;//向左打死
       }
       else
       {
-        LoseLeft=80-j;
+        LoseLeft=120-j;
       }
     }
-     else if(img[60][j]==White_Point && img[60][j-1]==Black_Point&&img[60][j-2]==Black_Point)
+     else if(img[90][j]==White_Point && img[90][j-1]==Black_Point&&img[90][j-2]==Black_Point)
      {
-       if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
+       if(img[85][0]==Black_Point&&img[85][120]==Black_Point)
        {
          LoseRight=j;
          SteerPwm=SteerMax;//向右打死
@@ -282,11 +282,11 @@ void TurnBack()
      }
      
   
-      if(LoseLeft>=40)
+      if(LoseLeft>=50)
       {
         SteerPwm=SteerMin;//向左打死
       }
-      else if(LoseRight>=40)
+      else if(LoseRight>=50)
         {
         SteerPwm=SteerMax;//向右打死
       }

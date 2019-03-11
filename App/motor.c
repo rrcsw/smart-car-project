@@ -75,7 +75,7 @@ void MotorControlOpenLoop(void)
   
   
      OpendLoopPwmB=100;
-     OpendLoopPwmF=250;
+     OpendLoopPwmF=350;
     /****
       //差速
       OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
@@ -88,8 +88,8 @@ void MotorControlOpenLoop(void)
       if(OpendLoopPwmF>=400)  OpendLoopPwmF=400;
       if(OpendLoopPwmF<=200)    OpendLoopPwmF=200;
       ***/
-      ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmF);
-      ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmB); //PTC2,左电机 
+      ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
+      ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); //PTC2,左电机 
 
   }
 #endif 
