@@ -62,7 +62,7 @@ void LCD_Display()
            lcdsite.x= mid_line[i]; LCD_point(lcdsite,RED); //红色中线
            lcdsite.x= LeftEdge[i]; LCD_point(lcdsite,BLUE); //蓝色左边界
            lcdsite.x= RightEdge[i]; LCD_point(lcdsite,YELLOW); //黄色右边界
-           lcdsite.x=49; LCD_point(lcdsite,GREEN); //绿色中线误差判定标准
+           lcdsite.x=59; LCD_point(lcdsite,GREEN); //绿色中线误差判定标准
          }
          for(i=0;i<59;i++)//横向扫描打点
          {
