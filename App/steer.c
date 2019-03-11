@@ -52,7 +52,7 @@ float Weight[60]={
                    2.1,2.1,2.1,1,1,2,1,1,1,1,//40-49行
                   1,0,0,0,0,};//最近十行*///不压线，用于弯道
 #endif
-
+/****
 #if 1
 
 float Weight[60]={ 
@@ -67,6 +67,22 @@ float Weight[60]={
                      3,1,2,3,3,2,3,1,1,             //40-49行
                    
                      1,1,1,1,1,1,1,1,1,1,};          //最近十行
+
+
+****/
+
+
+#if 1
+float Weight[90]={  
+                    0,0,0,0,0,0,0,0,0,0,
+                    0,0,0,0,0,0,0,0,0,0,
+                    2,2,2,2,1,1,2,2,2,2,
+                    2.5,2,2,2,1,1,2,2,2,2.5,
+                    2.5,2,2,2,1,1,2,2,2,2.5,
+                    3,1,2,3,3,2,3,2,1,3,
+                    3,1,2,3,3,2,3,2,1,3,
+                    1,1,1,1,1,1,1,1,1,1,
+                    1,1,1,1,1,1,1,1,1,1,};
 
 
 
@@ -162,13 +178,13 @@ void CalculateError(void)
        if(WeightSum!=0)
          
        {
-             CenterMeanValue=(CenterSum/WeightSum);//算出加权平均后中线的值
+             CenterMeanValue=mid_line[i];//(CenterSum/WeightSum);//算出加权平均后中线的值
            
         }
             
              LastError=Error;
       
-             Error=(600-CenterMeanValue);// 一场图像偏差值 
+             Error=(59-CenterMeanValue);// 一场图像偏差值 600
              
              if(Error>=30.0)//偏差限幅
                 
@@ -214,7 +230,7 @@ void SteerControl(void)
     
         CalculateError(); 
         NormalControl();
-     //   TurnBack();
+        TurnBack();
           
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
            
@@ -224,7 +240,7 @@ void SteerControl(void)
 
 void NormalControl()
 {
-   SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
+   SteerPwmAdd=(KP*Error)+KD*(Error-LastError);//舵机的pd控制器
        
         if(SteerPwmAdd>=150)
           

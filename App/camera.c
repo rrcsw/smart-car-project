@@ -318,11 +318,11 @@ void NormalSearchingMidLine()
      {
         j = mid_line[i+1];//否则从上一行中心位置开始搜寻
      }
-     if(j >=ColumnMax-3)//j >=ColumnMax-2有效范围内搜寻右线
+     if(j >=ColumnMax-2)//j >=ColumnMax-2有效范围内搜寻右线
      {
-        j = ColumnMax-3;
+        j = ColumnMax-2;
      }
-     while(j <= ColumnMax-3)
+     while(j <= ColumnMax-2)
      {
          
         if(img[i][j]==White_Point && img[i][j+1]==Black_Point && img[i][j+2]==Black_Point)//从左向右找到白白黑跳变点
@@ -348,7 +348,7 @@ void NormalSearchingMidLine()
         }
         else 
         {
-                mid_line[i] = LeftEdge[i] + Width[i]/2+5;//正常的话就用半宽补                                need fix
+                mid_line[i] =(LeftEdge[i] + RightEdge[i])/2;// LeftEdge[i] + Width[i]/2+5;//正常的话就用半宽补                                need fix
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//丢了左线
@@ -360,7 +360,7 @@ void NormalSearchingMidLine()
         } 
         else 
         {
-                mid_line[i] = RightEdge[i] - Width[i]/2-5;//线宽                                         need fix
+                mid_line[i] = (LeftEdge[i] + RightEdge[i])/2;//RightEdge[i] - Width[i]/2-5;//线宽                                         need fix
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边都丢了的话  
