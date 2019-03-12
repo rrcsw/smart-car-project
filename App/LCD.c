@@ -67,7 +67,7 @@ void LCD_Display()
          for(i=0;i<59;i++)//横向扫描打点
          {
            lcdsite.x=i;//控制横坐标
-           lcdsite.y=30;
+           lcdsite.y=44;
            LCD_point(lcdsite,GREEN); //打角识别行
          }
        }
