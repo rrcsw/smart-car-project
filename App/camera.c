@@ -399,7 +399,7 @@ void NormalSearchingMidLine()
 void SearchMidLineNext()
 {
   
-  for(i=RowMax-11; i>0; i--)//查找剩余行
+  for(i=RowMax-21; i>0; i--)//查找剩余行
   {   
     if(LeftEdge[i+1]!=0 && RightEdge[i+1]!=ColumnMax) //上一行两边都找到 启用边沿扫描     
     {
