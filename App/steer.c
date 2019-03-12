@@ -240,7 +240,7 @@ void SteerControl(void)
 
 void NormalControl()
 {
-   SteerPwmAdd=(KP*Error)+KD*(Error-LastError);//舵机的pd控制器
+   SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
        
         if(SteerPwmAdd>=150)
           

@@ -61,7 +61,7 @@ while(1)
 //              RecognitionObstacle();
 //#endif             
              
-               //SteerControl();
+               SteerControl();
 //#if OpenLoop              
                
              MotorControlOpenLoop(); 

@@ -180,7 +180,7 @@ void SearchCenterline()
   
     //二十行，采用右左边往右边扫描的方法    
   NormalSearchingMidLine();
-  SearchMidLineNext();  
+  //SearchMidLineNext();  
      
    
   }
@@ -287,7 +287,7 @@ void GetEndParam()//获取黑线截止行
 
 void NormalSearchingMidLine()
 {
-  for(i=RowMax-1;i>=RowMax-20;i--)//首先找前二十行，全行扫描
+  for(i=RowMax-1;i>=0;i--)//首先找前二十行，全行扫描
   {
     if(i ==RowMax-1)//首行就以图像中心作为扫描起点
     {
