@@ -180,7 +180,7 @@ void SearchCenterline()
   
     //二十行，采用右左边往右边扫描的方法    
   NormalSearchingMidLine();
-  SearchMidLineNext();  
+ // SearchMidLineNext();  
      
    
   }

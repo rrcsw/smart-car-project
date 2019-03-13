@@ -12,8 +12,21 @@ uint8  mid_line[91];
 extern float  Error;
 extern int RightLose;
 extern int AllLose;
-extern int CenterMeanValue;
-extern int SteerPwmAdd;
+extern float  WeightSum;
+extern float  CenterMeanValue;
+extern float  CenterSum;
+extern float SteerPwmAdd;
+extern float  KP;
+extern float  KD;
+
+
+
+
+
+
+
+
+
  /*LCD液晶变量定义*/
     Site_t site = {0, 0};                           //LCD显示图像左上角位置
     Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCD图像大小
@@ -38,17 +51,27 @@ void LCD_Binarization()
         site.x=20;site.y=100;
         LCD_num_BC(site,SteerPwm,8,BLUE,RED);        //舵机输出  中值690
         
+        //site.x=50;site.y=100;
+        //LCD_num_BC(site,RightLose,8,BLUE,RED);         //右边界丢失数量
+        
+        //site.x=70;site.y=100;
+        //LCD_num_BC(site,AllLose,8,BLUE,RED);            //两边全丢数量
+        
         site.x=50;site.y=100;
-        LCD_num_BC(site,RightLose,8,BLUE,RED);         //右边界丢失数量
-        
-        site.x=70;site.y=100;
-        LCD_num_BC(site,AllLose,8,BLUE,RED);            //两边全丢数量
-        
-        site.x=90;site.y=100;
         LCD_num_BC(site,CenterMeanValue,8,BLUE,RED);            //中线加权值
         
-        site.x=110;site.y=105;
+        site.x=70;site.y=100;
         LCD_num_BC(site,SteerPwmAdd,8,BLUE,RED);  //Pwm改变量
+        
+       site.x=100;site.y=100;
+        LCD_num_BC(site,KP,8,BLUE,RED);//kp
+        
+        site.x=110;site.y=100;
+        LCD_num_BC(site,KD,8,BLUE,RED);//kd
+        
+        
+        
+        
 }
 
 void LCD_Display()

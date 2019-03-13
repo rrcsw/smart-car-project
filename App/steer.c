@@ -31,7 +31,7 @@ float  LastError;//上次的偏差
 float  WeightSum=0;
 float  CenterMeanValue=0;
 float  CenterSum=0;
-float  J=0.0300;//调节p和偏差的关系，越大，作用越强
+float  J=0.0600;//J=0.0300;//调节p和偏差的关系，越大，作用越强
 float  JD=0.0400;//调节p和偏差的关系，越大，作用越强
 float  BasicP=3.0; //基本的P值
 float  BasicD=6.5; //基本的P值
@@ -75,13 +75,13 @@ float Weight[60]={
 #if 1
 float Weight[90]={  
                     0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,0,0,0,0,0,0,0,
+                    0,0,0,0,1,1,1,1,1,1,
                     2,2,2,2,1,1,2,2,2,2,
                     2.5,2,2,2,1,1,2,2,2,2.5,
-                    2.5,2,2,2,1,1,2,2,2,2.5,
+                    2.5,2,1,2,1,1,2,1,2,2.5,
                     3,1,2,3,3,2,3,2,1,3,
                     3,1,2,3,3,2,3,2,1,3,
-                    1,1,1,1,1,1,1,1,1,1,
+                    3,2,3,2,3,2,2,2,1,1,
                     1,1,1,1,1,1,1,1,1,1,};
 
 
@@ -185,7 +185,7 @@ void CalculateError(void)
             
              LastError=Error;
       
-             Error=(600-CenterMeanValue);// 一场图像偏差值 600
+             Error=(59-CenterMeanValue);// 一场图像偏差值 600
              
              if(Error>=30.0)//偏差限幅
                 
@@ -231,7 +231,7 @@ void SteerControl(void)
     
         CalculateError(); 
         NormalControl();
-        TurnBack();
+        //TurnBack();
           
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
            
@@ -241,15 +241,15 @@ void SteerControl(void)
 
 void NormalControl()
 {
-   SteerPwmAdd=(KP*Error)+KD*(Error-LastError);//舵机的pd控制器
+   SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
        
-        if(SteerPwmAdd>=150)
+        if(SteerPwmAdd>=160)
           
-           SteerPwmAdd=150;
+           SteerPwmAdd=160;
         
-        if(SteerPwmAdd<=-150)
+        if(SteerPwmAdd<=-160)
           
-           SteerPwmAdd=-150;
+           SteerPwmAdd=-160;
             
         SteerPwm=(uint32)(SteerPwmAdd+SteerMidle);
         
@@ -275,7 +275,7 @@ void TurnBack()
   {
     if(img[90][j]==White_Point && img[90][j+1]==Black_Point&&img[90][j+2]==Black_Point)
     {
-      if(img[85][0]==Black_Point&&img[85][120]==Black_Point)
+      if(img[85][0]==Black_Point&&img[85][120]==Black_Point&&img[85][40]==Black_Point&&img[85][80]==Black_Point)
       {  
       LoseLeft=120-j;
       SteerPwm=SteerMin;//向左打死
@@ -287,7 +287,7 @@ void TurnBack()
     }
      else if(img[90][j]==White_Point && img[90][j-1]==Black_Point&&img[90][j-2]==Black_Point)
      {
-       if(img[85][0]==Black_Point&&img[85][120]==Black_Point)
+       if(img[85][0]==Black_Point&&img[85][120]==Black_Point&&img[85][40]==Black_Point&&img[85][80]==Black_Point)
        {
          LoseRight=j;
          SteerPwm=SteerMax;//向右打死
