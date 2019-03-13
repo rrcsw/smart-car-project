@@ -20,9 +20,14 @@ extern uint8 imgbuff[CAMERA_SIZE];
 void PORTA_IRQHandler();
 void DMA0_IRQHandler();
 
+/*********** ADC 采集口定义  **************/
+#define ADL     ADC0_SE16    //  对应 PTE1 引脚 ,具体ad采集口由你们的电路决定
+#define ADR     ADC1_SE16    //  对应 PTE25 引脚
 void all_init()
 {
       camera_init(imgbuff);                                     //初始化摄像头
+      adc_init(ADL);      //  ADC采集引脚初始化
+      adc_init(ADR);      //
        /*****配置中断服务函数**********/
       set_vector_handler(PORTA_VECTORn , PORTA_IRQHandler);   //设置 PORTA 的中断服务函数为 PORTA_IRQHandler
       set_vector_handler(DMA0_VECTORn , DMA0_IRQHandler);     //设置 DMA0 的中断服务函数为 PORTA_IRQHandler

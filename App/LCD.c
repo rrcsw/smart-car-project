@@ -18,7 +18,9 @@ extern float  CenterSum;
 extern float SteerPwmAdd;
 extern float  KP;
 extern float  KD;
-
+extern int steer_error_0;          // 保存偏差
+extern int ADL_V;
+extern int ADR_V;
 
 
 
@@ -42,7 +44,8 @@ void LCD_Binarization()
         
        // site.x=0;site.y=0;
       // LCD_Img_gray_Z(site, size, imgbuff,imgsize);            //LCD灰度图像显示
-        site.x=0;site.y=0;
+        /*
+  	site.x=0;site.y=0;
         LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCD黑白图像显示
         
         site.x=0;site.y=100;
@@ -50,13 +53,13 @@ void LCD_Binarization()
         
         site.x=20;site.y=100;
         LCD_num_BC(site,SteerPwm,8,BLUE,RED);        //舵机输出  中值690
-        
+        */
         //site.x=50;site.y=100;
         //LCD_num_BC(site,RightLose,8,BLUE,RED);         //右边界丢失数量
         
         //site.x=70;site.y=100;
         //LCD_num_BC(site,AllLose,8,BLUE,RED);            //两边全丢数量
-        
+        /*
         site.x=50;site.y=100;
         LCD_num_BC(site,CenterMeanValue,8,BLUE,RED);            //中线加权值
         
@@ -68,8 +71,16 @@ void LCD_Binarization()
         
         site.x=110;site.y=100;
         LCD_num_BC(site,KD,8,BLUE,RED);//kd
+        */
         
+	site.x=0;site.y=100;
+        LCD_num_BC(site,ADL_V,8,BLUE,RED);           
         
+        site.x=40;site.y=100;
+        LCD_num_BC(site,ADR_V,8,BLUE,RED);       
+	
+	 site.x=80;site.y=100;
+        LCD_num_BC(site,steer_error_0,8,BLUE,RED);
         
         
 }

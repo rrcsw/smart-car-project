@@ -6,6 +6,7 @@
 int steer_error;          // 保存偏差
 int steer_duty;           // 保存舵机 PWM 输出
 extern  uint8   mid_line[RowMax+1];                                //中线数组
+extern int steer_error_0;
 /***************定义舵机端口************************/
 #define STEER_FTM   FTM1                                   //PTA12
 #define STEER_CH    FTM_CH0                                //舵机精度 10000
@@ -229,13 +230,13 @@ void CalculateError(void)
 void SteerControl(void)
 {
     
-        CalculateError(); 
-        NormalControl();
-        TurnBack();
-          
+        //CalculateError(); 
+        //NormalControl();
+        //TurnBack();
+          SteerPwm = (steer_error_0/5) + 480 ;
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
            
-           LastSteerSwm=SteerPwm;//记录pwm值
+           //LastSteerSwm=SteerPwm;//记录pwm值
                     
 }
 
