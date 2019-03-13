@@ -348,7 +348,7 @@ void NormalSearchingMidLine()
         }
         else 
         {
-                mid_line[i] =(LeftEdge[i] + RightEdge[i])/2;// LeftEdge[i] + Width[i]/2+5;//正常的话就用半宽补                                need fix
+                mid_line[i] =(LeftEdge[i] + RightEdge[i])/2+5;// LeftEdge[i] + Width[i]/2+5;//正常的话就用半宽补                                need fix
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//丢了左线
@@ -360,7 +360,7 @@ void NormalSearchingMidLine()
         } 
         else 
         {
-                mid_line[i] = (LeftEdge[i] + RightEdge[i])/2;//RightEdge[i] - Width[i]/2-5;//线宽                                         need fix
+                mid_line[i] = (LeftEdge[i] + RightEdge[i])/2-5;//RightEdge[i] - Width[i]/2-5;//线宽                                         need fix
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边都丢了的话  

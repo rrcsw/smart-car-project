@@ -55,13 +55,13 @@ while(1)
                Stop();
               } 
       
-    //vcan_sendimg(imgbuff, sizeof(imgbuff));          //串口发送中线，注意接收模式        
+   vcan_sendimg(img[0], sizeof(img[0]));          //串口发送中线，注意接收模式        
 //# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可
              
 //              RecognitionObstacle();
 //#endif             
              
-               SteerControl();
+               //SteerControl();
 //#if OpenLoop              
                
              MotorControlOpenLoop(); 
@@ -74,6 +74,7 @@ while(1)
              
              
               LCD_Display();//液晶显示
+	      DELAY_MS(2000);
                  
                
          }
