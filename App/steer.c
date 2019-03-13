@@ -31,7 +31,7 @@ float  LastError;//上次的偏差
 float  WeightSum=0;
 float  CenterMeanValue=0;
 float  CenterSum=0;
-float  J=0.0600;//J=0.0300;//调节p和偏差的关系，越大，作用越强
+float  J=0.0500;//J=0.0300;//调节p和偏差的关系，越大，作用越强
 float  JD=0.0400;//调节p和偏差的关系，越大，作用越强
 float  BasicP=3.0; //基本的P值
 float  BasicD=6.5; //基本的P值
@@ -89,7 +89,7 @@ float Weight[90]={
 
 #endif
 
-#if 1
+
 void CalculateError(void)
 
 {
@@ -205,7 +205,7 @@ void CalculateError(void)
                     
 }
                      
-#endif                
+            
      
 
 
@@ -231,7 +231,7 @@ void SteerControl(void)
     
         CalculateError(); 
         NormalControl();
-        //TurnBack();
+        TurnBack();
           
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
            
@@ -275,7 +275,7 @@ void TurnBack()
   {
     if(img[90][j]==White_Point && img[90][j+1]==Black_Point&&img[90][j+2]==Black_Point)
     {
-      if(img[85][0]==Black_Point&&img[85][120]==Black_Point&&img[85][40]==Black_Point&&img[85][80]==Black_Point)
+      if(img[870][0]==Black_Point&&img[70][120]==Black_Point&&img[70][40]==Black_Point&&img[70][80]==Black_Point)
       {  
       LoseLeft=120-j;
       SteerPwm=SteerMin;//向左打死
@@ -287,7 +287,7 @@ void TurnBack()
     }
      else if(img[90][j]==White_Point && img[90][j-1]==Black_Point&&img[90][j-2]==Black_Point)
      {
-       if(img[85][0]==Black_Point&&img[85][120]==Black_Point&&img[85][40]==Black_Point&&img[85][80]==Black_Point)
+       if(img[70][0]==Black_Point&&img[70][120]==Black_Point&&img[70][40]==Black_Point&&img[70][80]==Black_Point)
        {
          LoseRight=j;
          SteerPwm=SteerMax;//向右打死
