@@ -1,16 +1,16 @@
-"D:\softwear\IAR Systems\Embedded Workbench 8.2\arm\bin\armproc.dll" 
+"E:\IAR\arm\bin\armproc.dll" 
 
-"D:\softwear\IAR Systems\Embedded Workbench 8.2\arm\bin\armjlink2.dll" 
+"E:\IAR\arm\bin\armjlink2.dll" 
 
-"D:\智能车\smart-car-project\Prj\IAR\DZ10_Debug\Exe\vcan_Kinetis.out" 
+"E:\SMART CAR\smart-car-project\Prj\IAR\DZ10_Debug\Exe\vcan_Kinetis.out" 
 
---plugin="D:\softwear\IAR Systems\Embedded Workbench 8.2\arm\bin\armbat.dll" 
+--plugin="E:\IAR\arm\bin\armbat.dll" 
 
---device_macro="D:\softwear\IAR Systems\Embedded Workbench 8.2\arm\config\debugger\NXP\Kxx.dmac" 
+--device_macro="E:\IAR\arm\config\debugger\NXP\Kxx.dmac" 
 
---device_macro="D:\softwear\IAR Systems\Embedded Workbench 8.2\arm\config\debugger\NXP\Kxx_Trace.dmac" 
+--device_macro="E:\IAR\arm\config\debugger\NXP\Kxx_Trace.dmac" 
 
---flash_loader="D:\softwear\IAR Systems\Embedded Workbench 8.2\arm\config\flashloader\Freescale\FlashK60Xxxx.board" 
+--flash_loader="E:\IAR\arm\config\flashloader\Freescale\FlashK60Xxxx.board" 
 
 
 

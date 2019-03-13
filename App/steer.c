@@ -121,8 +121,8 @@ void CalculateError(void)
         }
       
       }
-    ****/
-      /***else***/ if(StrightIntoCrossL)
+   
+      else if(StrightIntoCrossL)
       {
          for(i=88;i>InflectionPointL.InflectionPointRow;i--)
         {
@@ -150,7 +150,7 @@ void CalculateError(void)
         }
       
       }
-      
+       
 
        else if(Cross.CrossFlag)
        {
@@ -163,9 +163,10 @@ void CalculateError(void)
        }
       
       else
+
       {
-            
-        for(i=87;i>LastLine;i--)
+       ****/     
+        for(i=88;i>LastLine;i--)
           
         {      
                CenterSum+=mid_line[i]*Weight[i];
@@ -173,18 +174,18 @@ void CalculateError(void)
                WeightSum+=Weight[i];       
          }
       
-      }
+      //}
       
        if(WeightSum!=0)
          
        {
-             CenterMeanValue=mid_line[i];//(CenterSum/WeightSum);//算出加权平均后中线的值
+             CenterMeanValue=(CenterSum/WeightSum);//算出加权平均后中线的值      mid_line[i];
            
         }
             
              LastError=Error;
       
-             Error=(59-CenterMeanValue);// 一场图像偏差值 600
+             Error=(600-CenterMeanValue);// 一场图像偏差值 600
              
              if(Error>=30.0)//偏差限幅
                 
@@ -240,7 +241,7 @@ void SteerControl(void)
 
 void NormalControl()
 {
-   SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
+   SteerPwmAdd=(KP*Error)+KD*(Error-LastError);//舵机的pd控制器
        
         if(SteerPwmAdd>=150)
           

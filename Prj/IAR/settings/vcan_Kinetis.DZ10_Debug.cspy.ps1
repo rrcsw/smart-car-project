@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "D:\softwear\IAR Systems\Embedded Workbench 8.2\common\bin\cspybat" -f "D:\智能车\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.general.xcl" --backend -f "D:\智能车\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.driver.xcl" 
+& "E:\IAR\common\bin\cspybat" -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.general.xcl" --backend -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.driver.xcl" 
 }
 else
 {
-& "D:\softwear\IAR Systems\Embedded Workbench 8.2\common\bin\cspybat" -f "D:\智能车\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.general.xcl" --debug_file=$debugfile --backend -f "D:\智能车\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.driver.xcl" 
+& "E:\IAR\common\bin\cspybat" -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.general.xcl" --debug_file=$debugfile --backend -f "E:\SMART CAR\smart-car-project\Prj\IAR\settings\vcan_Kinetis.DZ10_Debug.driver.xcl" 
 }

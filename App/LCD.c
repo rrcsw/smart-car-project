@@ -12,9 +12,8 @@ uint8  mid_line[91];
 extern float  Error;
 extern int RightLose;
 extern int AllLose;
-extern int BlackEndM;
-static unsigned char ObstacleLfetNum;
-static unsigned char ObstacleRightNum;
+extern int CenterMeanValue;
+extern int SteerPwmAdd;
  /*LCD液晶变量定义*/
     Site_t site = {0, 0};                           //LCD显示图像左上角位置
     Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCD图像大小
@@ -46,10 +45,10 @@ void LCD_Binarization()
         LCD_num_BC(site,AllLose,8,BLUE,RED);            //两边全丢数量
         
         site.x=90;site.y=100;
-        LCD_num_BC(site,ObstacleLfetNum,8,BLUE,RED);            //
+        LCD_num_BC(site,CenterMeanValue,8,BLUE,RED);            //中线加权值
         
         site.x=110;site.y=105;
-        LCD_num_BC(site,ObstacleRightNum,8,BLUE,RED);  
+        LCD_num_BC(site,SteerPwmAdd,8,BLUE,RED);  //Pwm改变量
 }
 
 void LCD_Display()
