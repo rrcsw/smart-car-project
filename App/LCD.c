@@ -18,7 +18,7 @@ extern float  CenterSum;
 extern float SteerPwmAdd;
 extern float  KP;
 extern float  KD;
-
+extern uint8 image_threshold;
 
 
 
@@ -49,7 +49,7 @@ void LCD_Binarization()
         LCD_num_BC(site,Error,8,BLUE,RED);           //偏差
         
         site.x=20;site.y=100;
-        LCD_num_BC(site,SteerPwm,8,BLUE,RED);        //舵机输出  中值690
+        LCD_num_BC(site,image_threshold,8,BLUE,RED);        //阈值         //舵机输出  中值690
         
         //site.x=50;site.y=100;
         //LCD_num_BC(site,RightLose,8,BLUE,RED);         //右边界丢失数量

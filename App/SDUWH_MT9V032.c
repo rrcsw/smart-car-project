@@ -360,7 +360,7 @@ void MT9V032_Binarization(void *dst, void *src,uint8 threshold)
 uint8 otsuThreshold(uint8 *image)//大津算法计算二值化阈值
 {
     #define GrayScale 256
-    #define MAX_GrayScale 100
+    #define MAX_GrayScale 75
     #define MIN_GrayScale 50
     uint16 width  = CAMERA_W;
     uint16 height = CAMERA_H;

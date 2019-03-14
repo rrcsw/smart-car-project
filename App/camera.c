@@ -149,7 +149,8 @@ void SetInitVal()
       RightEdge[i]  = ColumnMax;
       LeftEdge[i]   = 0;
       mid_line[i] = ColumnMax/2;
-      Width[i]  = 30+i*1/2;     //动态路宽
+      Width[i]  = 30+i*4/5;//动态路宽30+i*1/2
+     
       
   }
   
@@ -172,7 +173,7 @@ void SearchCenterline()
   mid_line[RowMax]  = ColumnMax/2;//第60行
   LeftEdge[RowMax]    = 0;
   RightEdge[RowMax]   = ColumnMax;
-  Width[RowMax]       = 120;
+  Width[RowMax]       = 90;
   
   SetInitVal();
   
@@ -348,19 +349,19 @@ void NormalSearchingMidLine()
         }
         else 
         {
-                mid_line[i] = LeftEdge[i] + Width[i]/2+5;//正常的话就用半宽补                                need fix
+                mid_line[i] = LeftEdge[i] + Width[i]/2+7;//正常的话就用半宽补                                need fix
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//丢了左线
      {
            
-        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+8))//突变      
+        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]-8))//突变      
         {
                 mid_line[i] = mid_line[i+1]-4; 
         } 
         else 
         {
-                mid_line[i] = RightEdge[i] - Width[i]/2-5;//线宽                                         need fix
+                mid_line[i] = RightEdge[i] - Width[i]/2-7;//线宽                                         need fix
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边都丢了的话  
