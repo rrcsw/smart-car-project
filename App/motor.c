@@ -75,7 +75,7 @@ void MotorControlOpenLoop(void)
   
   
      OpendLoopPwmB=100;
-     OpendLoopPwmF=250;
+     OpendLoopPwmF=200;
     /****
       //²îËÙ
       OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
@@ -106,8 +106,8 @@ void Stop()
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmF);
       ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmB);
   }
-
 }
+
 
 
 

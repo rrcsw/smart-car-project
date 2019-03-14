@@ -75,10 +75,10 @@ float Weight[60]={
 #if 1
 float Weight[90]={  
                     0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,0,1,1,1,1,1,1,
+                    0,0,0,1,1,1,1,1,1,1,
                     2,2,2,2,1,1,2,2,2,2,
-                    2.5,2,2,2,1,1,2,2,2,2.5,
-                    2.5,2,1,2,1,1,2,1,2,2.5,
+                    2.5,2,2,2,2,2,2,2,2,2.5,
+                    2.5,2,1,2,1,3,2,1,2,2.5,
                     3,1,2,3,3,2,3,2,1,3,
                     3,1,2,3,3,2,3,2,1,3,
                     3,2,3,2,3,2,2,2,1,1,
@@ -174,7 +174,7 @@ void CalculateError(void)
                WeightSum+=Weight[i];       
          }
       
-      //}
+      
       
        if(WeightSum!=0)
          
@@ -270,12 +270,11 @@ void TurnBack()
   extern uint32 SteerPwm;
   int LoseLeft=0;
   int LoseRight=0;
+   
   
-  for(i=RowMax;i>=85;i--)//首先找前五行，全行扫描
-  {
     if(img[90][j]==White_Point && img[90][j+1]==Black_Point&&img[90][j+2]==Black_Point)
     {
-      if(img[870][0]==Black_Point&&img[70][120]==Black_Point&&img[70][40]==Black_Point&&img[70][80]==Black_Point)
+      if(img[70][0]==Black_Point&&img[70][120]==Black_Point&&img[70][40]==Black_Point&&img[70][80]==Black_Point)
       {  
       LoseLeft=120-j;
       SteerPwm=SteerMin;//向左打死
@@ -308,6 +307,6 @@ void TurnBack()
         SteerPwm=SteerMax;//向右打死
       }
     
-  }
+  
   
 }
