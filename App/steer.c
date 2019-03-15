@@ -230,7 +230,8 @@ void SteerControl(void)
     
         CalculateError(); 
         NormalControl();
-        TurnBack();
+        
+        //TurnBack();
           
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
            
@@ -267,10 +268,19 @@ void TurnBack()
   extern uint16 i;
   extern uint16 j;
   extern uint32 SteerPwm;
+
+ extern int  BlackEndRR  ; 
+  extern int BlackEndLL  ;  
+  extern int BlackEndM ;   
   int LoseLeft=0;
   int LoseRight=0;
    
-  
+  if (BlackEndM==0&&BlackEndLL>=5)
+    SteerPwm=SteerMin;
+  if (BlackEndM==0&&BlackEndRR>=5)
+    SteerPwm=SteerMax;
+    
+  /**
     if(img[90][j]==White_Point && img[90][j+1]==Black_Point&&img[90][j+2]==Black_Point)
     {
       if(img[70][0]==Black_Point&&img[70][120]==Black_Point&&img[70][40]==Black_Point&&img[70][80]==Black_Point)
@@ -305,7 +315,9 @@ void TurnBack()
         {
         SteerPwm=SteerMax;//向右打死
       }
-    
+    ****/
   
   
 }
+
+  

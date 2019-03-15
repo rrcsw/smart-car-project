@@ -220,7 +220,7 @@ void GetEndParam()//获取黑线截止行
         {
 		MEndFlag = 1;
         }
-	if(img[i][ColumnMax/4] == White_Point && !LEndFlag )//20
+	if(img[i][ColumnMax/4] == White_Point && !LEndFlag )//30
         {
 		BlackEndL++;//左黑线截至行
         }
@@ -228,7 +228,7 @@ void GetEndParam()//获取黑线截止行
         {
 		LEndFlag = 1;
         }
-	if(img[i][ColumnMax*3/4] == White_Point && !REndFlag )//60
+	if(img[i][ColumnMax*3/4] == White_Point && !REndFlag )//90
         {
 		BlackEndR++;//右黑线截至行
 	}
@@ -236,35 +236,35 @@ void GetEndParam()//获取黑线截止行
         {
 		REndFlag = 1;
         }
-        if(img[i][30] == White_Point && !MLEndFlag )
+        if(img[i][45] == White_Point && !MLEndFlag )
         {
 		BlackEndML++;
         }
-	else if(i > 1 && img[i-1][30] == Black_Point && img[i-2][30] == Black_Point)
+	else if(i > 1 && img[i-1][45] == Black_Point && img[i-2][45] == Black_Point)
         {
 		MLEndFlag = 1;
         }
-	if(img[i][50] == White_Point && !MREndFlag )
+	if(img[i][75] == White_Point && !MREndFlag )
         {
 		BlackEndMR++;
         }
-	else if(i > 1 && img[i-1][50] == Black_Point && img[i-2][50] == Black_Point)
+	else if(i > 1 && img[i-1][75] == Black_Point && img[i-2][75] == Black_Point)
         {
 		MREndFlag = 1;
 	}
-        if(img[i][10] == White_Point && !LLEndFlag )
+        if(img[i][15] == White_Point && !LLEndFlag )
         {
 		BlackEndLL++;
 	}
-	else if(i > 1 && img[i-1][10] == Black_Point && img[i-2][10] == Black_Point)
+	else if(i > 1 && img[i-1][15] == Black_Point && img[i-2][15] == Black_Point)
         {
 		LLEndFlag = 1;
 	}
-        if(img[i][70] == White_Point && !RREndFlag )
+        if(img[i][105] == White_Point && !RREndFlag )
         {
 		BlackEndRR++;
 	}
-	else if(i > 1 && img[i-1][70] == Black_Point && img[i-2][70] == Black_Point)
+	else if(i > 1 && img[i-1][105] == Black_Point && img[i-2][105] == Black_Point)
         {
 		RREndFlag = 1;
 	}
@@ -277,11 +277,11 @@ void GetEndParam()//获取黑线截止行
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndML);
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndLL);
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndRR);
-        if(BlackEndMaxMax>=60)
+        if(BlackEndMaxMax>=90)
         {
-            BlackEndMaxMax=58;
+            BlackEndMaxMax=88;
         }
-        DropRow=60-BlackEndMaxMax;//封顶的行数      
+        DropRow=90-BlackEndMaxMax;//封顶的行数      
  }
 
 }
