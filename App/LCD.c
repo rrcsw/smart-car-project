@@ -1,23 +1,19 @@
 #include "common.h"
 #include "include.h"
 #include "math.h"
+#include "steer.h"
 
-extern int32 SteerPwm;
 extern int32 time1,time2;
 extern uint8 img[CAMERA_H][CAMERA_W];
 extern uint8 imgbuff[CAMERA_SIZE]; 
 extern uint8 right_black[120];
 extern uint8 left_black[120];
 uint8  mid_line[91];
-extern float  Error;
 extern int RightLose;
 extern int AllLose;
 extern float  WeightSum;
 extern float  CenterMeanValue;
 extern float  CenterSum;
-extern float SteerPwmAdd;
-extern float  KP;
-extern float  KD;
 extern uint8 image_threshold;
 
 
