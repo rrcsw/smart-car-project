@@ -231,7 +231,7 @@ void SteerControl(void)
         CalculateError(); 
         NormalControl();
         
-        //TurnBack();
+        TurnBack();
           
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//¶æ»úpwm¸üÐÂ
            

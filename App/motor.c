@@ -75,19 +75,18 @@ void MotorControlOpenLoop(void)
   
   
      OpendLoopPwmB=100;
-     OpendLoopPwmF=200;
-    /****
-      //²îËÙ
-      OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
+     OpendLoopPwmF=250;
+    
+      //OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
       
-      if(OpendLoopPwmB>=400)  OpendLoopPwmB=400;
-      if(OpendLoopPwmB<=200)    OpendLoopPwmB=200;
+      //if(OpendLoopPwmB>=400)  OpendLoopPwmB=400;
+      //if(OpendLoopPwmB<=200)    OpendLoopPwmB=200;
       
       OpendLoopPwmF=(int)(OpendLoopPwmF+(OpendLoopPwmF*Error*000.1));
             
-      if(OpendLoopPwmF>=400)  OpendLoopPwmF=400;
-      if(OpendLoopPwmF<=200)    OpendLoopPwmF=200;
-      ****/
+      if(OpendLoopPwmF>=300)  OpendLoopPwmF=300;
+      if(OpendLoopPwmF<=100)    OpendLoopPwmF=100;
+     
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
       ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); //PTC2,×óµç»ú 
 
