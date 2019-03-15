@@ -46,10 +46,10 @@ void LCD_Binarization()
         LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCD黑白图像显示
         
         site.x=0;site.y=100;
-        LCD_num_BC(site,Error,8,BLUE,RED);           //偏差
+        LCD_num_BC(site,BlackEndM,8,BLUE,RED);           //偏差
         
         site.x=20;site.y=100;
-        LCD_num_BC(site,image_threshold,8,BLUE,RED);        //阈值         //舵机输出  中值690
+        LCD_num_BC(site,BlackEndRR,8,BLUE,RED);        //阈值         //舵机输出  中值690
         
         //site.x=50;site.y=100;
         //LCD_num_BC(site,RightLose,8,BLUE,RED);         //右边界丢失数量
@@ -58,7 +58,7 @@ void LCD_Binarization()
         //LCD_num_BC(site,AllLose,8,BLUE,RED);            //两边全丢数量
         
         site.x=50;site.y=100;
-        LCD_num_BC(site,CenterMeanValue,8,BLUE,RED);            //中线加权值
+        LCD_num_BC(site,BlackEndLL,8,BLUE,RED);            //中线加权值
         
         site.x=70;site.y=100;
         LCD_num_BC(site,SteerPwmAdd,8,BLUE,RED);  //Pwm改变量

@@ -271,14 +271,31 @@ void TurnBack()
 
  extern int  BlackEndRR  ; 
   extern int BlackEndLL  ;  
+  extern int BlackEndL;
+  extern int BlackEndR;
   extern int BlackEndM ;   
   int LoseLeft=0;
   int LoseRight=0;
    
-  if (BlackEndM==0&&BlackEndLL>=5)
+  if (BlackEndR==0&&BlackEndLL>=5&&BlackEndL>=0)
+  {
     SteerPwm=SteerMin;
-  if (BlackEndM==0&&BlackEndRR>=5)
+    LoseLeft=55;
+  }
+  else {LoseLeft=0;}
+  if (BlackEndL==0&&BlackEndRR>=10&&BlackEndR>=0)
+  { 
     SteerPwm=SteerMax;
+    LoseRight=55;
+  }
+  else {LoseRight=0;}
+  
+  if (LoseLeft>=50)
+    SteerPwm=SteerMin;
+  if (LoseRight>=50)
+    SteerPwm=SteerMax;
+
+  
     
   /**
     if(img[90][j]==White_Point && img[90][j+1]==Black_Point&&img[90][j+2]==Black_Point)
