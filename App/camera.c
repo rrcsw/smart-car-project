@@ -620,3 +620,4 @@ void SearchMidLineNext()
    
   }
 }
+

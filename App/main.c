@@ -75,7 +75,7 @@ while(1)
                
              
              
-              LCD_Display();//“∫æßœ‘ æ
+              //LCD_Display();//“∫æßœ‘ æ
                  
                
          }

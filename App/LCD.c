@@ -21,6 +21,10 @@ extern float  KD;
 extern int steer_error_0;          // ±£´æÆ«²î
 extern int ADL_V;
 extern int ADR_V;
+extern int steer_error_1;
+extern int steer_error_2;
+extern int steer_error_3;
+
 
 
 
@@ -72,7 +76,9 @@ void LCD_Binarization()
         site.x=110;site.y=100;
         LCD_num_BC(site,KD,8,BLUE,RED);//kd
         */
-        
+        site.x=0;site.y=20;
+        LCD_num_BC(site,steer_error_1,8,BLUE,RED); 
+	
 	site.x=0;site.y=100;
         LCD_num_BC(site,ADL_V,8,BLUE,RED);           
         
@@ -80,7 +86,7 @@ void LCD_Binarization()
         LCD_num_BC(site,ADR_V,8,BLUE,RED);       
 	
 	 site.x=80;site.y=100;
-        LCD_num_BC(site,steer_error_0,8,BLUE,RED);
+        LCD_num_BC(site,SteerPwm,8,BLUE,RED);
         
         
 }

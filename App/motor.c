@@ -75,7 +75,7 @@ void MotorControlOpenLoop(void)
   
   
      OpendLoopPwmB=100;
-     OpendLoopPwmF=250;
+     OpendLoopPwmF=175;
     /****
       //²îËÙ
       OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));

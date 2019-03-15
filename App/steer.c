@@ -7,6 +7,7 @@ int steer_error;          // 保存偏差
 int steer_duty;           // 保存舵机 PWM 输出
 extern  uint8   mid_line[RowMax+1];                                //中线数组
 extern int steer_error_0;
+extern int steer_error_1;
 /***************定义舵机端口************************/
 #define STEER_FTM   FTM1                                   //PTA12
 #define STEER_CH    FTM_CH0                                //舵机精度 10000
@@ -25,7 +26,8 @@ void steer_control()
 /*********define for SteerControl**********/
 
 float  KP=12;//舵机方向比例系数，影响舵机的打角范围//15
-float  KD=8;//10//7.5//舵机方向微分系数,影响舵机的打角反应
+float  KD=22;//10//7.5//舵机方向微分系数,影响舵机的打角反应
+float  KI=0;
 float  SteerPwmAdd=0.0;//舵机pwm增量
 float  Error;//偏差值
 float  LastError;//上次的偏差
@@ -37,6 +39,7 @@ float  JD=0.0400;//调节p和偏差的关系，越大，作用越强
 float  BasicP=3.0; //基本的P值
 float  BasicD=6.5; //基本的P值
 uint32 SteerPwm=0,LastSteerSwm=0;//舵机的pwm值和上次舵机的pwm值
+
 
 //加权平均，权值的选取
  #if 0
@@ -231,9 +234,11 @@ void SteerControl(void)
 {
     
         //CalculateError(); 
-        //NormalControl();
+        NormalControl();
         //TurnBack();
-          SteerPwm = (steer_error_0/5) + 480 ;
+          //SteerPwm = (steer_error_0/5) + 480 ;
+	 
+	
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
            
            //LastSteerSwm=SteerPwm;//记录pwm值
@@ -242,15 +247,16 @@ void SteerControl(void)
 
 void NormalControl()
 {
-   SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
-       
-        if(SteerPwmAdd>=160)
-          
-           SteerPwmAdd=160;
+  
+   SteerPwmAdd=((KP*steer_error_0)+KI*(steer_error_1));//舵机的pd控制器
         
-        if(SteerPwmAdd<=-160)
+       // if(SteerPwmAdd>=-160)
           
-           SteerPwmAdd=-160;
+         //  SteerPwmAdd=-160;
+        
+        //if(SteerPwmAdd<=160)
+          
+          // SteerPwmAdd=160;
             
         SteerPwm=(uint32)(SteerPwmAdd+SteerMidle);
         
