@@ -2,9 +2,9 @@
 #include "include.h"
 #include "camera.h"
 
-int controlplan = 2;  //1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
-					  //2ï¿½ï¿½ï¿½ï¿½Å¿ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
-					  //3  Â·ï¿½Ï¶ï¿½Ü·ï¿½ï¿½ï¿½
+int controlplan = 2;  //1¡¡ÉãÏñÍ·¿ØÖÆ·½°¸
+					  //2¡¡µç´Å¿ØÖÆ·½°¸
+//					  //3  Â·ÕÏ¶ã±Ü·½°¸
 
 void start_adc()
 {
@@ -13,7 +13,7 @@ void start_adc()
 	{
 		for (j = 0;j < ColumnMax - 1;j++)
 		{
-			if (img[i][j] = Black_Point && img[i][j + 1] = White_Point && img[i][j + 2] = White_Point)
+			if (img[i][j] == Black_Point && img[i][j + 1] == White_Point && img[i][j + 2] == White_Point)
 				break;
 		}
 	}
@@ -26,7 +26,7 @@ void end_adc()
 	int j;
 	for (j = 0;j < ColumnMax - 1;j++)
 	{
-		if (img[0][j] = White_Point && img[0][j + 1] = White_Point && img[0][j + 2] = White_Point)
+		if (img[0][j] == White_Point && img[0][j + 1] == White_Point && img[0][j + 2] == White_Point)
 			controlplan = 1;
 		break;
 	}

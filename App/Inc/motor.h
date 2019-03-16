@@ -7,7 +7,7 @@
 #define  OpenLoop 1 //宏定义置1，速度开环控制
 #define  CloseLoop 0 //宏定义置1，速度闭环控制
 
-
+//
 
 extern  int32 GetRightMotorPules;
 extern  int32 GetLeftMotorPules;

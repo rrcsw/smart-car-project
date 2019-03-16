@@ -4,17 +4,14 @@
 #include "steer.h"
 #include "camera.h"
 
-extern int32 SteerPwm;
 extern int32 time1,time2;
 extern uint8 img[CAMERA_H][CAMERA_W];
 extern uint8 imgbuff[CAMERA_SIZE]; 
-extern uint8 right_black[60];
-extern uint8 left_black[60];
-uint8  mid_line[61];
-extern float  Error;
+extern uint8 right_black[120];
+extern uint8 left_black[120];
+uint8  mid_line[91];
 extern int RightLose;
 extern int AllLose;
-extern int BlackEndM;
 extern float  WeightSum;
 extern float  CenterMeanValue;
 extern float  CenterSum;
@@ -25,44 +22,43 @@ extern int controlplan;
 
 
 
+//
 
-
- /*LCDÒºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
-    Site_t site = {0, 0};                           //LCDï¿½ï¿½Ê¾Í¼ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½Î»ï¿½ï¿½
-    Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCDÍ¼ï¿½ï¿½ï¿½Ð¡
-    Size_t size={80,60};                                //LCDï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ð¡
+ /*LCDÒº¾§±äÁ¿¶¨Òå*/
+    Site_t site = {0, 0};                           //LCDÏÔÊ¾Í¼Ïñ×óÉÏ½ÇÎ»ÖÃ
+    Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCDÍ¼Ïñ´óÐ¡
+    Size_t size={120,90};                                //LCDÏÔÊ¾ÇøÓòÍ¼Ïñ´óÐ¡
 
 
 void LCD_Binarization()
 {
         //site.x=80;site.y=0;
-        //LCD_num_BC(site,time1,8,BLUE,RED);                 //us//ï¿½ï¿½È¡Í¼ï¿½ï¿½Ê±ï¿½ï¿½
+        //LCD_num_BC(site,time1,8,BLUE,RED);                 //us//»ñÈ¡Í¼ÏñÊ±¼ä
        // site.x=80;site.y=65;
-        //LCD_num_BC(site,time2,8,BLUE,RED);                 //us//ï¿½ï¿½Öµï¿½ï¿½Ê±ï¿½ï¿½
+        //LCD_num_BC(site,time2,8,BLUE,RED);                 //us//¶þÖµ»¯Ê±¼ä
         
+       // site.x=0;site.y=0;
+      // LCD_Img_gray_Z(site, size, imgbuff,imgsize);            //LCD»Ò¶ÈÍ¼ÏñÏÔÊ¾
         site.x=0;site.y=0;
-        LCD_Img_gray_Z(site, size, imgbuff,imgsize);            //LCDï¿½Ò¶ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ê¾
-        site.x=0;site.y=65;
-        LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCDï¿½Ú°ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ê¾
+        LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCDºÚ°×Í¼ÏñÏÔÊ¾
         
-
         site.x=0;site.y=100;
-        LCD_num_BC(site,LeftLose+AllLose,8,BLUE,RED);           //Æ«ï¿½ï¿½
+        LCD_num_BC(site,LeftLose+AllLose,8,BLUE,RED);           //Æ«²î
         
         site.x=20;site.y=100;
-        LCD_num_BC(site,RightLose+AllLose,8,BLUE,RED);        //ï¿½ï¿½Öµ         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½Öµ690
+        LCD_num_BC(site,RightLose+AllLose,8,BLUE,RED);        //ãÐÖµ         //¶æ»úÊä³ö  ÖÐÖµ690
         
         site.x=50;site.y=100;
-        LCD_num_BC(site,AllLose,8,BLUE,RED);         //ï¿½Ò±ß½ç¶ªÊ§ï¿½ï¿½ï¿½ï¿½
+        LCD_num_BC(site,AllLose,8,BLUE,RED);         //ÓÒ±ß½ç¶ªÊ§ÊýÁ¿
         
         //site.x=70;site.y=100;
-        //LCD_num_BC(site,AllLose,8,BLUE,RED);            //ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //LCD_num_BC(site,AllLose,8,BLUE,RED);            //Á½±ßÈ«¶ªÊýÁ¿
         /*
         site.x=50;site.y=100;
-        LCD_num_BC(site,CenterMeanValue,8,BLUE,RED);            //ï¿½ï¿½ï¿½ß¼ï¿½È¨Öµ
+        LCD_num_BC(site,CenterMeanValue,8,BLUE,RED);            //ÖÐÏß¼ÓÈ¨Öµ
         
         site.x=70;site.y=100;
-        LCD_num_BC(site,SteerPwmAdd,8,BLUE,RED);  //Pwmï¿½Ä±ï¿½ï¿½ï¿½
+        LCD_num_BC(site,SteerPwmAdd,8,BLUE,RED);  //Pwm¸Ä±äÁ¿
         
        site.x=100;site.y=100;
         LCD_num_BC(site,KP,8,BLUE,RED);//kp
@@ -70,52 +66,44 @@ void LCD_Binarization()
         site.x=110;site.y=100;
         LCD_num_BC(site,controlplan,8,BLUE,RED);//kd
         
-        site.x=80;site.y=45;
-        LCD_num_BC(site,RightLose,8,BLUE,RED);         //ï¿½Ò±ß½ç¶ªÊ§ï¿½ï¿½ï¿½ï¿½
         
-        site.x=80;site.y=65;
-        LCD_num_BC(site,AllLose,8,BLUE,RED);            //ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         
-        //site.x=80;site.y=85;
-        //LCD_num_BC(site,ADL_V,8,BLUE,RED);            //
         
-        //site.x=80;site.y=105;
-       // LCD_num_BC(site,ADR_V,8,BLUE,RED);  
 }
 
 void LCD_Display()
 {
     
        {Site_t lcdsite;uint8 i;
-         for(i=0;i<60;i++) //ï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½ï¿½ï¿½
+         for(i=0;i<90;i++) //×ÝÏòÉ¨Ãè´òµã
          {
-           lcdsite.y=i;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-           lcdsite.x= mid_line[i]; LCD_point(lcdsite,RED); //ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
-           lcdsite.x= LeftEdge[i]; LCD_point(lcdsite,BLUE); //ï¿½ï¿½É«ï¿½ï¿½ß½ï¿½
-           lcdsite.x= RightEdge[i]; LCD_point(lcdsite,YELLOW); //ï¿½ï¿½É«ï¿½Ò±ß½ï¿½
-           lcdsite.x=39; LCD_point(lcdsite,GREEN); //ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½×¼
+           lcdsite.y=i;//¿ØÖÆ×Ý×ø±ê
+           lcdsite.x= mid_line[i]; LCD_point(lcdsite,RED); //ºìÉ«ÖÐÏß
+           lcdsite.x= LeftEdge[i]; LCD_point(lcdsite,BLUE); //À¶É«×ó±ß½ç
+           lcdsite.x= RightEdge[i]; LCD_point(lcdsite,YELLOW); //»ÆÉ«ÓÒ±ß½ç
+           lcdsite.x=59; LCD_point(lcdsite,GREEN); //ÂÌÉ«ÖÐÏßÎó²îÅÐ¶¨±ê×¼
          }
-         for(i=0;i<80;i++)//ï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½ï¿½ï¿½
+         for(i=0;i<59;i++)//ºáÏòÉ¨Ãè´òµã
          {
-           lcdsite.x=i;//ï¿½ï¿½ï¿½Æºï¿½ï¿½ï¿½ï¿½ï¿½
-           lcdsite.y=30;
-           LCD_point(lcdsite,GREEN); //ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½
+           lcdsite.x=i;//¿ØÖÆºá×ø±ê
+           lcdsite.y=44;
+           LCD_point(lcdsite,GREEN); //´ò½ÇÊ¶±ðÐÐ
          }
        }
 }
 
 void LCD_Init()
 {
-    /*LCDÒºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
-    Site_t site = {0, 0};                           //LCDï¿½ï¿½Ê¾Í¼ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½Î»ï¿½ï¿½
-    Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCDÍ¼ï¿½ï¿½ï¿½Ð¡
-    Size_t size={80,60};                                //LCDï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ð¡
-    LCD_init();   //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½  
-    LCD_str  (site,"Cam init ing",FCOLOUR,BCOLOUR);   //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ê¾  ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ê£¬ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½
+    /*LCDÒº¾§±äÁ¿¶¨Òå*/
+    Site_t site = {0, 0};                           //LCDÏÔÊ¾Í¼Ïñ×óÉÏ½ÇÎ»ÖÃ
+    Size_t imgsize  = {CAMERA_W, CAMERA_H};             //LCDÍ¼Ïñ´óÐ¡
+    Size_t size={120,80};                                //LCDÏÔÊ¾ÇøÓòÍ¼Ïñ´óÐ¡
+    LCD_init();   //ÏÔÊ¾ÆÁ³õÊ¼»¯  
+    LCD_str  (site,"Cam init ing",FCOLOUR,BCOLOUR);   //ÏÔÊ¾ÆÁÏÔÊ¾  £¨×óÉÏ½Ç×ø±ê£¬×Ö·û´®£¬×ÖÌåÑÕÉ«£¬±³¾°ÑÕÉ«£©
 
-    size.H = CAMERA_H;    //ï¿½ï¿½      //ï¿½ï¿½ï¿½ï¿½Ê¾È«ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½
-    size.W = CAMERA_W;    //ï¿½ï¿½
+    size.H = CAMERA_H;    //¸ß      //£¨±íÊ¾È«ÆÁÏÔÊ¾£©
+    size.W = CAMERA_W;    //¿í
   
-    LCD_str  (site,"Cam init OK!",FCOLOUR,BCOLOUR);   //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
-    LCD_clear(RED);     //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½
+    LCD_str  (site,"Cam init OK!",FCOLOUR,BCOLOUR);   //ÏÔÊ¾ÆÁÏÔ
+    LCD_clear(RED);     //ÇåÆÁ £¨±³¾°ºìÉ«£©
 }

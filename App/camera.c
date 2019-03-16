@@ -5,17 +5,17 @@
 #include "math.h"
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//º¯ÊýÉùÃ÷
 void PORTA_IRQHandler();
 void DMA0_IRQHandler();
 
-/*******ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·*******/
+/*******¶¨ÒåÉãÏñÍ·*******/
 
-uint8 image_threshold;                                  //Í¼ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Öµ      
+uint8 image_threshold;                                  //Í¼Ïñ¶þÖµ»¯ãÐÖµ      
 
-int32 time1=0,time2=0;                            //ï¿½ï¿½Ê±ï¿½ï¿½
+int32 time1=0,time2=0;                            //¼ÆÊ±Æ÷
 extern uint8 imgbuff[CAMERA_SIZE];   
-extern  uint8 mid_line[RowMax+1];                               //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+extern  uint8 mid_line[RowMax+1];                               //ÖÐÏßÊý×é
 //uint8 right_black[60];
 //uint8 left_black[60];
 
@@ -33,16 +33,16 @@ int   Width[RowMax+1];//={2,3,3,3,4,4,5,5,6,6,
                        //18,18,20,20,22,22,24,24,26,26,
                        //28,30,31,32,32,34,36,36,38,39,
                        //41,41,43,43,45,45,47,47,49,50,
-                       //50,51,52,54,55,56,57,58,59,60,61};  // Width[i]  = 20+i*3/4;     //ï¿½ï¿½Ì¬Â·ï¿½ï¿½
+                       //50,51,52,54,55,56,57,58,59,60,61};  // Width[i]  = 20+i*3/4;     //¶¯Ì¬Â·¿í
 
-int   MidPri         = 40;
+int   MidPri         = 60;
 int   LastLine       = 0;
 float AvaliableLines = 0;
 int   LeftLose       = 0;
 int   RightLose      = 0; 
 int   AllLose        = 0;
-int   LeftLoseStart  = 0;//ï¿½ï¿½Â¼ï¿½ï¿½ß¶ï¿½ï¿½ßµÄ¿ï¿½Ê¼ï¿½ï¿½
-int   RightLoseStart = 0;//ï¿½ï¿½Â¼ï¿½Ò±ß±ß¶ï¿½ï¿½ßµÄ¿ï¿½Ê¼ï¿½ï¿½
+int   LeftLoseStart  = 0;//¼ÇÂ¼×ó±ß¶ªÏßµÄ¿ªÊ¼ÐÐ
+int   RightLoseStart = 0;//¼ÇÂ¼ÓÒ±ß±ß¶ªÏßµÄ¿ªÊ¼ÐÐ
 int   WhiteStart     = 0;
 
 
@@ -65,27 +65,27 @@ int DropRow         = 0;
 
 void PORTA_IRQHandler()
 {
-    uint8  n;    //ï¿½ï¿½ï¿½Åºï¿½
+    uint8  n;    //Òý½ÅºÅ
     uint32 flag;
 
     while(!PORTA_ISFR);
     flag = PORTA_ISFR;
-    PORTA_ISFR  = ~0;                                   //ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î»
+    PORTA_ISFR  = ~0;                                   //ÇåÖÐ¶Ï±êÖ¾Î»
 #if defined (MKL26Z4)              //KL26 KL46
-   n = 6;                                             //ï¿½ï¿½ï¿½Ð¶ï¿½
-    if(flag & (1 << n))                                 //PTA6ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+   n = 6;                                             //³¡ÖÐ¶Ï
+    if(flag & (1 << n))                                 //PTA6´¥·¢ÖÐ¶Ï
     {
         camera_vsync();
     }
 #else                              //K60 K66
-   n = 29;                                             //ï¿½ï¿½ï¿½Ð¶ï¿½
-    if(flag & (1 << n))                                 //PTA29ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+   n = 29;                                             //³¡ÖÐ¶Ï
+    if(flag & (1 << n))                                 //PTA29´¥·¢ÖÐ¶Ï
     {
         camera_vsync();
     }
-#if ( CAMERA_USE_HREF == 1 )                            //Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+#if ( CAMERA_USE_HREF == 1 )                            //Ê¹ÓÃÐÐÖÐ¶Ï
     n = 28;
-    if(flag & (1 << n))                                 //PTA28ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+    if(flag & (1 << n))                                 //PTA28´¥·¢ÖÐ¶Ï
     {
         camera_href();
     }
@@ -98,7 +98,7 @@ void PORTA_IRQHandler()
 }
 
 /*!
- *  @brief      DMA0ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½ï¿½
+ *  @brief      DMA0ÖÐ¶Ï·þÎñº¯Êý
  *  @since      v5.0
  */
 void DMA0_IRQHandler()
@@ -111,18 +111,18 @@ void DMA0_IRQHandler()
 
 void Binarization()
 {
-        pit_time_start  (PIT1);                                 //ï¿½ï¿½Ê¼ï¿½ï¿½Ê±
-        camera_get_img();//ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½È¡Í¼ï¿½ï¿½
-        time1 = pit_time_get_us    (PIT1); //ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½È¡Í¼ï¿½ï¿½Ê±ï¿½ï¿½
-        image_threshold = otsuThreshold(imgbuff);  //ï¿½ï¿½ò·¨¼ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
-        //image_threshold =0x40;                                  //ï¿½Ì¶ï¿½ï¿½ï¿½Öµ
-        MT9V032_Binarization(img,imgbuff,image_threshold);      //ï¿½ï¿½Öµï¿½ï¿½
-        time2 = pit_time_get_us(PIT1);                          //ï¿½ï¿½È¡ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ê±Ê±ï¿½ï¿½
+        pit_time_start  (PIT1);                                 //¿ªÊ¼¼ÆÊ±
+        camera_get_img();//ÉãÏñÍ·»ñÈ¡Í¼Ïñ
+        time1 = pit_time_get_us    (PIT1); //ÉãÏñÍ·»ñÈ¡Í¼ÏñÊ±¼ä
+        image_threshold = otsuThreshold(imgbuff);  //´ó½ò·¨¼ÆËããÐÖµ
+        //image_threshold =0x40;                                  //¹Ì¶¨ãÐÖµ
+        MT9V032_Binarization(img,imgbuff,image_threshold);      //¶þÖµ»¯
+        time2 = pit_time_get_us(PIT1);                          //»ñÈ¡¶þÖµ»¯¼ÆÊ±Ê±¼ä
 }
 /***
 void move()
 {     
-    for(int i=59;i>=0;i--)                                     //ï¿½ï¿½Ê¼ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+    for(int i=59;i>=0;i--)                                     //¿ªÊ¼»ñÈ¡ÖÐÏß
         {
         right_black[i]=79;left_black[i]=0;
         for(int j=39;i<79;j++)
@@ -144,12 +144,13 @@ void SetInitVal()
 {
   int i;
   
-  for(i=0;i<RowMax;i++)//ï¿½ï¿½ï¿½ï¿½Öµ             
+  for(i=0;i<RowMax;i++)//¸³³õÖµ             
   { 
       RightEdge[i]  = ColumnMax;
       LeftEdge[i]   = 0;
       mid_line[i] = ColumnMax/2;
-      Width[i]  = 20+i*1/2;     //ï¿½ï¿½Ì¬Â·ï¿½ï¿½
+      Width[i]  = 30+i*4/5;//¶¯Ì¬Â·¿í30+i*1/2
+     
       
   }
   
@@ -164,21 +165,21 @@ void SearchCenterline()
   uint8 jj        = 0;
   uint8 WhiteNum  = 0; 
   
-  LeftLose        = 0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  LeftLose        = 0;//±äÁ¿ÇåÁã
   RightLose       = 0;
   AllLose         = 0;
   WhiteNum        = 0;
 
-  mid_line[RowMax]  = ColumnMax/2;//ï¿½ï¿½60ï¿½ï¿½
+  mid_line[RowMax]  = ColumnMax/2;//µÚ60ÐÐ
   LeftEdge[RowMax]    = 0;
   RightEdge[RowMax]   = ColumnMax;
-  Width[RowMax]       = 60;
+  Width[RowMax]       = 90;
   
   SetInitVal();
   
   
   
-    //ï¿½ï¿½Ê®ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½É¨ï¿½ï¿½Ä·ï¿½ï¿½ï¿½    
+    //¶þÊ®ÐÐ£¬²ÉÓÃÓÒ×ó±ßÍùÓÒ±ßÉ¨ÃèµÄ·½·¨    
   NormalSearchingMidLine();
   SearchMidLineNext();  
      
@@ -186,12 +187,12 @@ void SearchCenterline()
   }
 
 
+//
 
-
-void GetEndParam()//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ß½ï¿½Ö¹ï¿½ï¿½
+void GetEndParam()//»ñÈ¡ºÚÏß½ØÖ¹ÐÐ
 {
   
-  unsigned char LEndFlag  = 0;//ï¿½ï¿½Ö¾Î»
+  unsigned char LEndFlag  = 0;//±êÖ¾Î»
   unsigned char MEndFlag  = 0;
   unsigned char REndFlag  = 0;	
   unsigned char MREndFlag = 0;
@@ -201,7 +202,7 @@ void GetEndParam()//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ß½ï¿½Ö¹ï¿½ï¿½
 
   int i=0;
 
-  BlackEndMR   = 0;//ï¿½ï¿½ï¿½ï¿½
+  BlackEndMR   = 0;//ÇåÁã
   BlackEndML   = 0;
   BlackEndLL   = 0;
   BlackEndRR   = 0;
@@ -213,177 +214,175 @@ void GetEndParam()//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ß½ï¿½Ö¹ï¿½ï¿½
   {
 	if(img[i][ColumnMax/2] == White_Point && !MEndFlag )//!MEndFlag=1 //40
         {
-		BlackEndM++;//ï¿½Ðºï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½
+		BlackEndM++;//ÖÐºÚÏß½ØÖÁÐÐ
         }
-	else if(i > 1 && img[i-1][ColumnMax/2] == Black_Point && img[i-2][ColumnMax/2] == Black_Point)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çºï¿½É«        
+	else if(i > 1 && img[i-1][ColumnMax/2] == Black_Point && img[i-2][ColumnMax/2] == Black_Point)//Á¬ÐøÁ½ÐÐÊÇºÚÉ«        
         {
 		MEndFlag = 1;
         }
-	if(img[i][ColumnMax/4] == White_Point && !LEndFlag )//20
+	if(img[i][ColumnMax/4] == White_Point && !LEndFlag )//30
         {
-		BlackEndL++;//ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½
+		BlackEndL++;//×óºÚÏß½ØÖÁÐÐ
         }
 	else if(i > 1 && img[i-1][ColumnMax/4] == Black_Point && img[i-2][ColumnMax/4] == Black_Point)
         {
 		LEndFlag = 1;
         }
-	if(img[i][ColumnMax*3/4] == White_Point && !REndFlag )//60
+	if(img[i][ColumnMax*3/4] == White_Point && !REndFlag )//90
         {
-		BlackEndR++;//ï¿½Òºï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½
+		BlackEndR++;//ÓÒºÚÏß½ØÖÁÐÐ
 	}
 	else if(i > 1 && img[i-1][ColumnMax*3/4] == Black_Point && img[i-2][ColumnMax*3/4] == Black_Point)
         {
 		REndFlag = 1;
         }
-        if(img[i][30] == White_Point && !MLEndFlag )
+        if(img[i][45] == White_Point && !MLEndFlag )
         {
 		BlackEndML++;
         }
-	else if(i > 1 && img[i-1][30] == Black_Point && img[i-2][30] == Black_Point)
+	else if(i > 1 && img[i-1][45] == Black_Point && img[i-2][45] == Black_Point)
         {
 		MLEndFlag = 1;
         }
-	if(img[i][50] == White_Point && !MREndFlag )
+	if(img[i][75] == White_Point && !MREndFlag )
         {
 		BlackEndMR++;
         }
-	else if(i > 1 && img[i-1][50] == Black_Point && img[i-2][50] == Black_Point)
+	else if(i > 1 && img[i-1][75] == Black_Point && img[i-2][75] == Black_Point)
         {
 		MREndFlag = 1;
 	}
-        if(img[i][10] == White_Point && !LLEndFlag )
+        if(img[i][15] == White_Point && !LLEndFlag )
         {
 		BlackEndLL++;
 	}
-	else if(i > 1 && img[i-1][10] == Black_Point && img[i-2][10] == Black_Point)
+	else if(i > 1 && img[i-1][15] == Black_Point && img[i-2][15] == Black_Point)
         {
 		LLEndFlag = 1;
 	}
-        if(img[i][70] == White_Point && !RREndFlag )
+        if(img[i][105] == White_Point && !RREndFlag )
         {
 		BlackEndRR++;
 	}
-	else if(i > 1 && img[i-1][70] == Black_Point && img[i-2][70] == Black_Point)
+	else if(i > 1 && img[i-1][105] == Black_Point && img[i-2][105] == Black_Point)
         {
 		RREndFlag = 1;
 	}
    
         
     
-        BlackEndMax =MAX(BlackEndL,BlackEndM);//È¡ï¿½ï¿½Öµ
+        BlackEndMax =MAX(BlackEndL,BlackEndM);//È¡´óÖµ
         BlackEndMax =MAX(BlackEndMax,BlackEndR);
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndMR);
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndML);
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndLL);
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndRR);
-        if(BlackEndMaxMax>=60)
+        if(BlackEndMaxMax>=90)
         {
-            BlackEndMaxMax=58;
+            BlackEndMaxMax=88;
         }
-        DropRow=60-BlackEndMaxMax;//ï¿½â¶¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½      
+        DropRow=90-BlackEndMaxMax;//·â¶¥µÄÐÐÊý      
  }
 
 }
 
 void NormalSearchingMidLine()
 {
-  for(i=RowMax-1;i>=50;i--)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Ê®ï¿½Ð£ï¿½È«ï¿½ï¿½É¨ï¿½ï¿½
+  for(i=RowMax-1;i>=0;i--)//Ê×ÏÈÕÒÇ°¶þÊ®ÐÐ£¬È«ÐÐÉ¨Ãè
   {
-    if(i ==RowMax-1)//ï¿½ï¿½ï¿½Ð¾ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÉ¨ï¿½ï¿½ï¿½ï¿½ï¿½
+    if(i ==RowMax-1)//Ê×ÐÐ¾ÍÒÔÍ¼ÏñÖÐÐÄ×÷ÎªÉ¨ÃèÆðµã
     {
-       j = MidPri;//40 
+       j = MidPri;//60 
     } 
     else
     {
-        j = mid_line[i+1];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ðµï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½ï¿½ï¿½ï¿½
+        j = mid_line[i+1];//·ñÔò¾ÍÒÔÉÏÒ»ÐÐÖÐµãµÄÎ»ÖÃ×÷Îª±¾ÐÐÉ¨ÃèÆðµã
     }   
     if(j <= 2)
     {
         j = 2;
     } 
-    while(j >= 2)//j>=2ï¿½ï¿½Ð§ï¿½ï¿½Î§ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ° 
+    while(j >= 2)//j>=2ÓÐÐ§·¶Î§ÄÚ½øÐÐËÑÑ° 
     {
-        if(img[i][j]==White_Point && img[i][j-1]==Black_Point&&img[i][j-2]==Black_Point)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½×°×ºï¿½ï¿½ï¿½ï¿½ï¿½ 
+        if(img[i][j]==White_Point && img[i][j-1]==Black_Point&&img[i][j-2]==Black_Point)//´ÓÓÒÏò×óÕÒµ½°×°×ºÚÌø±ä 
         {
-             LeftEdge[i] =j;//ï¿½Òµï¿½ï¿½ï¿½Öµ ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Öµ0      
-             break;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½
+             LeftEdge[i] =j;//ÕÒµ½Ôò¸³Öµ ÕÒ²»µ½±£³ÖÔ­Öµ0      
+             break;//Ìø³ö±¾ÐÐÑ°Ïß
         }
-             j--;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
+             j--;//ÁÐÊýÍù×óÒÆ¶¯
      }
-     if(i==RowMax-1) //ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ß½ï¿½
+     if(i==RowMax-1) //ÔÙÕÒÓÒ±ß½ç
      {
-        j = MidPri;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ê¼ï¿½ï¿½Ñ°
+        j = MidPri;//Èç¹ûÊ×ÐÐ£¬´ÓÍ¼ÏñÖÐÐÄ¿ªÊ¼ËÑÑ°
      }          
      else
      {
-        j = mid_line[i+1];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã¿ï¿½Ê¼ï¿½ï¿½Ñ°
+        j = mid_line[i+1];//·ñÔò´ÓÉÏÒ»ÐÐÖÐÐÄÎ»ÖÃ¿ªÊ¼ËÑÑ°
      }
-     if(j >=ColumnMax-2)//j >=ColumnMax-2ï¿½ï¿½Ð§ï¿½ï¿½Î§ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½
+     if(j >=ColumnMax-2)//j >=ColumnMax-2ÓÐÐ§·¶Î§ÄÚËÑÑ°ÓÒÏß
      {
         j = ColumnMax-2;
      }
      while(j <= ColumnMax-2)
      {
          
-        if(img[i][j]==White_Point && img[i][j+1]==Black_Point && img[i][j+2]==Black_Point)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½×°×ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        if(img[i][j]==White_Point && img[i][j+1]==Black_Point && img[i][j+2]==Black_Point)//´Ó×óÏòÓÒÕÒµ½°×°×ºÚÌø±äµã
         {
-               RightEdge[i] = j;//ï¿½Òµï¿½ï¿½ï¿½Öµ   ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Öµ
-               break;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½
+               RightEdge[i] = j;//ÕÒµ½Ôò¸³Öµ   ÕÒ²»µ½±£³ÖÔ­Öµ
+               break;//Ìø³ö±¾ÐÐÑ°Ïß
         }
-               j++;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
+               j++;//ÁÐÊýÍùÓÒÒÆ¶¯
      }
-     if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)//ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï£ï¿½Ã»ï¿½Ð¶ï¿½ï¿½ï¿½
+     if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)//ÖÐÏßÅÐ¶Ï£¬Ã»ÓÐ¶ªÏß
      {
           mid_line[i] = (LeftEdge[i] + RightEdge[i])/2;  
      }
-     else if(LeftEdge[i]!=0 && RightEdge[i]==ColumnMax)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ã»ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+     else if(LeftEdge[i]!=0 && RightEdge[i]==ColumnMax)//¶ªÁËÓÒÏß,Ã»ÓÐ¶ª×óÏß
      {
-          RightLose++;//ï¿½ï¿½Â¼Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ß¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          RightLose++;//¼ÇÂ¼Ö»ÓÐÓÒÏß¶ªµÄÊýÁ¿
           
-          //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½
+          //Èç¹ûµ±ÐÐµÄ
 
-        if((RightEdge[i]-LeftEdge[i]) >=(RightEdge[i+1]-LeftEdge[i+1]+8))//Í»ï¿½ï¿½
+        if((RightEdge[i]-LeftEdge[i]) >=(RightEdge[i+1]-LeftEdge[i+1]+8))//Í»±ä
         {
                 mid_line[i] = mid_line[i+1]+4;
         }
         else 
         {
-                mid_line[i] = LeftEdge[i] + Width[i]/2+5;//ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½
+                mid_line[i] = LeftEdge[i] + Width[i]/2+7;//Õý³£µÄ»°¾ÍÓÃ°ë¿í²¹                                need fix
         }
      }
-     else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//¶ªÁË×óÏß
      {
-     
            LeftLose++;
-        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]-8))//Í»ï¿½ï¿½      
-
+        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]-8))//Í»±ä      
         {
                 mid_line[i] = mid_line[i+1]-4; 
         } 
         else 
         {
-                mid_line[i] = RightEdge[i] - Width[i]/2-5;//ï¿½ß¿ï¿½
+                mid_line[i] = RightEdge[i] - Width[i]/2-7;//Ïß¿í                                         need fix
         }
      }
-     else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//ï¿½ï¿½ï¿½ß¶ï¿½ï¿½ï¿½ï¿½ËµÄ»ï¿½  
+     else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//Á½±ß¶¼¶ªÁËµÄ»°  
      {
          AllLose++;
              
-        if(i ==RowMax-1)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¾ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ðµï¿½
+        if(i ==RowMax-1)//Èç¹ûÊÇÊ×ÐÐ¾ÍÒÔÍ¼ÏñÖÐÐÄ×÷ÎªÖÐµã
         {
                 mid_line[i] = MidPri;
         }       
         else 
         {
-                mid_line[i] = 40;//mid_line[i+1];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½
+                mid_line[i] = mid_line[i+1];//Èç¹û²»ÊÇÊ×ÐÐ¾ÍÓÃÉÏÒ»ÐÐµÄÖÐÏß×÷Îª±¾ÐÐÖÐµã
         }             
       }
     
     
     
-     if(mid_line[RowMax-1] >=70)
+     if(mid_line[RowMax-1] >=ColumnMax-10)
      {
-         MidPri = 70;
+         MidPri = ColumnMax-10;
      }          
      else if(mid_line[RowMax-1] <=10)
      {
@@ -391,7 +390,7 @@ void NormalSearchingMidLine()
      }         
      else
      {
-          MidPri = mid_line[RowMax-1];//ï¿½ï¿½Â¼ï¿½ï¿½Ö¡Í¼ï¿½ï¿½ï¿½59ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ò»ï¿½ï¿½Í¼ï¿½ï¿½ï¿½59ï¿½ï¿½É¨ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
+          MidPri = mid_line[RowMax-1];//¼ÇÂ¼±¾Ö¡Í¼ÏñµÚ119ÐÐµÄÖÐÏßÖµ£¬×÷ÎªÏÂÒ»·ùÍ¼ÏñµÄ59ÐÐÉ¨ÃèÆðÊ¼µã
      }
     
   }   
@@ -401,11 +400,11 @@ void NormalSearchingMidLine()
 void SearchMidLineNext()
 {
   
-  for(i=49; i>0; i--)//ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½
+  for(i=RowMax-21; i>0; i--)//²éÕÒÊ£ÓàÐÐ
   {   
-    if(LeftEdge[i+1]!=0 && RightEdge[i+1]!=ColumnMax) //ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ß¶ï¿½ï¿½Òµï¿½ ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½É¨ï¿½ï¿½     
+    if(LeftEdge[i+1]!=0 && RightEdge[i+1]!=ColumnMax) //ÉÏÒ»ÐÐÁ½±ß¶¼ÕÒµ½ ÆôÓÃ±ßÑØÉ¨Ãè     
     {
-         j = ((LeftEdge[i+1]+10) >= ColumnMax-2)? ColumnMax-2:(LeftEdge[i+1]+10);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½    
+         j = ((LeftEdge[i+1]+10) >= ColumnMax-2)? ColumnMax-2:(LeftEdge[i+1]+10);//ÏÈÕÒ×ó±ß½ç    
          jj = ((LeftEdge[i+1]-5) <= 1)? 1:(LeftEdge[i+1]-5);        
       while(j >= jj)       
       {       
@@ -416,7 +415,7 @@ void SearchMidLineNext()
           }   
          j--;   
       }
-         j = ((RightEdge[i+1]-10) <= 1)? 1:(RightEdge[i+1]-10); //ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ß½ï¿½   
+         j = ((RightEdge[i+1]-10) <= 1)? 1:(RightEdge[i+1]-10); //ÔÚÕÒÓÒ±ß½ç   
          jj = ((RightEdge[i+1]+5) >= ColumnMax-2)? ColumnMax-2:(RightEdge[i+1]+5);    
       while(j <= jj)             
       {
@@ -428,9 +427,9 @@ void SearchMidLineNext()
          j++;
       }
     }
-    else if(LeftEdge[i+1]!=0 && RightEdge[i+1]==ColumnMax)//ï¿½ï¿½Ò»ï¿½ï¿½Ö»ï¿½Òµï¿½ï¿½ï¿½ß½ï¿½   
+    else if(LeftEdge[i+1]!=0 && RightEdge[i+1]==ColumnMax)//ÉÏÒ»ÐÐÖ»ÕÒµ½×ó±ß½ç   
     {      
-         j  = ((LeftEdge[i+1]+10) >=ColumnMax-2)? ColumnMax-2:(LeftEdge[i+1]+10);//ï¿½ï¿½ß½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½É¨ï¿½ï¿½   
+         j  = ((LeftEdge[i+1]+10) >=ColumnMax-2)? ColumnMax-2:(LeftEdge[i+1]+10);//×ó±ß½çÓÃ±ßÑØÉ¨Ãè   
          jj = ((LeftEdge[i+1]-5) <= 1)? 1:(LeftEdge[i+1]-5);              
       while(j >= jj)   
       {     
@@ -441,12 +440,12 @@ void SearchMidLineNext()
           }
          j--;   
       }     
-         j = mid_line[i+1];//ï¿½ï¿½Ò»ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Ò±ß½ï¿½ï¿½ï¿½È«ï¿½ï¿½É¨ï¿½ï¿½ 
-      if(j >= 78)
+         j = mid_line[i+1];//ÉÏÒ»ÐÐ¶ªÁËÓÒ±ß½çÓÃÈ«ÐÐÉ¨Ãè 
+      if(j >= ColumnMax-3)
       {
-           j = 78;
+           j = ColumnMax-3;
       }
-      while(j <= ColumnMax-2)      
+      while(j <= ColumnMax-3)      
       {    
           if(img[i][j]==White_Point && img[i][j+1]==Black_Point&&img[i][j+2]==Black_Point)
           {
@@ -457,9 +456,9 @@ void SearchMidLineNext()
       }
            
     }
-    else if(LeftEdge[i+1]==0 && RightEdge[i+1]!=ColumnMax) //ï¿½ï¿½Ò»ï¿½ï¿½Ö»ï¿½Òµï¿½ï¿½Ò±ß½ï¿½      
+    else if(LeftEdge[i+1]==0 && RightEdge[i+1]!=ColumnMax) //ÉÏÒ»ÐÐÖ»ÕÒµ½ÓÒ±ß½ç      
     {
-         j = ((RightEdge[i+1]-10) <= 1)?1:(RightEdge[i+1]-10);//ï¿½ï¿½Ôµ×·ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ß½ï¿½ 
+         j = ((RightEdge[i+1]-10) <= 1)?1:(RightEdge[i+1]-10);//±ßÔµ×·×ÙÕÒÓÒ±ß½ç 
          jj = ((RightEdge[i+1]+5) >= ColumnMax-2)? ColumnMax-2:(RightEdge[i+1]+5);            
        while(j <= jj)  
        {    
@@ -470,7 +469,7 @@ void SearchMidLineNext()
             }
            j++;     
        }   
-           j = mid_line[i+1]; //È«ï¿½ï¿½É¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½
+           j = mid_line[i+1]; //È«ÐÐÉ¨ÃèÕÒ×ó±ß½ç
         if(j < 2)
         {
              j = 2;
@@ -485,10 +484,10 @@ void SearchMidLineNext()
            j--;      
        }           
      } 
-    else if(LeftEdge[i+1]==0 && RightEdge[i+1]==ColumnMax)  //ï¿½ï¿½Ò»ï¿½ï¿½Ã»ï¿½Òµï¿½ï¿½ß½ç£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê®ï¿½Ö»ï¿½ï¿½ß»ï¿½ï¿½ï¿½  
+    else if(LeftEdge[i+1]==0 && RightEdge[i+1]==ColumnMax)  //ÉÏÒ»ÐÐÃ»ÕÒµ½±ß½ç£¬¿ÉÄÜÊÇÊ®×Ö»òÕß»·ÐÎ  
     {
         
-          j = mid_line[i+1];   //ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½
+          j = mid_line[i+1];   //ÕÒÈ«ÐÐÕÒ×ó±ß½ç
         while(j >= 1)  
         {
              if(img[i][j]==White_Point && img[i][j-1]==Black_Point&& img[i][j-2]==Black_Point)     
@@ -498,10 +497,10 @@ void SearchMidLineNext()
              }
             j--;
         }
-         j = mid_line[i+1];   //È«ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ß½ï¿½   
-       while(j <=ColumnMax-2)       
+         j = mid_line[i+1];   //È«ÐÐÕÒÓÒ±ß½ç   
+       while(j <=ColumnMax-3)       
        {   
-            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point)
+            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point&& img[i][j+2]==Black_Point)
             {
                   RightEdge[i] = j;  
                   break;
@@ -510,18 +509,18 @@ void SearchMidLineNext()
               
        }         
     }
-    if( (RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+3) )//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+    if( (RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+3) )//²»Âú×ã»û±ä 
     {      
-          mid_line[i] = mid_line[i+1];//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
+          mid_line[i] = mid_line[i+1];//ÓÃÉÏÒ»ÐÐ
     }
     else
     {
             if(LeftEdge[i]!=0 && RightEdge[i]!=ColumnMax)   
             {
                      mid_line[i] = (LeftEdge[i] + RightEdge[i])/2+5;
-                     //ï¿½ï¿½Ð±ï¿½ï¿½Ê®ï¿½Ö½ï¿½ï¿½Ð¾ï¿½ï¿½ï¿½
+                     //¶ÔÐ±³öÊ®×Ö½øÐÐ¾ÀÕý
                      
-                 if( mid_line[i]-mid_line[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½
+                 if( mid_line[i]-mid_line[i+1]>8&&((ABS(LeftEdge[i]-LeftEdge[i+1]>3)||ABS(RightEdge[i]-RightEdge[i+1]>3)) )&& i>=30)//ÖÐÏßÏòÓÒÍ»±ä
                  {
                            uint8 ii = i;
                     
@@ -530,7 +529,7 @@ void SearchMidLineNext()
                                mid_line[ii+1] = mid_line[ii]-1; 
                                ii++; 
                                
-                           if( ii>=50 || (mid_line[ii]-mid_line[ii+1]<=1) )
+                           if( ii>=80 || (mid_line[ii]-mid_line[ii+1]<=1) )
                            {
                                  break;
                            }          
@@ -545,7 +544,7 @@ void SearchMidLineNext()
                                mid_line[ii+1] = mid_line[ii]+1;
                                ii++;
                                
-                           if( ii>=50 || (mid_line[ii+1]-mid_line[ii]<=1) )
+                           if( ii>=80 || (mid_line[ii+1]-mid_line[ii]<=1) )
                            { 
                                  break;
                            }       
@@ -583,7 +582,7 @@ void SearchMidLineNext()
                                  mid_line[i] = RightEdge[i] - Width[i]/2-5;
                  }
             }
-           else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//ï¿½ï¿½ï¿½ß¶ï¿½ï¿½ï¿½    
+           else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//Á½±ß¶ªÏß    
            {      
                          WhiteNum++;
                          AllLose++;
@@ -599,7 +598,7 @@ void SearchMidLineNext()
        
     if(i == 0)             
     {            
-            AvaliableLines = 60;
+            AvaliableLines = 90;
             LastLine  = 0;  
             break;
     }
@@ -608,14 +607,14 @@ void SearchMidLineNext()
     { 
             m = 5;
     }
-    if(m > 75)
+    if(m > 115)
     {
-            m = 75;
+            m = 115;
     }
-    if( (LeftEdge[i]!=0 && LeftEdge[i]>=65) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== Black_Point)) //ï¿½ï¿½ï¿½Ò»ï¿½ï¿½              
+    if( (LeftEdge[i]!=0 && LeftEdge[i]>=105) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== Black_Point)) //×îºóÒ»ÐÐ              
     {
-            LastLine = i;//ï¿½ï¿½ï¿½Ò»ï¿½Ð£ï¿½ï¿½ï¿½Ì¬Ç°Õ°
-            AvaliableLines = 60 - i;//ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
+            LastLine = i;//×îºóÒ»ÐÐ£¬¶¯Ì¬Ç°Õ°
+            AvaliableLines = 90 - i;//ÓÐÐ§ÐÐÊý
             break;
     }
     

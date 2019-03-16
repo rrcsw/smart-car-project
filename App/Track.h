@@ -1,10 +1,10 @@
 #ifndef __TRACKTYPE_H__
 #define __TRACKTYPE_H__
-
+//
 #include "common.h"
 #include "include.h"
 
-#define ObstacleOpen  0//打开障碍
+#define ObstacleOpen  1//打开障碍
 #define StartingLineOpen  0//打开起跑线识别
 
 

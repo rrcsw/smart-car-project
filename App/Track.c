@@ -1107,19 +1107,25 @@ void TrackType()
 #if ObstacleOpen  //如果开启了障碍识别
 
 //障碍识别
-/**
+
+static unsigned char ObstacleLfetNum=0;
+static unsigned char ObstacleRightNum=0;
+
+
+
 void RecognitionObstacle(void)
+
 {
   int i,j;
   static unsigned char ObstacleLfetRowNum=0;
-  static unsigned char ObstacleLfetNum=0;
+
   unsigned char  ObstacleLeftFlag=0;
   unsigned char ObstacleLeftLFlag=0;
   static unsigned char ScanColStartLeft=0;//扫描的起始列
   static unsigned char ScanColEndLeft=0;//扫描的终止列
   
   static unsigned char ObstacleRightRowNum=0;
-  static unsigned char ObstacleRightNum=0;
+
   unsigned char   ObstacleRightFlag=0;
   unsigned char  ObstacleRightRFlag=0;
   static unsigned char ScanColStartRight=0;//扫描的起始列
@@ -1373,10 +1379,9 @@ void RecognitionObstacle(void)
 
   }
     
-  ObstacleRepair();
+  //ObstacleRepair();
   
 }
-***/
 
 /**
 //障碍物边线处理
@@ -1433,7 +1438,7 @@ void ObstacleRepair()
 
 //起跑线识别
 //用近处的几行，全行扫遍跳变数
-
+////
 unsigned char StartingLineRecognition()
 {
  int i,j;

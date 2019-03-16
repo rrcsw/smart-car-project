@@ -1,12 +1,12 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
-
+//
 /*** 宏定义 ****/ 
 
 #define Black_Point 0
 #define White_Point 255
-#define RowMax	    60	  //行数
-#define ColumnMax	80	  //列数
+#define RowMax	    90	  //行数
+#define ColumnMax	120	  //列数
 
 
 /*** 外部函数变量申明 ****/  
@@ -18,7 +18,7 @@ extern uint8 imgbuff[CAMERA_SIZE];
 extern int   AllLose;
 extern unsigned char StartingLineFlag;
 extern int BlackEndL;//20
-extern int BlackEndM;//40
+extern int BlackEndM;//50
 extern int BlackEndR;//60
 extern int BlackEndMR;//50
 extern int BlackEndML;//30
