@@ -38,6 +38,7 @@ void CalculateError(void);
 extern void SteerControl(void);
 extern void TurnBack();
 extern void NormalControl();
+extern void NormalControl_adc();
 
 
 #endif

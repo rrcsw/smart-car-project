@@ -54,7 +54,7 @@ while(1)
                //TrackType();//主要赛道类型
                //Stop();
               } 
-      
+adc();
     //vcan_sendimg(imgbuff, sizeof(imgbuff));          //串口发送中线，注意接收模式        
 //# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可
              
@@ -74,7 +74,8 @@ while(1)
              
              
               LCD_Display();//液晶显示
-              
+              start_adc();
+	      end_adc();
                  
                
          }

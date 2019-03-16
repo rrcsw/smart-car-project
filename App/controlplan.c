@@ -2,7 +2,7 @@
 #include "include.h"
 #include "camera.h"
 
-int controlplan = 1;  //1　摄像头控制方案
+int controlplan = 2;  //1　摄像头控制方案
 					  //2　电磁控制方案
 					  //3  路障躲避方案
 
