@@ -27,10 +27,6 @@
 
 extern float  LastError;
 extern float  Error;
-extern float  SteerPwmAdd;
-extern uint32 SteerPwm;
-extern float  KP;
-extern float  KD;
 
 
 void SteerInit(void);//¶æ»ú³õÊ¼»¯
