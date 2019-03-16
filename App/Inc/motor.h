@@ -22,7 +22,7 @@ extern int ChangeFlag;
 extern int SpeedDropRow;
 extern  int32 SpeedSet;
 extern int BlackEndMaxMax;
-extern int controlplan;
+extern int plan;
 extern void MotorInit(void);
 void CalculateMotorSpeedError(float LeftMotorTarget,float RightMotorTarget);
 

@@ -16,7 +16,7 @@ extern float  WeightSum;
 extern float  CenterMeanValue;
 extern float  CenterSum;
 extern uint8 image_threshold;
-extern int controlplan;
+extern int plan;
 
 
 
@@ -43,7 +43,7 @@ void LCD_Binarization()
         LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCDºÚ°×Í¼ÏñÏÔÊ¾
         
         site.x=0;site.y=100;
-        LCD_num_BC(site,LeftLose+AllLose,8,BLUE,RED);           //Æ«²î
+        LCD_num_BC(site,plan,8,BLUE,RED);           //Æ«²î
         
         site.x=20;site.y=100;
         LCD_num_BC(site,RightLose+AllLose,8,BLUE,RED);        //ãÐÖµ         //¶æ»úÊä³ö  ÖÐÖµ690
@@ -63,8 +63,8 @@ void LCD_Binarization()
        site.x=100;site.y=100;
         LCD_num_BC(site,KP,8,BLUE,RED);//kp
         */
-        site.x=110;site.y=100;
-        LCD_num_BC(site,controlplan,8,BLUE,RED);//kd
+       // site.x=110;site.y=100;
+        //LCD_num_BC(site,controlplan,8,BLUE,RED);//kd
         
         
         

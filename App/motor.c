@@ -75,7 +75,7 @@ void MotorControlOpenLoop(void)
 //  int ErrorError=0;
   
 
-  if(controlplan==1)
+  if(plan==1)
   { OpendLoopPwmB=100;
      OpendLoopPwmF=200;
    
@@ -95,7 +95,8 @@ void MotorControlOpenLoop(void)
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
       ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); //PTC2,×óµç»ú 
   }
-  if(controlplan==2)
+  if(
+     plan==2)
   {
     OpendLoopPwmB=100;
     OpendLoopPwmF=175;

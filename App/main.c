@@ -43,7 +43,8 @@ while(1)
       LCD_Binarization();            //LCD显示二值化
       SearchCenterline();              //寻找中线
       GetEndParam();             //获取黑线截止行
-       adc();
+      adc();
+      start_adc();
       if(!StartingLineFlag)
               {
                CrossRecognition(&Cross);//十字识别
