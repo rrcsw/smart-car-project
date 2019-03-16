@@ -354,7 +354,7 @@ void NormalSearchingMidLine()
      }
      else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//¶ªÁË×óÏß
      {
-           
+           LeftLose++;
         if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]-8))//Í»±ä      
         {
                 mid_line[i] = mid_line[i+1]-4; 

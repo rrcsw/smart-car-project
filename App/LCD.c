@@ -2,6 +2,7 @@
 #include "include.h"
 #include "math.h"
 #include "steer.h"
+#include "camera.h"
 
 extern int32 time1,time2;
 extern uint8 img[CAMERA_H][CAMERA_W];
@@ -40,15 +41,15 @@ void LCD_Binarization()
       // LCD_Img_gray_Z(site, size, imgbuff,imgsize);            //LCD灰度图像显示
         site.x=0;site.y=0;
         LCD_Img_gray_Z(site, size, img[0] ,imgsize);             //LCD黑白图像显示
-        /*
+        
         site.x=0;site.y=100;
-        LCD_num_BC(site,Error,8,BLUE,RED);           //偏差
+        LCD_num_BC(site,LeftLose+AllLose,8,BLUE,RED);           //偏差
         
         site.x=20;site.y=100;
-        LCD_num_BC(site,image_threshold,8,BLUE,RED);        //阈值         //舵机输出  中值690
-        */
-        //site.x=50;site.y=100;
-        //LCD_num_BC(site,RightLose,8,BLUE,RED);         //右边界丢失数量
+        LCD_num_BC(site,RightLose+AllLose,8,BLUE,RED);        //阈值         //舵机输出  中值690
+        
+        site.x=50;site.y=100;
+        LCD_num_BC(site,AllLose,8,BLUE,RED);         //右边界丢失数量
         
         //site.x=70;site.y=100;
         //LCD_num_BC(site,AllLose,8,BLUE,RED);            //两边全丢数量
