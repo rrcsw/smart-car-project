@@ -33,7 +33,7 @@ extern int   LastLine;
 extern int   Width[RowMax+1];
 extern int   LeftLose;
 extern int   RightLose ;
-extern int   AllLose ;
+extern int   AllLose;
 
 /*** º¯ÊıÉùÃ÷ ****/    
 

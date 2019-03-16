@@ -4,12 +4,12 @@
 #include "include.h"
 #include "math.h"
 
-uint8 img[CAMERA_H][CAMERA_W];                           //ÓÉÓÚÓ¥ÑÛÉãÏñÍ·ÊÇÒ»×Ö½Ú8¸öÏñËØ£¬Òò¶øÐèÒª½âÑ¹Îª 1
-uint8 imgbuff[CAMERA_SIZE];                             //¶¨Òå´æ´¢½ÓÊÕÍ¼ÏñµÄÊý×é
+uint8 img[CAMERA_H][CAMERA_W];                           //ï¿½ï¿½ï¿½ï¿½Ó¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½Ò»ï¿½Ö½ï¿½8ï¿½ï¿½ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ñ¹Îª 1
+uint8 imgbuff[CAMERA_SIZE];                             //ï¿½ï¿½ï¿½ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 unsigned char StartingLineFlag;
 
-/*****************º¯ÊýÉùÃ÷******************/
+/*****************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½******************/
 void vcan_sendimg(uint8 *imgaddr, uint32 imgsize);
 void img_extract(uint8 *dst, uint8 *src, uint32 srclen);
 extern void all_init();   
@@ -24,39 +24,39 @@ extern void steer_control();
 void main()
 {
 
-     all_init();                                       //³õÊ¼»¯
+     all_init();                                       //ï¿½ï¿½Ê¼ï¿½ï¿½
 /**********     
       while(1)
       {
 
-        ADL_V = adc_once(ADL, ADC_8bit);    //ADC ²É¼¯×óÓÒÁ½¸öµç¸Ð¸ÐÓ¦µçÑ¹Öµ
+        ADL_V = adc_once(ADL, ADC_8bit);    //ADC ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¸ï¿½Ó¦ï¿½ï¿½Ñ¹Öµ
         ADR_V = adc_once(ADR, ADC_8bit);
 
-        steer_error = ADL_V - ADR_V;       //Æ«²îµÈÓÚ×óÓÒµç¸ÐÖ®²î
-        steer_duty  = STEER_MID + steer_P * steer_error;  //¼ÆËã¶æ»úÊä³öµÄ PWM
-        ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, STEER_MID);  //¶æ»úÊä³ö¿ØÖÆ
+        steer_error = ADL_V - ADR_V;       //Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Ö®ï¿½ï¿½
+        steer_duty  = STEER_MID + steer_P * steer_error;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PWM
+        ftm_pwm_init(STEER_FTM ,STEER_CH, STEER_HZ, STEER_MID);  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 **********/ 
 
 while(1)
     {  
-      Binarization();                  //ÉãÏñÍ·¶þÖµ»¯      
-      LCD_Binarization();            //LCDÏÔÊ¾¶þÖµ»¯
-      SearchCenterline();              //Ñ°ÕÒÖÐÏß
-      GetEndParam();             //»ñÈ¡ºÚÏß½ØÖ¹ÐÐ
+      Binarization();                  //ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½Öµï¿½ï¿½      
+      LCD_Binarization();            //LCDï¿½ï¿½Ê¾ï¿½ï¿½Öµï¿½ï¿½
+      SearchCenterline();              //Ñ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+      GetEndParam();             //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ß½ï¿½Ö¹ï¿½ï¿½
     
       if(!StartingLineFlag)
               {
-               CrossRecognition(&Cross);//Ê®×ÖÊ¶±ð
-               CrossConduct();//Ê®×Ö²¹Ïß
-               LoopRecognition(&Loop);//Ô²»·Ê¶±ð
-               //LoopIntoRepair();//Ô²»·²¹Ïß
-               //FindLoopOptimalExit();//Ñ°ÕÒÔ²»·³ö¿Ú
-               TrackType();//Ö÷ÒªÈüµÀÀàÐÍ
+               CrossRecognition(&Cross);//Ê®ï¿½ï¿½Ê¶ï¿½ï¿½
+               CrossConduct();//Ê®ï¿½Ö²ï¿½ï¿½ï¿½
+               LoopRecognition(&Loop);//Ô²ï¿½ï¿½Ê¶ï¿½ï¿½
+               //LoopIntoRepair();//Ô²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+               //FindLoopOptimalExit();//Ñ°ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+               TrackType();//ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                Stop();
               } 
-      
-    //vcan_sendimg(imgbuff, sizeof(imgbuff));          //´®¿Ú·¢ËÍÖÐÏß£¬×¢Òâ½ÓÊÕÄ£Ê½        
-//# if ObstacleOpen  //Èç¹û²»ÐèÒª±ÜÕÏ°­£¬½«Õâ¸öºê¶¨ÒåÖÃ0¼´¿É
+adc();
+    //vcan_sendimg(imgbuff, sizeof(imgbuff));          //ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½        
+//# if ObstacleOpen  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê¶¨ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½
              
   //             RecognitionObstacle();
 //#endif             
@@ -73,7 +73,9 @@ while(1)
                
              
              
-              LCD_Display();//Òº¾§ÏÔÊ¾
+              LCD_Display();//Òºï¿½ï¿½ï¿½ï¿½Ê¾
+              start_adc();
+	      end_adc();
                  
                
          }

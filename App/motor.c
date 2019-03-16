@@ -3,10 +3,10 @@
 #include "include.h"
 #include "motor.h"
 
-int16  NumPulseFTM,NumPulselptmr;//Âö³å¼ÆÊý¼Ä´æÆ÷µÄÖµ
+int16  NumPulseFTM,NumPulselptmr;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 int32  RightMotorPulseAccumulate;
 int32  LeftMotorPulseAccumulate;
-int32  GetRightMotorPules,GetLeftMotorPules; //»ñµÃµÄÒ»´ÎÂö³å×ÜÊý£¨ÓÃÓÚPIDµç»úµÄÊý¾Ý´¦Àí£©
+int32  GetRightMotorPules,GetLeftMotorPules; //ï¿½ï¿½Ãµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PIDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½
 int SpeedDropRow=0;
 int LastSpeedDropRow=0;
 int32 LSpeedSet=0;//60;//2.5M/S
@@ -47,27 +47,27 @@ float LeftMotorPwmAdd=0;
 float RightMotorPwmAdd=0;
 
 
-/****µç»ú³õÊ¼»¯******/
+/****ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½******/
 /*****
 void MotorInit(void)
 {
-  gpio_init (PTB18, GPO, 0);//0Õý×ª£¬1·´×ª
-  ftm_pwm_init(FTM0, FTM_CH0, 1000,0);//PTC1£¬ÓÒµç»ú
+  gpio_init (PTB18, GPO, 0);//0ï¿½ï¿½×ªï¿½ï¿½1ï¿½ï¿½×ª
+  ftm_pwm_init(FTM0, FTM_CH0, 1000,0);//PTC1ï¿½ï¿½ï¿½Òµï¿½ï¿½
    
   gpio_init (PTB9, GPO, 0);
-  ftm_pwm_init(FTM0, FTM_CH1, 1000,0);//PTC2,×óµç»ú  
+  ftm_pwm_init(FTM0, FTM_CH1, 1000,0);//PTC2,ï¿½ï¿½ï¿½ï¿½  
 }
 ******/
 
 
-#if OpenLoop//¿ª»·¿ØÖÆ·½Ê½
+#if OpenLoop//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ê½
 
-int32  OpendLoopPwmB; //¿ª»·×ó±ßµç»úµÄPWMÖµ
-int32  OpendLoopPwmF; //¿ª»·ÓÒ±ßµç»úµÄPWMÖµ
+int32  OpendLoopPwmB; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½PWMÖµ
+int32  OpendLoopPwmF; //ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ßµï¿½ï¿½ï¿½ï¿½PWMÖµ
 
 
-//¿ª»·¿ØÖÆ·ÖÎªÁ½¸öµµÎ»£¬Í¨¹ý3ºÅ²¦Âë¿ª¹ØÑ¡Ôñ
-//1.Õ¼¿Õ±È²»»á±äµÄ¿ª»·ÔÈËÙ  2.¿ª»·±äËÙ£¬¸ù¾ÝÆ«²îÄâºÍ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½Í¨ï¿½ï¿½3ï¿½Å²ï¿½ï¿½ë¿ªï¿½ï¿½Ñ¡ï¿½ï¿½
+//1.Õ¼ï¿½Õ±È²ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù£ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½ï¿½
 
 void MotorControlOpenLoop(void)
 {
@@ -75,9 +75,9 @@ void MotorControlOpenLoop(void)
   
   
      OpendLoopPwmB=100;
-     OpendLoopPwmF=250;
+     OpendLoopPwmF=175;
     /****
-      //²îËÙ
+      //ï¿½ï¿½ï¿½ï¿½
       OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
       
       if(OpendLoopPwmB>=400)  OpendLoopPwmB=400;
@@ -89,7 +89,7 @@ void MotorControlOpenLoop(void)
       if(OpendLoopPwmF<=200)    OpendLoopPwmF=200;
       ***/
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmF);
-      ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmB); //PTC2,×óµç»ú 
+      ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmB); //PTC2,ï¿½ï¿½ï¿½ï¿½ 
 
   }
 #endif 
@@ -114,13 +114,13 @@ void Stop()
 
 /********
 
-#if CloseLoop //±Õ»·¿ØÖÆ
+#if CloseLoop //ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 void GetTargetSpeed(void)
 {
   
-  if(DialSwitch_2)//¶þºÅ²¦Âë¿ª¹Ø²»²¦ÉÏÈ¥,¶¯Ì¬ËÙ¶È
+  if(DialSwitch_2)//ï¿½ï¿½ï¿½Å²ï¿½ï¿½ë¿ªï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½È¥,ï¿½ï¿½Ì¬ï¿½Ù¶ï¿½
   {
     
     LastSpeedDropRow=SpeedDropRow;
@@ -131,7 +131,7 @@ void GetTargetSpeed(void)
         SpeedDropRow=55;
 
      else if(SpeedDropRow<35) 
-         SpeedDropRow=35;//¼±Íä¼õËÙºÜºÃ
+         SpeedDropRow=35;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÙºÜºï¿½
 
      //SpeedSet=(int)(0.05*(SpeedDropRow*SpeedDropRow)-(ABS(Error*Error)*0.02));//0.045,0.020//0.048,0.022
      SpeedSet=(int)(1.4*SpeedDropRow+10*(SpeedDropRow-LastSpeedDropRow)-(0.3*ABS(Error)+1.0*(Error-LastError)));
@@ -139,13 +139,13 @@ void GetTargetSpeed(void)
      if(SpeedSet<=45)  SpeedSet=45;
      if(SpeedSet>=65)  SpeedSet=65; 
     
-    if(ABS(Error)>=10) //Æ«²î´óÓÚÄ³¸öÖµ²Å½øÐÐ²îËÙ
+    if(ABS(Error)>=10) //Æ«ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Öµï¿½Å½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
     {
       Differential_P=(float)(30.0/((60-(LastLine+4))*(60-(LastLine+4))));//30
-      LSpeedSet=(int32)(SpeedSet-(Differential_P*Error*SpeedSet)) ;//×óÂÖ²îËÙ
+      LSpeedSet=(int32)(SpeedSet-(Differential_P*Error*SpeedSet)) ;//ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½
        if(LSpeedSet<=5)    LSpeedSet=5;
        if(LSpeedSet>=110)  LSpeedSet=110; 
-       RSpeedSet=(int32)(SpeedSet+(Differential_P*Error*SpeedSet) );//ÓÒÂÖ²îËÙ
+       RSpeedSet=(int32)(SpeedSet+(Differential_P*Error*SpeedSet) );//ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½
        if(RSpeedSet<=5)    RSpeedSet=5;
        if(RSpeedSet>=110)  RSpeedSet=110; 
     } 
@@ -157,7 +157,7 @@ void GetTargetSpeed(void)
     
     }
   
-  else if(!DialSwitch_2)//¶þºÅ²¦Âë¿ª¹ØÍùÉÏ²¨
+  else if(!DialSwitch_2)//ï¿½ï¿½ï¿½Å²ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½ï¿½ï¿½Ï²ï¿½
   {
        SpeedSet=50;
        SpeedP=40.0;//50.0;40
@@ -169,11 +169,11 @@ void GetTargetSpeed(void)
       //Differential_P=(float)(30.0/((60-(AvaliableLines+10))*(60-(AvaliableLines+10))));
        SpeedSet=50;
       
-       Differential_P=0.0180;//µ÷²îËÙ£¬µ÷Ì«´ó»áÌøÂÖ
-       LSpeedSet=(int32)(SpeedSet-(Differential_P*Error*SpeedSet)) ;//×óÂÖ²îËÙ
+       Differential_P=0.0180;//ï¿½ï¿½ï¿½ï¿½ï¿½Ù£ï¿½ï¿½ï¿½Ì«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+       LSpeedSet=(int32)(SpeedSet-(Differential_P*Error*SpeedSet)) ;//ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½
        if(LSpeedSet<=20)    LSpeedSet=20;
        if(LSpeedSet>=80)  LSpeedSet=80; 
-       RSpeedSet=(int32)(SpeedSet+(Differential_P*Error*SpeedSet) );//ÓÒÂÖ²îËÙ
+       RSpeedSet=(int32)(SpeedSet+(Differential_P*Error*SpeedSet) );//ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½
        if(RSpeedSet<=20)    RSpeedSet=20;
        if(RSpeedSet>=80)  RSpeedSet=80; 
     } 
@@ -189,7 +189,7 @@ void GetTargetSpeed(void)
 }
 
 *********/
-//¼ÆËãËÙ¶ÈÆ«²î
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½Æ«ï¿½ï¿½
    
 void CalculateMotorSpeedError(float LeftMotorTarget,float RightMotorTarget)
 { 
@@ -201,12 +201,12 @@ void CalculateMotorSpeedError(float LeftMotorTarget,float RightMotorTarget)
     SpeedErrorR=RightMotorTarget-GetRightMotorPules;
 }
 
-//ÔöÁ¿Ê½PID¿ØÖÆËã·¨
+//ï¿½ï¿½ï¿½ï¿½Ê½PIDï¿½ï¿½ï¿½ï¿½ï¿½ã·¨
 
 void MotorControl(void)
 {
        GetTargetSpeed();
-       CalculateMotorSpeedError(LSpeedSet,RSpeedSet) ;//Éè¶¨Ä¿±êËÙ¶È¼ÆËãÆ«²î
+       CalculateMotorSpeedError(LSpeedSet,RSpeedSet) ;//ï¿½è¶¨Ä¿ï¿½ï¿½ï¿½Ù¶È¼ï¿½ï¿½ï¿½Æ«ï¿½ï¿½
        MotorPwmR+=(SpeedP+SpeedI+SpeedD)*SpeedErrorR-(SpeedP+2*SpeedD)*SpeedLastErrorR+SpeedD*SpeedPerErrorR;
        MotorPwmRight=(int)(MotorPwmR);
        MotorPwmL+=(SpeedP+SpeedI+SpeedD)*SpeedErrorL-(SpeedP+2*SpeedD)*SpeedLastErrorL+SpeedD*SpeedPerErrorL;
@@ -216,7 +216,7 @@ void MotorControl(void)
        if(MotorPwmRight<=0)              MotorPwmRight=0;
        if(MotorPwmRight>=220)            MotorPwmRight=220; 
        ftm_pwm_duty(FTM0,FTM_CH0,MotorPwmRight);
-       ftm_pwm_duty(FTM0,FTM_CH1,MotorPwmLeft); //PTC2,×óµç»ú       
+       ftm_pwm_duty(FTM0,FTM_CH1,MotorPwmLeft); //PTC2,ï¿½ï¿½ï¿½ï¿½       
 }
 
     
@@ -232,13 +232,13 @@ void SpeedGet(void)
 
 {
     NumPulselptmr=lptmr_pulse_get(); 
-    lptmr_pulse_clean();//¼ÆÊý¼Ä´æÆ÷ÇåÁã
-    LeftMotorPulseAccumulate+=NumPulselptmr;//°ÑÃ¿Ò»´ÎPIT¶¨Ê±Ê±¼äµÄÂö³åÊýÀÛ¼Óµ½Âö³å×ÜÊý±äÁ¿pulse_period_L  
+    lptmr_pulse_clean();//ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    LeftMotorPulseAccumulate+=NumPulselptmr;//ï¿½ï¿½Ã¿Ò»ï¿½ï¿½PITï¿½ï¿½Ê±Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pulse_period_L  
 
     
-    NumPulseFTM=ftm_quad_get(FTM2);//È¡¼Ä´æÆ÷µÄÖµ
-    ftm_quad_clean(FTM2);//¼ÆÊý¼Ä´æÆ÷ÇåÁã
-    RightMotorPulseAccumulate+=NumPulseFTM;//µ¥ÏàÂö³å    £¨Õý½»½âÂë²âÂö³å£©ÓÒÂÖ 
+    NumPulseFTM=ftm_quad_get(FTM2);//È¡ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+    ftm_quad_clean(FTM2);//ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    RightMotorPulseAccumulate+=NumPulseFTM;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å£©ï¿½ï¿½ï¿½ï¿½ 
 }
 
 
@@ -247,28 +247,28 @@ void PIT0_IRQHandler()
   
              static uint16  TimerCnt8ms=0;
            
-              disable_irq(PIT0_IRQn);            //¹ØPITÖÐ¶Ï
+              disable_irq(PIT0_IRQn);            //ï¿½ï¿½PITï¿½Ð¶ï¿½
             
-              PIT_Flag_Clear(PIT0);                           //ÇåÖÐ¶Ï±êÖ¾Î»
+              PIT_Flag_Clear(PIT0);                           //ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î»
               
               TimerCnt8ms++;
                  
-              SpeedGet();                        //Ã¿´Î½øÀ´ÀÛ¼ÓÒ»´ÎËÙ¶È
+              SpeedGet();                        //Ã¿ï¿½Î½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½Ò»ï¿½ï¿½ï¿½Ù¶ï¿½
                 
-       if(TimerCnt8ms>=MotorControlPeriod )//Ò»¸ö8msÖÜÆÚÈ¡Ò»´ÎËÙ¶È£¬µ±×÷³µµÄËÙ¶È
+       if(TimerCnt8ms>=MotorControlPeriod )//Ò»ï¿½ï¿½8msï¿½ï¿½ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½Ù¶È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
          
        { 
                
-              GetRightMotorPules=-RightMotorPulseAccumulate;  //±£³ÖºÃÕâ´Î²âµÃµÄ×ÜÊý£¬10msÒ»¹²²âµÃµÄÂö³å
+              GetRightMotorPules=-RightMotorPulseAccumulate;  //ï¿½ï¿½ï¿½Öºï¿½ï¿½ï¿½Î²ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10msÒ»ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
               GetLeftMotorPules=LeftMotorPulseAccumulate;
            
-              TimerCnt8ms=0;//ÇåÁã
+              TimerCnt8ms=0;//ï¿½ï¿½ï¿½ï¿½
                 
-              RightMotorPulseAccumulate=0;//ÀÛ¼ÓÖµÇåÁã£¬
+              RightMotorPulseAccumulate=0;//ï¿½Û¼ï¿½Öµï¿½ï¿½ï¿½ã£¬
               LeftMotorPulseAccumulate=0;
         }
          
-    enable_irq(PIT0_IRQn);//Ê¹ÄÜÖÐ¶Ï	
+    enable_irq(PIT0_IRQn);//Ê¹ï¿½ï¿½ï¿½Ð¶ï¿½	
 }
 
 
