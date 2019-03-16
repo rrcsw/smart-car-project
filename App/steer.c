@@ -27,7 +27,7 @@ void steer_control()
 /*********define for SteerControl**********/
 
 float  KP=12;//舵机方向比例系数，影响舵机的打角范围//15
-float  KD=8;//10//7.5//舵机方向微分系数,影响舵机的打角反应
+float  KD=16;//8;//10//7.5//舵机方向微分系数,影响舵机的打角反应
 float  SteerPwmAdd=0.0;//舵机pwm增量
 float  Error;//偏差值
 float  LastError;//上次的偏差
@@ -237,7 +237,7 @@ void SteerControl(void)
          CalculateError(); 
         NormalControl();
         
-        //TurnBack();
+        TurnBack();
           
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
            
@@ -306,14 +306,31 @@ void TurnBack()
 
  extern int  BlackEndRR  ; 
   extern int BlackEndLL  ;  
+  extern int BlackEndL;
+  extern int BlackEndR;
   extern int BlackEndM ;   
   int LoseLeft=0;
   int LoseRight=0;
    
-  if (BlackEndM==0&&BlackEndLL>=5)
+  if (BlackEndR==0&&BlackEndLL>=5&&BlackEndL>=0)
+  {
     SteerPwm=SteerMin;
-  if (BlackEndM==0&&BlackEndRR>=5)
+    LoseLeft=55;
+  }
+  else {LoseLeft=0;}
+  if (BlackEndL==0&&BlackEndRR>=10&&BlackEndR>=0)
+  { 
     SteerPwm=SteerMax;
+    LoseRight=55;
+  }
+  else {LoseRight=0;}
+  
+  if (LoseLeft>=50)
+    SteerPwm=SteerMin;
+  if (LoseRight>=50)
+    SteerPwm=SteerMax;
+
+  
     
   /**
     if(img[90][j]==White_Point && img[90][j+1]==Black_Point&&img[90][j+2]==Black_Point)
@@ -353,6 +370,7 @@ void TurnBack()
     ****/
   
   
+
 }
 
   
