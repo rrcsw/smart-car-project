@@ -35,7 +35,7 @@ int   Width[RowMax+1];//={2,3,3,3,4,4,5,5,6,6,
                        //41,41,43,43,45,45,47,47,49,50,
                        //50,51,52,54,55,56,57,58,59,60,61};  // Width[i]  = 20+i*3/4;     //动态路宽
 
-int   MidPri         = 40;
+int   MidPri         = 60;
 int   LastLine       = 0;
 float AvaliableLines = 0;
 int   LeftLose       = 0;
@@ -149,7 +149,8 @@ void SetInitVal()
       RightEdge[i]  = ColumnMax;
       LeftEdge[i]   = 0;
       mid_line[i] = ColumnMax/2;
-      Width[i]  = 20+i*1/2;     //动态路宽
+      Width[i]  = 30+i*4/5;//动态路宽30+i*1/2
+     
       
   }
   
@@ -172,7 +173,7 @@ void SearchCenterline()
   mid_line[RowMax]  = ColumnMax/2;//第60行
   LeftEdge[RowMax]    = 0;
   RightEdge[RowMax]   = ColumnMax;
-  Width[RowMax]       = 60;
+  Width[RowMax]       = 90;
   
   SetInitVal();
   
@@ -219,7 +220,7 @@ void GetEndParam()//获取黑线截止行
         {
 		MEndFlag = 1;
         }
-	if(img[i][ColumnMax/4] == White_Point && !LEndFlag )//20
+	if(img[i][ColumnMax/4] == White_Point && !LEndFlag )//30
         {
 		BlackEndL++;//左黑线截至行
         }
@@ -227,7 +228,7 @@ void GetEndParam()//获取黑线截止行
         {
 		LEndFlag = 1;
         }
-	if(img[i][ColumnMax*3/4] == White_Point && !REndFlag )//60
+	if(img[i][ColumnMax*3/4] == White_Point && !REndFlag )//90
         {
 		BlackEndR++;//右黑线截至行
 	}
@@ -235,35 +236,35 @@ void GetEndParam()//获取黑线截止行
         {
 		REndFlag = 1;
         }
-        if(img[i][30] == White_Point && !MLEndFlag )
+        if(img[i][45] == White_Point && !MLEndFlag )
         {
 		BlackEndML++;
         }
-	else if(i > 1 && img[i-1][30] == Black_Point && img[i-2][30] == Black_Point)
+	else if(i > 1 && img[i-1][45] == Black_Point && img[i-2][45] == Black_Point)
         {
 		MLEndFlag = 1;
         }
-	if(img[i][50] == White_Point && !MREndFlag )
+	if(img[i][75] == White_Point && !MREndFlag )
         {
 		BlackEndMR++;
         }
-	else if(i > 1 && img[i-1][50] == Black_Point && img[i-2][50] == Black_Point)
+	else if(i > 1 && img[i-1][75] == Black_Point && img[i-2][75] == Black_Point)
         {
 		MREndFlag = 1;
 	}
-        if(img[i][10] == White_Point && !LLEndFlag )
+        if(img[i][15] == White_Point && !LLEndFlag )
         {
 		BlackEndLL++;
 	}
-	else if(i > 1 && img[i-1][10] == Black_Point && img[i-2][10] == Black_Point)
+	else if(i > 1 && img[i-1][15] == Black_Point && img[i-2][15] == Black_Point)
         {
 		LLEndFlag = 1;
 	}
-        if(img[i][70] == White_Point && !RREndFlag )
+        if(img[i][105] == White_Point && !RREndFlag )
         {
 		BlackEndRR++;
 	}
-	else if(i > 1 && img[i-1][70] == Black_Point && img[i-2][70] == Black_Point)
+	else if(i > 1 && img[i-1][105] == Black_Point && img[i-2][105] == Black_Point)
         {
 		RREndFlag = 1;
 	}
@@ -276,22 +277,22 @@ void GetEndParam()//获取黑线截止行
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndML);
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndLL);
         BlackEndMaxMax =MAX(BlackEndMax,BlackEndRR);
-        if(BlackEndMaxMax>=60)
+        if(BlackEndMaxMax>=90)
         {
-            BlackEndMaxMax=58;
+            BlackEndMaxMax=88;
         }
-        DropRow=60-BlackEndMaxMax;//封顶的行数      
+        DropRow=90-BlackEndMaxMax;//封顶的行数      
  }
 
 }
 
 void NormalSearchingMidLine()
 {
-  for(i=RowMax-1;i>=50;i--)//首先找前十行，全行扫描
+  for(i=RowMax-1;i>=0;i--)//首先找前二十行，全行扫描
   {
     if(i ==RowMax-1)//首行就以图像中心作为扫描起点
     {
-       j = MidPri;//40 
+       j = MidPri;//60 
     } 
     else
     {
@@ -348,19 +349,19 @@ void NormalSearchingMidLine()
         }
         else 
         {
-                mid_line[i] = LeftEdge[i] + Width[i]/2+5;//正常的话就用半宽补
+                mid_line[i] = LeftEdge[i] + Width[i]/2+7;//正常的话就用半宽补                                need fix
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]!=ColumnMax)//丢了左线
      {
            
-        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]+8))//突变      
+        if((RightEdge[i]-LeftEdge[i]) >= (RightEdge[i+1]-LeftEdge[i+1]-8))//突变      
         {
                 mid_line[i] = mid_line[i+1]-4; 
         } 
         else 
         {
-                mid_line[i] = RightEdge[i] - Width[i]/2-5;//线宽
+                mid_line[i] = RightEdge[i] - Width[i]/2-7;//线宽                                         need fix
         }
      }
      else if(LeftEdge[i]==0 && RightEdge[i]==ColumnMax)//两边都丢了的话  
@@ -373,15 +374,15 @@ void NormalSearchingMidLine()
         }       
         else 
         {
-                mid_line[i] = 40;//mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
+                mid_line[i] = mid_line[i+1];//如果不是首行就用上一行的中线作为本行中点
         }             
       }
     
     
     
-     if(mid_line[RowMax-1] >=70)
+     if(mid_line[RowMax-1] >=ColumnMax-10)
      {
-         MidPri = 70;
+         MidPri = ColumnMax-10;
      }          
      else if(mid_line[RowMax-1] <=10)
      {
@@ -389,7 +390,7 @@ void NormalSearchingMidLine()
      }         
      else
      {
-          MidPri = mid_line[RowMax-1];//记录本帧图像第59行的中线值，作为下一幅图像的59行扫描起始点
+          MidPri = mid_line[RowMax-1];//记录本帧图像第119行的中线值，作为下一幅图像的59行扫描起始点
      }
     
   }   
@@ -399,7 +400,7 @@ void NormalSearchingMidLine()
 void SearchMidLineNext()
 {
   
-  for(i=49; i>0; i--)//查找剩余行
+  for(i=RowMax-21; i>0; i--)//查找剩余行
   {   
     if(LeftEdge[i+1]!=0 && RightEdge[i+1]!=ColumnMax) //上一行两边都找到 启用边沿扫描     
     {
@@ -440,11 +441,11 @@ void SearchMidLineNext()
          j--;   
       }     
          j = mid_line[i+1];//上一行丢了右边界用全行扫描 
-      if(j >= 78)
+      if(j >= ColumnMax-3)
       {
-           j = 78;
+           j = ColumnMax-3;
       }
-      while(j <= ColumnMax-2)      
+      while(j <= ColumnMax-3)      
       {    
           if(img[i][j]==White_Point && img[i][j+1]==Black_Point&&img[i][j+2]==Black_Point)
           {
@@ -497,9 +498,9 @@ void SearchMidLineNext()
             j--;
         }
          j = mid_line[i+1];   //全行找右边界   
-       while(j <=ColumnMax-2)       
+       while(j <=ColumnMax-3)       
        {   
-            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point)
+            if(img[i][j]==White_Point&&img[i][j+1]==Black_Point&& img[i][j+2]==Black_Point)
             {
                   RightEdge[i] = j;  
                   break;
@@ -528,7 +529,7 @@ void SearchMidLineNext()
                                mid_line[ii+1] = mid_line[ii]-1; 
                                ii++; 
                                
-                           if( ii>=50 || (mid_line[ii]-mid_line[ii+1]<=1) )
+                           if( ii>=80 || (mid_line[ii]-mid_line[ii+1]<=1) )
                            {
                                  break;
                            }          
@@ -543,7 +544,7 @@ void SearchMidLineNext()
                                mid_line[ii+1] = mid_line[ii]+1;
                                ii++;
                                
-                           if( ii>=50 || (mid_line[ii+1]-mid_line[ii]<=1) )
+                           if( ii>=80 || (mid_line[ii+1]-mid_line[ii]<=1) )
                            { 
                                  break;
                            }       
@@ -597,7 +598,7 @@ void SearchMidLineNext()
        
     if(i == 0)             
     {            
-            AvaliableLines = 60;
+            AvaliableLines = 90;
             LastLine  = 0;  
             break;
     }
@@ -606,14 +607,14 @@ void SearchMidLineNext()
     { 
             m = 5;
     }
-    if(m > 75)
+    if(m > 115)
     {
-            m = 75;
+            m = 115;
     }
-    if( (LeftEdge[i]!=0 && LeftEdge[i]>=65) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== Black_Point)) //最后一行              
+    if( (LeftEdge[i]!=0 && LeftEdge[i]>=105) || (RightEdge[i]!=ColumnMax && RightEdge[i]<15) || (i>=1)&&(img[i-1][m]== Black_Point)) //最后一行              
     {
             LastLine = i;//最后一行，动态前瞻
-            AvaliableLines = 60 - i;//有效行数
+            AvaliableLines = 90 - i;//有效行数
             break;
     }
     

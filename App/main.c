@@ -51,14 +51,14 @@ while(1)
                LoopRecognition(&Loop);//圆环识别
                //LoopIntoRepair();//圆环补线
                //FindLoopOptimalExit();//寻找圆环出口
-               TrackType();//主要赛道类型
-               Stop();
+               //TrackType();//主要赛道类型
+               //Stop();
               } 
       
     //vcan_sendimg(imgbuff, sizeof(imgbuff));          //串口发送中线，注意接收模式        
 //# if ObstacleOpen  //如果不需要避障碍，将这个宏定义置0即可
              
-  //             RecognitionObstacle();
+//              RecognitionObstacle();
 //#endif             
              
                SteerControl();
@@ -74,6 +74,7 @@ while(1)
              
              
               LCD_Display();//液晶显示
+              
                  
                
          }
