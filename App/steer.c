@@ -245,7 +245,7 @@ void SteerControl(void)
   }   
   if(controlplan=2)
   {
-      NormalControl_adc();
+      AdcControl();
       ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);
   }
 }

@@ -31,7 +31,7 @@ extern float  SteerPwmAdd;
 extern uint32 SteerPwm;
 extern float  KP;
 extern float  KD;
-
+extern int controlplan;
 
 void SteerInit(void);//¶æ»ú³õÊ¼»¯
 void CalculateError(void);

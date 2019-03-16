@@ -2,12 +2,18 @@
 #include "include.h"
 #include "camera.h"
 
-int controlplan = 2;  //1　摄像头控制方案
+int controlplan = 1;  //1　摄像头控制方案
 					  //2　电磁控制方案
-//					  //3  路障躲避方案
+					  //3  路障躲避方案
 
 void start_adc()
-{
+{     
+
+    if (BlackEndRR<=3&&BlackEndR<=3&&BlackEndLL<=3)
+    {controlplan=2;}
+     else
+     {controlplan=1;}
+    /***
 	int i, j;
 	for (i = 0;i < RowMax - 3;i++)
 	{
@@ -18,7 +24,9 @@ void start_adc()
 		}
 	}
 	if (i > 20 && j > 20 && j < 59)
-		controlplan = 2;
+	controlplan = 2;
+****/
+  
 }
 
 void end_adc()

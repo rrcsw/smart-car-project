@@ -26,6 +26,7 @@ int Error1=0,Error1Last=0;
 int SlowSpeed=0;
 int Slowing=0;
 
+
 #if 1
 
 float  SpeedP=75.0;//50.0;40
@@ -73,25 +74,35 @@ void MotorControlOpenLoop(void)
 {
 //  int ErrorError=0;
   
-  
-     OpendLoopPwmB=100;
-     OpendLoopPwmF=175;
-    /****
+
+  if(controlplan==1)
+  { OpendLoopPwmB=100;
+     OpendLoopPwmF=200;
+   
+    
+
       //²îËÙ
-      OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
+     // OpendLoopPwmB=(int)(OpendLoopPwmB-(OpendLoopPwmB*Error*000.1));
       
-      if(OpendLoopPwmB>=400)  OpendLoopPwmB=400;
-      if(OpendLoopPwmB<=200)    OpendLoopPwmB=200;
+      //if(OpendLoopPwmB>=400)  OpendLoopPwmB=400;
+     // if(OpendLoopPwmB<=200)    OpendLoopPwmB=200;
       
       OpendLoopPwmF=(int)(OpendLoopPwmF+(OpendLoopPwmF*Error*000.1));
             
-      if(OpendLoopPwmF>=400)  OpendLoopPwmF=400;
-      if(OpendLoopPwmF<=200)    OpendLoopPwmF=200;
-      ****/
+      if(OpendLoopPwmF>=250)  OpendLoopPwmF=250;
+      if(OpendLoopPwmF<=175)    OpendLoopPwmF=175;
+      
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
       ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); //PTC2,×óµç»ú 
-
   }
+  if(controlplan==2)
+  {
+    OpendLoopPwmB=100;
+    OpendLoopPwmF=175;
+    ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
+    ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); 
+  }
+}
 #endif 
 
 void Stop()

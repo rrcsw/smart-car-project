@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V8.32.1.169/W32 for ARM                  16/Mar/2019  15:04:56
+# IAR ELF Linker V8.32.1.169/W32 for ARM                  16/Mar/2019  15:14:37
 # Copyright 2007-2018 IAR Systems AB.
 #
 #    Output file  =  
@@ -9,7 +9,7 @@
 #        E:\SMART
 #        CAR\smart-car-project\Prj\IAR\DZ10_Debug\List\vcan_Kinetis.map
 #    Command line =  
-#        -f C:\Users\housol\AppData\Local\Temp\EW7161.tmp ("E:\SMART
+#        -f C:\Users\housol\AppData\Local\Temp\EW51A8.tmp ("E:\SMART
 #        CAR\smart-car-project\Prj\IAR\DZ10_Debug\Obj\adc.o" "E:\SMART
 #        CAR\smart-car-project\Prj\IAR\DZ10_Debug\Obj\all init.o" "E:\SMART
 #        CAR\smart-car-project\Prj\IAR\DZ10_Debug\Obj\camera.o" "E:\SMART
@@ -143,7 +143,7 @@ initialize manually with packing = copy, complex ranges { section .textrw };
   .noinit              ro code        0x410     0x8  startup_MK60DZ10.o [1]
                                     - 0x418     0x8
 
-"P1":                                        0x8928
+"P1":                                        0x8a10
   .text                ro code        0x418  0x1338  camera.o [1]
   .text                ro code       0x1750   0x568  SDUWH_MT9V032.o [1]
   .text                ro code       0x1cb8    0xec  MK60_PIT.o [1]
@@ -189,68 +189,70 @@ initialize manually with packing = copy, complex ranges { section .textrw };
   .text                ro code       0x4370     0x2  I64DivZer.o [4]
   .text                ro code       0x4374     0xc  XXexit.o [4]
   .text                ro code       0x4380  0x1248  VCAN_LCD_ST7735S.o [1]
-  .data_init                         0x55c8   0xa14  <Block>
-    Initializer bytes  const         0x55c8   0xa14  <for .data-1>
-  .text                ro code       0x5fdc   0x9dc  Track.o [1]
-  .text                ro code       0x69b8   0x658  VCAN_LCD.o [1]
-  .rodata              const         0x7010   0x600  VCAN_ASCII.o [1]
-  Veneer               ro code       0x7610     0x8  - Linker created -
-  .text                ro code       0x7618   0x3b4  MK60_mcg.o [1]
-  .text                ro code       0x79cc   0x3ac  MK60_ftm.o [1]
-  .text                ro code       0x7d78   0x2f8  steer.o [1]
-  .text                ro code       0x8070    0x1c  U32ToFlt.o [3]
-  .text                ro code       0x808c    0x1c  FltCmpEq.o [3]
-  .text                ro code       0x80a8    0x24  FltCmpGe.o [3]
-  .text                ro code       0x80cc    0x22  FltToU32.o [3]
-  .text                ro code       0x80f0   0x2b4  MK60_adc.o [1]
-  .text                ro code       0x83a4   0x1b0  LCD.o [1]
-  CodeRelocate                       0x8554   0x1bc  <Block>
-    Initializer bytes  const         0x8554   0x1bc  <for CodeRelocateRam-1>
-  .text                ro code       0x8710   0x118  system_MK60DZ10.o [1]
-  .text                ro code       0x8828    0x40  MK60_wdog.o [1]
-  .text                ro code       0x8868    0x4c  main.o [1]
-  .text                ro code       0x88b4    0x64  all init.o [1]
-  .text                ro code       0x8918    0x84  adc.o [1]
-  .text                ro code       0x899c    0x2c  motor.o [1]
-  .text                ro code       0x89c8    0x2a  FltToS32.o [3]
-  .rodata              const         0x89f4    0x3c  MK60_conf.o [1]
-  .rodata              const         0x8a30    0x3c  VCAN_LCD_ST7735S.o [1]
-  .rodata              const         0x8a6c    0x38  MK60_flash.o [1]
-  .rodata              const         0x8aa4    0x38  MK60_SysTick.o [1]
-  .rodata              const         0x8adc    0x34  MK60_adc.o [1]
-  .rodata              const         0x8b10    0x34  MK60_dma.o [1]
-  .rodata              const         0x8b44    0x34  MK60_ftm.o [1]
-  .rodata              const         0x8b78    0x34  MK60_gpio.o [1]
-  .rodata              const         0x8bac    0x34  MK60_uart.o [1]
-  .rodata              const         0x8be0    0x30  misc.o [1]
-  .text                ro code       0x8c10    0x28  data_init.o [4]
-  .rodata              const         0x8c38    0x24  MK60_conf.o [1]
-  .iar.init_table      const         0x8c5c    0x10  - Linker created -
-  .rodata              const         0x8c6c    0x20  MK60_conf.o [1]
-  .text                ro code       0x8c8c    0x1e  cmain.o [4]
-  .text                ro code       0x8caa     0x4  low_level_init.o [2]
-  .text                ro code       0x8cae     0x4  exit.o [2]
-  .text                ro code       0x8cb4     0xa  cexit.o [4]
-  .text                ro code       0x8cbe    0x16  xprout.o [2]
-  .text                ro code       0x8cd4     0xc  putchar.o [2]
-  .rodata              const         0x8ce0    0x14  MK60_conf.o [1]
-  .rodata              const         0x8cf4    0x10  LCD.o [1]
-  .rodata              const         0x8d04    0x10  LCD.o [1]
-  .text                ro code       0x8d14     0xc  cstartup_M.o [4]
-  .rodata              const         0x8d20     0x4  LCD.o [1]
-  .rodata              const         0x8d24     0x4  LCD.o [1]
-  .rodata              const         0x8d28     0x4  LCD.o [1]
-  .rodata              const         0x8d2c     0x4  VCAN_LCD.o [1]
-  .rodata              const         0x8d30     0x4  VCAN_LCD.o [1]
-  .rodata              const         0x8d34     0x4  VCAN_LCD.o [1]
-  .rodata              const         0x8d38     0x4  VCAN_LCD.o [1]
-  .rodata              const         0x8d3c     0x4  xlocale_c.o [2]
-  .rodata              const         0x8d40     0x0  zero_init3.o [4]
-                                   - 0x8d40  0x8928
+  .data_init                         0x55c8   0xa0c  <Block>
+    Initializer bytes  const         0x55c8   0xa0c  <for .data-1>
+  .text                ro code       0x5fd4   0x9dc  Track.o [1]
+  .text                ro code       0x69b0   0x658  VCAN_LCD.o [1]
+  .rodata              const         0x7008   0x600  VCAN_ASCII.o [1]
+  Veneer               ro code       0x7608     0x8  - Linker created -
+  .text                ro code       0x7610   0x3b4  MK60_mcg.o [1]
+  .text                ro code       0x79c4   0x3ac  MK60_ftm.o [1]
+  .text                ro code       0x7d70   0x2b4  MK60_adc.o [1]
+  .text                ro code       0x8024   0x28c  steer.o [1]
+  .text                ro code       0x82b0    0x1c  U32ToFlt.o [3]
+  .text                ro code       0x82cc    0x1c  FltCmpEq.o [3]
+  .text                ro code       0x82e8    0x24  FltCmpGe.o [3]
+  .text                ro code       0x830c    0xf8  adc.o [1]
+  .text                ro code       0x8404    0x22  FltToU32.o [3]
+  .text                ro code       0x8428    0x2a  FltToS32.o [3]
+  .text                ro code       0x8454   0x1b0  LCD.o [1]
+  CodeRelocate                       0x8604   0x1bc  <Block>
+    Initializer bytes  const         0x8604   0x1bc  <for CodeRelocateRam-1>
+  .text                ro code       0x87c0   0x118  system_MK60DZ10.o [1]
+  .text                ro code       0x88d8    0x40  MK60_wdog.o [1]
+  .text                ro code       0x8918    0x4c  main.o [1]
+  .text                ro code       0x8964    0x64  all init.o [1]
+  .text                ro code       0x89c8    0xb4  motor.o [1]
+  .text                ro code       0x8a7c    0x22  S32ToDbl.o [3]
+  .text                ro code       0x8aa0    0x3a  DblToS32.o [3]
+  .rodata              const         0x8adc    0x3c  MK60_conf.o [1]
+  .rodata              const         0x8b18    0x3c  VCAN_LCD_ST7735S.o [1]
+  .rodata              const         0x8b54    0x38  MK60_flash.o [1]
+  .rodata              const         0x8b8c    0x38  MK60_SysTick.o [1]
+  .rodata              const         0x8bc4    0x34  MK60_adc.o [1]
+  .rodata              const         0x8bf8    0x34  MK60_dma.o [1]
+  .rodata              const         0x8c2c    0x34  MK60_ftm.o [1]
+  .rodata              const         0x8c60    0x34  MK60_gpio.o [1]
+  .rodata              const         0x8c94    0x34  MK60_uart.o [1]
+  .rodata              const         0x8cc8    0x30  misc.o [1]
+  .text                ro code       0x8cf8    0x28  data_init.o [4]
+  .rodata              const         0x8d20    0x24  MK60_conf.o [1]
+  .iar.init_table      const         0x8d44    0x10  - Linker created -
+  .rodata              const         0x8d54    0x20  MK60_conf.o [1]
+  .text                ro code       0x8d74    0x1e  cmain.o [4]
+  .text                ro code       0x8d92     0x4  low_level_init.o [2]
+  .text                ro code       0x8d96     0x4  exit.o [2]
+  .text                ro code       0x8d9c     0xa  cexit.o [4]
+  .text                ro code       0x8da6    0x16  xprout.o [2]
+  .text                ro code       0x8dbc     0xc  putchar.o [2]
+  .rodata              const         0x8dc8    0x14  MK60_conf.o [1]
+  .rodata              const         0x8ddc    0x10  LCD.o [1]
+  .rodata              const         0x8dec    0x10  LCD.o [1]
+  .text                ro code       0x8dfc     0xc  cstartup_M.o [4]
+  .rodata              const         0x8e08     0x4  LCD.o [1]
+  .rodata              const         0x8e0c     0x4  LCD.o [1]
+  .rodata              const         0x8e10     0x4  LCD.o [1]
+  .rodata              const         0x8e14     0x4  VCAN_LCD.o [1]
+  .rodata              const         0x8e18     0x4  VCAN_LCD.o [1]
+  .rodata              const         0x8e1c     0x4  VCAN_LCD.o [1]
+  .rodata              const         0x8e20     0x4  VCAN_LCD.o [1]
+  .rodata              const         0x8e24     0x4  xlocale_c.o [2]
+  .rodata              const         0x8e28     0x0  zero_init3.o [4]
+                                   - 0x8e28  0x8a10
 
-"P2", part 1 of 2:                            0xbd0
-  .data                         0x1fff'0410   0xa14  <Block>
-    .data-1                     0x1fff'0410   0xa11  <Init block>
+"P2", part 1 of 2:                            0xbc8
+  .data                         0x1fff'0410   0xa0c  <Block>
+    .data-1                     0x1fff'0410   0xa09  <Init block>
       .data            inited   0x1fff'0410     0x4  camera.o [1]
       .data            inited   0x1fff'0414     0x4  controlplan.o [1]
       .data            inited   0x1fff'0418     0x4  LCD.o [1]
@@ -271,37 +273,37 @@ initialize manually with packing = copy, complex ranges { section .textrw };
       .data            inited   0x1fff'0c14     0x4  steer.o [1]
       .data            inited   0x1fff'0c18     0x4  steer.o [1]
       .data            inited   0x1fff'0c1c     0x4  steer.o [1]
-      .data            inited   0x1fff'0c20     0x4  steer.o [1]
-      .data            inited   0x1fff'0c24     0x4  steer.o [1]
-      .data            inited   0x1fff'0c28   0x168  steer.o [1]
-      .data            inited   0x1fff'0d90     0x8  VCAN_key.o [1]
-      .data            inited   0x1fff'0d98     0x4  VCAN_LED.o [1]
-      .data            inited   0x1fff'0d9c    0x38  xlocale_c.o [2]
-      .data            inited   0x1fff'0dd4    0x48  xfiles.o [2]
-      .data            inited   0x1fff'0e1c     0x2  VCAN_LCD_ST7735S.o [1]
-      .data            inited   0x1fff'0e1e     0x2  VCAN_LCD_ST7735S.o [1]
-      .data            inited   0x1fff'0e20     0x1  SDUWH_MT9V032.o [1]
-  CodeRelocateRam               0x1fff'0e24   0x1bc  <Block>
-    CodeRelocateRam-1           0x1fff'0e24   0x1bc  <Init block>
+      .data            inited   0x1fff'0c20   0x168  steer.o [1]
+      .data            inited   0x1fff'0d88     0x8  VCAN_key.o [1]
+      .data            inited   0x1fff'0d90     0x4  VCAN_LED.o [1]
+      .data            inited   0x1fff'0d94    0x38  xlocale_c.o [2]
+      .data            inited   0x1fff'0dcc    0x48  xfiles.o [2]
+      .data            inited   0x1fff'0e14     0x2  VCAN_LCD_ST7735S.o [1]
+      .data            inited   0x1fff'0e16     0x2  VCAN_LCD_ST7735S.o [1]
+      .data            inited   0x1fff'0e18     0x1  SDUWH_MT9V032.o [1]
+  CodeRelocateRam               0x1fff'0e1c   0x1bc  <Block>
+    CodeRelocateRam-1           0x1fff'0e1c   0x1bc  <Init block>
+      Veneer           inited   0x1fff'0e1c     0x8  - Linker created -
       Veneer           inited   0x1fff'0e24     0x8  - Linker created -
-      Veneer           inited   0x1fff'0e2c     0x8  - Linker created -
-      .textrw          inited   0x1fff'0e34   0x164  MK60_flash.o [1]
-      .textrw          inited   0x1fff'0f98    0x48  MK60_mcg.o [1]
-                              - 0x1fff'0fe0   0xbd0
+      .textrw          inited   0x1fff'0e2c   0x164  MK60_flash.o [1]
+      .textrw          inited   0x1fff'0f90    0x48  MK60_mcg.o [1]
+                              - 0x1fff'0fd8   0xbc8
 
 "P2", part 2 of 2:                           0x76f8
-  .bss                          0x1fff'0fe0  0x76f8  <Block>
+  .bss                          0x1fff'0fd8  0x76f8  <Block>
+    .bss               zero     0x1fff'0fd8     0x4  adc.o [1]
+    .bss               zero     0x1fff'0fdc     0x4  adc.o [1]
     .bss               zero     0x1fff'0fe0     0x4  adc.o [1]
     .bss               zero     0x1fff'0fe4     0x4  adc.o [1]
     .bss               zero     0x1fff'0fe8     0x4  adc.o [1]
     .bss               zero     0x1fff'0fec     0x4  adc.o [1]
-    .bss               zero     0x1fff'0ff0     0x4  adc.o [1]
-    .bss               zero     0x1fff'0ff4     0x4  adc.o [1]
-    .bss               zero     0x1fff'0ff8     0x4  camera.o [1]
-    .bss               zero     0x1fff'0ffc     0x4  camera.o [1]
-    .bss               zero     0x1fff'1000   0x16c  camera.o [1]
-    .bss               zero     0x1fff'116c   0x16c  camera.o [1]
-    .bss               zero     0x1fff'12d8   0x16c  camera.o [1]
+    .bss               zero     0x1fff'0ff0     0x4  camera.o [1]
+    .bss               zero     0x1fff'0ff4     0x4  camera.o [1]
+    .bss               zero     0x1fff'0ff8   0x16c  camera.o [1]
+    .bss               zero     0x1fff'1164   0x16c  camera.o [1]
+    .bss               zero     0x1fff'12d0   0x16c  camera.o [1]
+    .bss               zero     0x1fff'143c     0x4  camera.o [1]
+    .bss               zero     0x1fff'1440     0x4  camera.o [1]
     .bss               zero     0x1fff'1444     0x4  camera.o [1]
     .bss               zero     0x1fff'1448     0x4  camera.o [1]
     .bss               zero     0x1fff'144c     0x4  camera.o [1]
@@ -316,61 +318,59 @@ initialize manually with packing = copy, complex ranges { section .textrw };
     .bss               zero     0x1fff'1470     0x4  camera.o [1]
     .bss               zero     0x1fff'1474     0x4  camera.o [1]
     .bss               zero     0x1fff'1478     0x4  camera.o [1]
-    .bss               zero     0x1fff'147c     0x4  camera.o [1]
-    .bss               zero     0x1fff'1480     0x4  camera.o [1]
-    .bss               zero     0x1fff'1484    0x5c  LCD.o [1]
-    .bss               zero     0x1fff'14e0     0x4  LCD.o [1]
-    .bss               zero     0x1fff'14e4  0x2580  main.o [1]
-    .bss               zero     0x1fff'3a64  0x2580  main.o [1]
-    .bss               zero     0x1fff'5fe4     0xc  MK60_ftm.o [1]
-    .bss               zero     0x1fff'5ff0     0x4  motor.o [1]
-    .bss               zero     0x1fff'5ff4     0x4  motor.o [1]
-    .bss               zero     0x1fff'5ff8  0x2580  SDUWH_MT9V032.o [1]
-    .bss               zero     0x1fff'8578     0x4  SDUWH_MT9V032.o [1]
-    .bss               zero     0x1fff'857c     0x4  SDUWH_MT9V032.o [1]
+    .bss               zero     0x1fff'147c    0x5c  LCD.o [1]
+    .bss               zero     0x1fff'14d8     0x4  LCD.o [1]
+    .bss               zero     0x1fff'14dc  0x2580  main.o [1]
+    .bss               zero     0x1fff'3a5c  0x2580  main.o [1]
+    .bss               zero     0x1fff'5fdc     0xc  MK60_ftm.o [1]
+    .bss               zero     0x1fff'5fe8     0x4  motor.o [1]
+    .bss               zero     0x1fff'5fec     0x4  motor.o [1]
+    .bss               zero     0x1fff'5ff0  0x2580  SDUWH_MT9V032.o [1]
+    .bss               zero     0x1fff'8570     0x4  SDUWH_MT9V032.o [1]
+    .bss               zero     0x1fff'8574     0x4  SDUWH_MT9V032.o [1]
+    .bss               zero     0x1fff'8578     0x4  steer.o [1]
+    .bss               zero     0x1fff'857c     0x4  steer.o [1]
     .bss               zero     0x1fff'8580     0x4  steer.o [1]
     .bss               zero     0x1fff'8584     0x4  steer.o [1]
     .bss               zero     0x1fff'8588     0x4  steer.o [1]
     .bss               zero     0x1fff'858c     0x4  steer.o [1]
     .bss               zero     0x1fff'8590     0x4  steer.o [1]
     .bss               zero     0x1fff'8594     0x4  steer.o [1]
-    .bss               zero     0x1fff'8598     0x4  steer.o [1]
-    .bss               zero     0x1fff'859c     0x4  steer.o [1]
+    .bss               zero     0x1fff'8598     0x4  system_MK60DZ10.o [1]
+    .bss               zero     0x1fff'859c     0x4  system_MK60DZ10.o [1]
     .bss               zero     0x1fff'85a0     0x4  system_MK60DZ10.o [1]
-    .bss               zero     0x1fff'85a4     0x4  system_MK60DZ10.o [1]
-    .bss               zero     0x1fff'85a8     0x4  system_MK60DZ10.o [1]
+    .bss               zero     0x1fff'85a4     0x8  Track.o [1]
     .bss               zero     0x1fff'85ac     0x8  Track.o [1]
     .bss               zero     0x1fff'85b4     0x8  Track.o [1]
-    .bss               zero     0x1fff'85bc     0x8  Track.o [1]
-    .bss               zero     0x1fff'85c4     0x4  Track.o [1]
-    .bss               zero     0x1fff'85c8     0x8  Track.o [1]
-    .bss               zero     0x1fff'85d0    0x50  Track.o [1]
-    .bss               zero     0x1fff'8620    0x50  Track.o [1]
-    .bss               zero     0x1fff'8670     0x4  xfail_s.o [2]
-    .bss               zero     0x1fff'8674    0x50  xfiles.o [2]
-    .bss               zero     0x1fff'86c4     0x2  camera.o [1]
-    .bss               zero     0x1fff'86c6     0x2  camera.o [1]
-    .bss               zero     0x1fff'86c8     0x2  SDUWH_MT9V032.o [1]
-    .bss               zero     0x1fff'86ca     0x1  camera.o [1]
-    .bss               zero     0x1fff'86cb     0x1  camera.o [1]
-    .bss               zero     0x1fff'86cc     0x1  camera.o [1]
-    .bss               zero     0x1fff'86cd     0x1  main.o [1]
-    .bss               zero     0x1fff'86ce     0x1  SDUWH_MT9V032.o [1]
-    .bss               zero     0x1fff'86cf     0x1  SDUWH_MT9V032.o [1]
-    .bss               zero     0x1fff'86d0     0x1  Track.o [1]
-    .bss               zero     0x1fff'86d1     0x1  Track.o [1]
-    .bss               zero     0x1fff'86d2     0x1  Track.o [1]
-    .bss               zero     0x1fff'86d3     0x1  Track.o [1]
-    .bss               zero     0x1fff'86d4     0x1  Track.o [1]
-    .bss               zero     0x1fff'86d5     0x1  VCAN_LCD_ST7735S.o [1]
-                              - 0x1fff'86d8  0x76f8
+    .bss               zero     0x1fff'85bc     0x4  Track.o [1]
+    .bss               zero     0x1fff'85c0     0x8  Track.o [1]
+    .bss               zero     0x1fff'85c8    0x50  Track.o [1]
+    .bss               zero     0x1fff'8618    0x50  Track.o [1]
+    .bss               zero     0x1fff'8668     0x4  xfail_s.o [2]
+    .bss               zero     0x1fff'866c    0x50  xfiles.o [2]
+    .bss               zero     0x1fff'86bc     0x2  camera.o [1]
+    .bss               zero     0x1fff'86be     0x2  camera.o [1]
+    .bss               zero     0x1fff'86c0     0x2  SDUWH_MT9V032.o [1]
+    .bss               zero     0x1fff'86c2     0x1  camera.o [1]
+    .bss               zero     0x1fff'86c3     0x1  camera.o [1]
+    .bss               zero     0x1fff'86c4     0x1  camera.o [1]
+    .bss               zero     0x1fff'86c5     0x1  main.o [1]
+    .bss               zero     0x1fff'86c6     0x1  SDUWH_MT9V032.o [1]
+    .bss               zero     0x1fff'86c7     0x1  SDUWH_MT9V032.o [1]
+    .bss               zero     0x1fff'86c8     0x1  Track.o [1]
+    .bss               zero     0x1fff'86c9     0x1  Track.o [1]
+    .bss               zero     0x1fff'86ca     0x1  Track.o [1]
+    .bss               zero     0x1fff'86cb     0x1  Track.o [1]
+    .bss               zero     0x1fff'86cc     0x1  Track.o [1]
+    .bss               zero     0x1fff'86cd     0x1  VCAN_LCD_ST7735S.o [1]
+                              - 0x1fff'86d0  0x76f8
 
 Unused ranges:
 
          From           To      Size
          ----           --      ----
-       0x8d40     0x8'0000  0x7'72c1
-  0x1fff'86d8  0x2001'0000  0x1'7929
+       0x8e28     0x8'0000  0x7'71d9
+  0x1fff'86d0  0x2001'0000  0x1'7931
 
 
 *******************************************************************************
@@ -381,7 +381,7 @@ Unused ranges:
           -------      ----
 Zero (__iar_zero_init3)
     1 destination range, total size 0x76f6:
-          0x1fff'0fe0  0x76f6
+          0x1fff'0fd8  0x76f6
 
 
 
@@ -416,19 +416,19 @@ E:\SMART CAR\smart-car-project\Prj\IAR\DZ10_Debug\Obj: [1]
     VCAN_LCD_ST7735S.o     4 680                64        5
     VCAN_LED.o               128                 4        4
     VCAN_key.o               164                 8        8
-    adc.o                    132                         24
+    adc.o                    248                         24
     all init.o               100
     camera.o               4 920                 4    1 175
     controlplan.o                                4        4
     main.o                    76                     19 201
     misc.o                    80                48
-    motor.o                   44                          8
+    motor.o                  180                          8
     startup_MK60DZ10.o         8
-    steer.o                  760               392      424
+    steer.o                  652               384      416
     system_MK60DZ10.o        280                         12
     vectors.o                                1 040
     -------------------------------------------------------
-    Total:                22 412      428    6 141   32 819
+    Total:                22 556      428    6 133   32 811
 
 dl7M_tlf.a: [2]
     abort.o                    6
@@ -450,6 +450,7 @@ m7M_tl.a: [3]
     DblMul.o                 418
     DblSub.o                 226
     DblToFlt.o               104
+    DblToS32.o                58
     DblToU32.o                40
     FltAdd.o                 226
     FltCmpEq.o                28
@@ -461,12 +462,13 @@ m7M_tl.a: [3]
     FltToDbl.o                72
     FltToS32.o                42
     FltToU32.o                34
+    S32ToDbl.o                34
     S32ToFlt.o                36
     U32ToDbl.o                26
     U32ToFlt.o                28
     frexp.o                  112
     -------------------------------------------------------
-    Total:                 3 020
+    Total:                 3 112
 
 rt7M_tl.a: [4]
     ABImemclr4.o               6
@@ -486,10 +488,10 @@ rt7M_tl.a: [4]
     -------------------------------------------------------
     Total:                 1 110
 
-    Gaps                      30                 2
+    Gaps                      34                 2
     Linker created            24       16       35
 -----------------------------------------------------------
-    Grand Total:          29 850      444    6 310   33 031
+    Grand Total:          30 090      444    6 302   33 023
 
 
 *******************************************************************************
@@ -498,143 +500,141 @@ rt7M_tl.a: [4]
 
 Entry                       Address    Size  Type      Object
 -----                       -------    ----  ----      ------
-.bss$$Base              0x1fff'0fe0           --   Gb  - Linker created -
-.bss$$Limit             0x1fff'86d8           --   Gb  - Linker created -
+.bss$$Base              0x1fff'0fd8           --   Gb  - Linker created -
+.bss$$Limit             0x1fff'86d0           --   Gb  - Linker created -
 .data$$Base             0x1fff'0410           --   Gb  - Linker created -
-.data$$Limit            0x1fff'0e24           --   Gb  - Linker created -
+.data$$Limit            0x1fff'0e1c           --   Gb  - Linker created -
 .data_init$$Base             0x55c8           --   Gb  - Linker created -
-.data_init$$Limit            0x5fdc           --   Gb  - Linker created -
-.iar.init_table$$Base        0x8c5c           --   Gb  - Linker created -
-.iar.init_table$$Limit       0x8c6c           --   Gb  - Linker created -
-?main                        0x8c8d          Code  Gb  cmain.o [4]
+.data_init$$Limit            0x5fd4           --   Gb  - Linker created -
+.iar.init_table$$Base        0x8d44           --   Gb  - Linker created -
+.iar.init_table$$Limit       0x8d54           --   Gb  - Linker created -
+?main                        0x8d75          Code  Gb  cmain.o [4]
 ADCN                    0x1fff'0420     0x8  Data  Gb  MK60_adc.o [1]
-ADL_V                   0x1fff'0fe4     0x4  Data  Gb  adc.o [1]
-ADR_V                   0x1fff'0fe8     0x4  Data  Gb  adc.o [1]
-ASSERT_FAILED_STR            0x8c38    0x24  Data  Gb  MK60_conf.o [1]
-AllLose                 0x1fff'1454     0x4  Data  Gb  camera.o [1]
-AvaliableLines          0x1fff'1448     0x4  Data  Gb  camera.o [1]
+ADL_V                   0x1fff'0fdc     0x4  Data  Gb  adc.o [1]
+ADR_V                   0x1fff'0fe0     0x4  Data  Gb  adc.o [1]
+ASSERT_FAILED_STR            0x8d20    0x24  Data  Gb  MK60_conf.o [1]
+AdcControl                   0x8377    0x5c  Code  Gb  adc.o [1]
+AllLose                 0x1fff'144c     0x4  Data  Gb  camera.o [1]
+AvaliableLines          0x1fff'1440     0x4  Data  Gb  camera.o [1]
 BasicD                  0x1fff'0c1c     0x4  Data  Gb  steer.o [1]
 BasicP                  0x1fff'0c18     0x4  Data  Gb  steer.o [1]
 Binarization                  0x445    0x62  Code  Gb  camera.o [1]
-BlackEndL               0x1fff'146c     0x4  Data  Gb  camera.o [1]
-BlackEndLL              0x1fff'1464     0x4  Data  Gb  camera.o [1]
-BlackEndM               0x1fff'1470     0x4  Data  Gb  camera.o [1]
-BlackEndML              0x1fff'1460     0x4  Data  Gb  camera.o [1]
-BlackEndMR              0x1fff'145c     0x4  Data  Gb  camera.o [1]
-BlackEndMax             0x1fff'147c     0x4  Data  Gb  camera.o [1]
-BlackEndMaxMax          0x1fff'1478     0x4  Data  Gb  camera.o [1]
-BlackEndR               0x1fff'1474     0x4  Data  Gb  camera.o [1]
-BlackEndRR              0x1fff'1468     0x4  Data  Gb  camera.o [1]
-CalculateError               0x7d79    0xe0  Code  Gb  steer.o [1]
-CenterMeanValue         0x1fff'8590     0x4  Data  Gb  steer.o [1]
-CenterSum               0x1fff'8594     0x4  Data  Gb  steer.o [1]
-CodeRelocate$$Base           0x8554           --   Gb  - Linker created -
-CodeRelocate$$Limit          0x8710           --   Gb  - Linker created -
-CodeRelocateRam$$Base   0x1fff'0e24           --   Gb  - Linker created -
-CodeRelocateRam$$Limit  0x1fff'0fe0           --   Gb  - Linker created -
-Cross                   0x1fff'85bc     0x8  Data  Gb  Track.o [1]
-CrossConduct                 0x6543   0x10e  Code  Gb  Track.o [1]
-CrossRecognition             0x6249   0x2fa  Code  Gb  Track.o [1]
+BlackEndL               0x1fff'1464     0x4  Data  Gb  camera.o [1]
+BlackEndLL              0x1fff'145c     0x4  Data  Gb  camera.o [1]
+BlackEndM               0x1fff'1468     0x4  Data  Gb  camera.o [1]
+BlackEndML              0x1fff'1458     0x4  Data  Gb  camera.o [1]
+BlackEndMR              0x1fff'1454     0x4  Data  Gb  camera.o [1]
+BlackEndMax             0x1fff'1474     0x4  Data  Gb  camera.o [1]
+BlackEndMaxMax          0x1fff'1470     0x4  Data  Gb  camera.o [1]
+BlackEndR               0x1fff'146c     0x4  Data  Gb  camera.o [1]
+BlackEndRR              0x1fff'1460     0x4  Data  Gb  camera.o [1]
+CalculateError               0x8025    0xe0  Code  Gb  steer.o [1]
+CenterMeanValue         0x1fff'8588     0x4  Data  Gb  steer.o [1]
+CenterSum               0x1fff'858c     0x4  Data  Gb  steer.o [1]
+CodeRelocate$$Base           0x8604           --   Gb  - Linker created -
+CodeRelocate$$Limit          0x87c0           --   Gb  - Linker created -
+CodeRelocateRam$$Base   0x1fff'0e1c           --   Gb  - Linker created -
+CodeRelocateRam$$Limit  0x1fff'0fd8           --   Gb  - Linker created -
+Cross                   0x1fff'85b4     0x8  Data  Gb  Track.o [1]
+CrossConduct                 0x653b   0x10e  Code  Gb  Track.o [1]
+CrossRecognition             0x6241   0x2fa  Code  Gb  Track.o [1]
 DMA0_IRQHandler               0x43d     0x8  Code  Gb  camera.o [1]
-DropRow                 0x1fff'1480     0x4  Data  Gb  camera.o [1]
-Error                   0x1fff'8584     0x4  Data  Gb  steer.o [1]
+DropRow                 0x1fff'1478     0x4  Data  Gb  camera.o [1]
+Error                   0x1fff'857c     0x4  Data  Gb  steer.o [1]
 FTMN                    0x1fff'0b30     0xc  Data  Gb  MK60_ftm.o [1]
-FTM_port_mux                 0x79cd   0x114  Code  Lc  MK60_ftm.o [1]
-FindInflectionPointL         0x6111   0x138  Code  Gb  Track.o [1]
-FindInflectionPointR         0x5fdd   0x134  Code  Gb  Track.o [1]
+FTM_port_mux                 0x79c5   0x114  Code  Lc  MK60_ftm.o [1]
+FindInflectionPointL         0x6109   0x138  Code  Gb  Track.o [1]
+FindInflectionPointR         0x5fd5   0x134  Code  Gb  Track.o [1]
 GET_CFG                 0x1fff'0be8    0x20  Data  Gb  SDUWH_MT9V032.o [1]
 GPIOX                   0x1fff'0b3c    0x14  Data  Gb  MK60_gpio.o [1]
 GetEndParam                   0x541   0x3e8  Code  Gb  camera.o [1]
-InflectionPointL        0x1fff'85ac     0x8  Data  Gb  Track.o [1]
-InflectionPointR        0x1fff'85b4     0x8  Data  Gb  Track.o [1]
+InflectionPointL        0x1fff'85a4     0x8  Data  Gb  Track.o [1]
+InflectionPointR        0x1fff'85ac     0x8  Data  Gb  Track.o [1]
 J                       0x1fff'0c10     0x4  Data  Gb  steer.o [1]
 JD                      0x1fff'0c14     0x4  Data  Gb  steer.o [1]
 KD                      0x1fff'0c0c     0x4  Data  Gb  steer.o [1]
-KD_adc                  0x1fff'0c24     0x4  Data  Gb  steer.o [1]
-KEY_PTxn                0x1fff'0d90     0x8  Data  Gb  VCAN_key.o [1]
+KEY_PTxn                0x1fff'0d88     0x8  Data  Gb  VCAN_key.o [1]
 KP                      0x1fff'0c08     0x4  Data  Gb  steer.o [1]
-KP_adc                  0x1fff'0c20     0x4  Data  Gb  steer.o [1]
-LCD_Binarization             0x83a5    0x96  Code  Gb  LCD.o [1]
-LCD_Display                  0x843b    0x94  Code  Gb  LCD.o [1]
-LCD_Img_gray_Z               0x6eab   0x13c  Code  Gb  VCAN_LCD.o [1]
-LCD_Init                     0x84cf    0x46  Code  Gb  LCD.o [1]
+LCD_Binarization             0x8455    0x96  Code  Gb  LCD.o [1]
+LCD_Display                  0x84eb    0x94  Code  Gb  LCD.o [1]
+LCD_Img_gray_Z               0x6ea3   0x13c  Code  Gb  VCAN_LCD.o [1]
+LCD_Init                     0x857f    0x46  Code  Gb  LCD.o [1]
 LCD_ST7735S_dir              0x4e01   0x5fe  Code  Gb  VCAN_LCD_ST7735S.o [1]
 LCD_ST7735S_init             0x4381   0xa68  Code  Gb  VCAN_LCD_ST7735S.o [1]
 LCD_ST7735S_ptlon            0x53ff   0x19a  Code  Gb  VCAN_LCD_ST7735S.o [1]
-LCD_char                     0x6b8d   0x1b4  Code  Gb  VCAN_LCD.o [1]
-LCD_clear                    0x6ab7    0x28  Code  Gb  VCAN_LCD.o [1]
-LCD_init                     0x69b9    0x2a  Code  Gb  VCAN_LCD.o [1]
-LCD_num_BC                   0x6da9   0x102  Code  Gb  VCAN_LCD.o [1]
-LCD_point                    0x6adf    0xae  Code  Gb  VCAN_LCD.o [1]
-LCD_rectangle                0x69e3    0xd4  Code  Gb  VCAN_LCD.o [1]
-LCD_str                      0x6d41    0x68  Code  Gb  VCAN_LCD.o [1]
-LED_PTxn                0x1fff'0d98     0x4  Data  Gb  VCAN_LED.o [1]
-LastError               0x1fff'8588     0x4  Data  Gb  steer.o [1]
-LastLine                0x1fff'1444     0x4  Data  Gb  camera.o [1]
-LastSteerSwm            0x1fff'859c     0x4  Data  Gb  steer.o [1]
-LeftEdge                0x1fff'116c   0x16c  Data  Gb  camera.o [1]
-LeftLose                0x1fff'144c     0x4  Data  Gb  camera.o [1]
-LeftScanCol             0x1fff'85d0    0x50  Data  Gb  Track.o [1]
+LCD_char                     0x6b85   0x1b4  Code  Gb  VCAN_LCD.o [1]
+LCD_clear                    0x6aaf    0x28  Code  Gb  VCAN_LCD.o [1]
+LCD_init                     0x69b1    0x2a  Code  Gb  VCAN_LCD.o [1]
+LCD_num_BC                   0x6da1   0x102  Code  Gb  VCAN_LCD.o [1]
+LCD_point                    0x6ad7    0xae  Code  Gb  VCAN_LCD.o [1]
+LCD_rectangle                0x69db    0xd4  Code  Gb  VCAN_LCD.o [1]
+LCD_str                      0x6d39    0x68  Code  Gb  VCAN_LCD.o [1]
+LED_PTxn                0x1fff'0d90     0x4  Data  Gb  VCAN_LED.o [1]
+LastError               0x1fff'8580     0x4  Data  Gb  steer.o [1]
+LastLine                0x1fff'143c     0x4  Data  Gb  camera.o [1]
+LastSteerSwm            0x1fff'8594     0x4  Data  Gb  steer.o [1]
+LeftEdge                0x1fff'1164   0x16c  Data  Gb  camera.o [1]
+LeftLose                0x1fff'1444     0x4  Data  Gb  camera.o [1]
+LeftScanCol             0x1fff'85c8    0x50  Data  Gb  Track.o [1]
 LoadInt                      0x32d9    0x7a  Code  Lc  xprintflarge_nomb.o [2]
-Loop                    0x1fff'85c4     0x4  Data  Gb  Track.o [1]
-LoopExit                0x1fff'85c8     0x8  Data  Gb  Track.o [1]
-LoopRecognition              0x6651   0x2fc  Code  Gb  Track.o [1]
+Loop                    0x1fff'85bc     0x4  Data  Gb  Track.o [1]
+LoopExit                0x1fff'85c0     0x8  Data  Gb  Track.o [1]
+LoopRecognition              0x6649   0x2fc  Code  Gb  Track.o [1]
 LoopRecognition::StrightIntoLoopNum
-                        0x1fff'86d4     0x1  Data  Lc  Track.o [1]
+                        0x1fff'86cc     0x1  Data  Lc  Track.o [1]
 MT9V032_Binarization         0x1a71    0x28  Code  Gb  SDUWH_MT9V032.o [1]
 MT9V032_CFG             0x1fff'0bc4    0x24  Data  Gb  SDUWH_MT9V032.o [1]
 MT9V032_camera_init          0x18ed    0xf4  Code  Gb  SDUWH_MT9V032.o [1]
 MT9V032_dma                  0x1a05    0x12  Code  Gb  SDUWH_MT9V032.o [1]
 MT9V032_get_img              0x1815    0x24  Code  Gb  SDUWH_MT9V032.o [1]
-MT9V032_imgbuff         0x1fff'8578     0x4  Data  Gb  SDUWH_MT9V032.o [1]
+MT9V032_imgbuff         0x1fff'8570     0x4  Data  Gb  SDUWH_MT9V032.o [1]
 MT9V032_init                 0x1805    0x10  Code  Gb  SDUWH_MT9V032.o [1]
 MT9V032_vsync                0x19e1    0x24  Code  Gb  SDUWH_MT9V032.o [1]
 MidPri                  0x1fff'0410     0x4  Data  Gb  camera.o [1]
-MotorControlOpenLoop         0x899d    0x24  Code  Gb  motor.o [1]
+MotorControlOpenLoop         0x89c9    0x9c  Code  Gb  motor.o [1]
 NVIC_DisableIRQ              0x1769    0x18  Code  Lc  SDUWH_MT9V032.o [1]
 NVIC_EnableIRQ               0x1ea9    0x18  Code  Lc  MK60_uart.o [1]
 NVIC_EnableIRQ               0x1751    0x18  Code  Lc  SDUWH_MT9V032.o [1]
 NVIC_SetPriority             0x1781    0x30  Code  Lc  SDUWH_MT9V032.o [1]
 NVIC_SystemReset             0x2c59    0x18  Code  Lc  MK60_conf.o [1]
-NormalControl                0x7ea1    0x78  Code  Gb  steer.o [1]
-NormalControl_adc            0x7f19    0x5c  Code  Gb  steer.o [1]
+NormalControl                0x814d    0x78  Code  Gb  steer.o [1]
 NormalSearchingMidLine        0x929   0x30e  Code  Gb  camera.o [1]
-OpendLoopPwmB           0x1fff'5ff0     0x4  Data  Gb  motor.o [1]
-OpendLoopPwmF           0x1fff'5ff4     0x4  Data  Gb  motor.o [1]
+OpendLoopPwmB           0x1fff'5fe8     0x4  Data  Gb  motor.o [1]
+OpendLoopPwmF           0x1fff'5fec     0x4  Data  Gb  motor.o [1]
 PORTA_IRQHandler              0x419    0x24  Code  Gb  camera.o [1]
 PORTX                   0x1fff'0b98    0x14  Data  Gb  MK60_port.o [1]
-Region$$Table$$Base          0x8c5c           --   Gb  - Linker created -
-Region$$Table$$Limit         0x8c6c           --   Gb  - Linker created -
+Region$$Table$$Base          0x8d44           --   Gb  - Linker created -
+Region$$Table$$Limit         0x8d54           --   Gb  - Linker created -
 Reset_Handler                 0x411          Code  Gb  startup_MK60DZ10.o [1]
-RightEdge               0x1fff'1000   0x16c  Data  Gb  camera.o [1]
-RightLose               0x1fff'1450     0x4  Data  Gb  camera.o [1]
-RightScanCol            0x1fff'8620    0x50  Data  Gb  Track.o [1]
+RightEdge               0x1fff'0ff8   0x16c  Data  Gb  camera.o [1]
+RightLose               0x1fff'1448     0x4  Data  Gb  camera.o [1]
+RightScanCol            0x1fff'8618    0x50  Data  Gb  Track.o [1]
 ST7735S_get_h                0x5599     0x6  Code  Gb  VCAN_LCD_ST7735S.o [1]
 ST7735S_get_w                0x559f     0x6  Code  Gb  VCAN_LCD_ST7735S.o [1]
 SearchCenterline              0x4e1    0x60  Code  Gb  camera.o [1]
 SearchMidLineNext             0xca5   0xa6a  Code  Gb  camera.o [1]
 SetInitVal                    0x4a7    0x3a  Code  Gb  camera.o [1]
-StartingLineFlag        0x1fff'86cd     0x1  Data  Gb  main.o [1]
-SteerControl                 0x7e59    0x48  Code  Gb  steer.o [1]
-SteerPwm                0x1fff'8598     0x4  Data  Gb  steer.o [1]
-SteerPwmAdd             0x1fff'8580     0x4  Data  Gb  steer.o [1]
-StrightIntoCrossL       0x1fff'86d0     0x1  Data  Gb  Track.o [1]
-StrightIntoCrossLR      0x1fff'86d2     0x1  Data  Gb  Track.o [1]
-StrightIntoCrossNotLR   0x1fff'86d3     0x1  Data  Gb  Track.o [1]
-StrightIntoCrossR       0x1fff'86d1     0x1  Data  Gb  Track.o [1]
-TurnBack                     0x7f75    0x6c  Code  Gb  steer.o [1]
+StartingLineFlag        0x1fff'86c5     0x1  Data  Gb  main.o [1]
+SteerControl                 0x8105    0x48  Code  Gb  steer.o [1]
+SteerPwm                0x1fff'8590     0x4  Data  Gb  steer.o [1]
+SteerPwmAdd             0x1fff'8578     0x4  Data  Gb  steer.o [1]
+StrightIntoCrossL       0x1fff'86c8     0x1  Data  Gb  Track.o [1]
+StrightIntoCrossLR      0x1fff'86ca     0x1  Data  Gb  Track.o [1]
+StrightIntoCrossNotLR   0x1fff'86cb     0x1  Data  Gb  Track.o [1]
+StrightIntoCrossR       0x1fff'86c9     0x1  Data  Gb  Track.o [1]
+TurnBack                     0x81c5    0x6c  Code  Gb  steer.o [1]
 UARTN                   0x1fff'0bac    0x18  Data  Gb  MK60_uart.o [1]
-Weight                  0x1fff'0c28   0x168  Data  Gb  steer.o [1]
-WeightSum               0x1fff'858c     0x4  Data  Gb  steer.o [1]
-WhiteNum                0x1fff'86cc     0x1  Data  Gb  camera.o [1]
-WhiteStart              0x1fff'1458     0x4  Data  Gb  camera.o [1]
-Width                   0x1fff'12d8   0x16c  Data  Gb  camera.o [1]
+Weight                  0x1fff'0c20   0x168  Data  Gb  steer.o [1]
+WeightSum               0x1fff'8584     0x4  Data  Gb  steer.o [1]
+WhiteNum                0x1fff'86c4     0x1  Data  Gb  camera.o [1]
+WhiteStart              0x1fff'1450     0x4  Data  Gb  camera.o [1]
+Width                   0x1fff'12d0   0x16c  Data  Gb  camera.o [1]
 _GenldLargeNoMb              0x3a69   0x24c  Code  Lc  xprintflarge_nomb.o [2]
 _LdtobLargeNoMb              0x380f   0x232  Code  Lc  xprintflarge_nomb.o [2]
 _LitobLargeNoMb              0x36bf   0x10a  Code  Lc  xprintflarge_nomb.o [2]
-_Locale_lconv           0x1fff'0d9c    0x38  Data  Lc  xlocale_c.o [2]
+_Locale_lconv           0x1fff'0d94    0x38  Data  Lc  xlocale_c.o [2]
 _PrintfLargeNoMb             0x3135   0x19e  Code  Gb  xprintflarge_nomb.o [2]
-_Prout                       0x8cbf    0x16  Code  Gb  xprout.o [2]
+_Prout                       0x8da7    0x16  Code  Gb  xprout.o [2]
 _PutcharsLargeNoMb           0x3cb5    0x2e  Code  Lc  xprintflarge_nomb.o [2]
 _PutfldLargeNoMb             0x3353   0x260  Code  Lc  xprintflarge_nomb.o [2]
 _PuttxtLargeNoMb             0x35b3   0x10c  Code  Lc  xprintflarge_nomb.o [2]
@@ -642,22 +642,24 @@ __BOOT_STACK_ADDRESS {Abs}
                         0x2000'fff8          Data  Gb  <internal module>
 __VECTOR_RAM {Abs}      0x1fff'0000          Data  Gb  <internal module>
 __VECTOR_TABLE {Abs}            0x0          Data  Gb  <internal module>
-__aeabi_cfcmpeq              0x808d          Code  Gb  FltCmpEq.o [3]
+__aeabi_cfcmpeq              0x82cd          Code  Gb  FltCmpEq.o [3]
 __aeabi_cfcmple              0x2619          Code  Gb  FltCmpLe.o [3]
-__aeabi_cfrcmple             0x80a9          Code  Gb  FltCmpGe.o [3]
+__aeabi_cfrcmple             0x82e9          Code  Gb  FltCmpGe.o [3]
 __aeabi_d2f                  0x2be1          Code  Gb  DblToFlt.o [3]
+__aeabi_d2iz                 0x8aa1          Code  Gb  DblToS32.o [3]
 __aeabi_d2uiz                0x431d          Code  Gb  DblToU32.o [3]
 __aeabi_dadd                 0x2a65          Code  Gb  DblAdd.o [3]
 __aeabi_ddiv                 0x40d5          Code  Gb  DblDiv.o [3]
 __aeabi_dmul                 0x28c1          Code  Gb  DblMul.o [3]
 __aeabi_dsub                 0x2f05          Code  Gb  DblSub.o [3]
 __aeabi_f2d                  0x2879          Code  Gb  FltToDbl.o [3]
-__aeabi_f2iz                 0x89c9          Code  Gb  FltToS32.o [3]
-__aeabi_f2uiz                0x80cd          Code  Gb  FltToU32.o [3]
+__aeabi_f2iz                 0x8429          Code  Gb  FltToS32.o [3]
+__aeabi_f2uiz                0x8405          Code  Gb  FltToU32.o [3]
 __aeabi_fadd                 0x263d          Code  Gb  FltAdd.o [3]
 __aeabi_fdiv                 0x251d          Code  Gb  FltDiv.o [3]
 __aeabi_fmul                 0x2721          Code  Gb  FltMul.o [3]
 __aeabi_fsub                 0x27f9          Code  Gb  FltSub.o [3]
+__aeabi_i2d                  0x8a7d          Code  Gb  S32ToDbl.o [3]
 __aeabi_i2f                  0x1da5          Code  Gb  S32ToFlt.o [3]
 __aeabi_ldiv0                0x4371          Code  Gb  I64DivZer.o [4]
 __aeabi_memclr4              0x2515          Code  Gb  ABImemclr4.o [4]
@@ -665,19 +667,19 @@ __aeabi_memcpy               0x1dc9          Code  Gb  ABImemcpy.o [4]
 __aeabi_memcpy4              0x1de9          Code  Gb  ABImemcpy.o [4]
 __aeabi_memcpy8              0x1de9          Code  Gb  ABImemcpy.o [4]
 __aeabi_ui2d                 0x4345          Code  Gb  U32ToDbl.o [3]
-__aeabi_ui2f                 0x8071          Code  Gb  U32ToFlt.o [3]
+__aeabi_ui2f                 0x82b1          Code  Gb  U32ToFlt.o [3]
 __aeabi_uldivmod             0x3e35          Code  Gb  I64DivMod.o [4]
-__cmain                      0x8c8d          Code  Gb  cmain.o [4]
+__cmain                      0x8d75          Code  Gb  cmain.o [4]
 __code_start__ {Abs}          0x410          Data  Gb  <internal module>
 __exit                       0x4375          Code  Gb  XXexit.o [4]
 __iar_Fail_s                 0x3d65    0x1c  Code  Gb  xfail_s.o [2]
 __iar_Memchr                 0x3ddd          Code  Gb  memchr.o [4]
 __iar_Memset4_word           0x2ed1          Code  Gb  ABImemset48.o [4]
 __iar_Memset8_word           0x2ed1          Code  Gb  ABImemset48.o [4]
-__iar_Stdout            0x1fff'0dd4    0x48  Data  Gb  xfiles.o [2]
+__iar_Stdout            0x1fff'0dcc    0x48  Data  Gb  xfiles.o [2]
 __iar_Strchr                 0x3d4d          Code  Gb  strchr.o [4]
 __iar_dadd                   0x2f15          Code  Gb  DblSub.o [3]
-__iar_data_init3             0x8c11    0x28  Code  Gb  data_init.o [4]
+__iar_data_init3             0x8cf9    0x28  Code  Gb  data_init.o [4]
 __iar_dsub                   0x2a75          Code  Gb  DblAdd.o [3]
 __iar_dsubStart              0x2a87          Code  Gb  DblAdd.o [3]
 __iar_fadd                   0x2805          Code  Gb  FltSub.o [3]
@@ -686,111 +688,111 @@ __iar_frexp64                0x4065          Code  Gb  frexp.o [3]
 __iar_frexpl                 0x4071          Code  Gb  frexp.o [3]
 __iar_fsub                   0x2649          Code  Gb  FltAdd.o [3]
 __iar_fsubStart              0x2659          Code  Gb  FltAdd.o [3]
-__iar_program_start          0x8d15          Code  Gb  cstartup_M.o [4]
+__iar_program_start          0x8dfd          Code  Gb  cstartup_M.o [4]
 __iar_zero_init3             0x1e6f    0x3a  Code  Gb  zero_init3.o [4]
-__low_level_init             0x8cab     0x4  Code  Gb  low_level_init.o [2]
+__low_level_init             0x8d93     0x4  Code  Gb  low_level_init.o [2]
 __vector_table                  0x0   0x410  Data  Gb  vectors.o [1]
-_call_main                   0x8c99          Code  Gb  cmain.o [4]
-_exit                        0x8cb5          Code  Gb  cexit.o [4]
-_main                        0x8ca7          Code  Gb  cmain.o [4]
+_call_main                   0x8d81          Code  Gb  cmain.o [4]
+_exit                        0x8d9d          Code  Gb  cexit.o [4]
+_main                        0x8d8f          Code  Gb  cmain.o [4]
 abort                        0x4369     0x6  Code  Gb  abort.o [2]
-adc                          0x8919    0x66  Code  Gb  adc.o [1]
-adc_init                     0x80f1   0x202  Code  Gb  MK60_adc.o [1]
-adc_once                     0x82f3    0x50  Code  Gb  MK60_adc.o [1]
-adc_start                    0x8343    0x4c  Code  Lc  MK60_adc.o [1]
-all_init                     0x88b5    0x64  Code  Gb  all init.o [1]
-ascii_8x16                   0x7010   0x600  Data  Gb  VCAN_ASCII.o [1]
+adc                          0x830d    0x6a  Code  Gb  adc.o [1]
+adc_init                     0x7d71   0x202  Code  Gb  MK60_adc.o [1]
+adc_once                     0x7f73    0x50  Code  Gb  MK60_adc.o [1]
+adc_start                    0x7fc3    0x4c  Code  Lc  MK60_adc.o [1]
+all_init                     0x8965    0x64  Code  Gb  all init.o [1]
+ascii_8x16                   0x7008   0x600  Data  Gb  VCAN_ASCII.o [1]
 assert_failed                0x2c71    0x26  Code  Gb  MK60_conf.o [1]
-bus_clk_khz             0x1fff'85a8     0x4  Data  Gb  system_MK60DZ10.o [1]
-common_startup               0x876b    0x84  Code  Gb  system_MK60DZ10.o [1]
+bus_clk_khz             0x1fff'85a0     0x4  Data  Gb  system_MK60DZ10.o [1]
+common_startup               0x881b    0x84  Code  Gb  system_MK60DZ10.o [1]
 controlplan             0x1fff'0414     0x4  Data  Gb  controlplan.o [1]
-core_clk_khz            0x1fff'85a0     0x4  Data  Gb  system_MK60DZ10.o [1]
-core_clk_mhz            0x1fff'85a4     0x4  Data  Gb  system_MK60DZ10.o [1]
+core_clk_khz            0x1fff'8598     0x4  Data  Gb  system_MK60DZ10.o [1]
+core_clk_mhz            0x1fff'859c     0x4  Data  Gb  system_MK60DZ10.o [1]
 default_isr                  0x2d47    0x32  Code  Gb  MK60_conf.o [1]
 dma_gpio_input_init          0x2215    0x5c  Code  Lc  MK60_dma.o [1]
 dma_portx2buff_init          0x2271   0x1b6  Code  Gb  MK60_dma.o [1]
 dma_repeat                   0x17b1    0x54  Code  Lc  SDUWH_MT9V032.o [1]
-exit                         0x8caf     0x4  Code  Gb  exit.o [2]
-flash_cmd               0x1fff'0e35    0x1c  Code  Gb  MK60_flash.o [1]
-flash_erase_sector      0x1fff'0e7b    0x58  Code  Gb  MK60_flash.o [1]
-flash_init              0x1fff'0e51    0x2a  Code  Gb  MK60_flash.o [1]
-flash_write             0x1fff'0ed3    0x96  Code  Gb  MK60_flash.o [1]
+exit                         0x8d97     0x4  Code  Gb  exit.o [2]
+flash_cmd               0x1fff'0e2d    0x1c  Code  Gb  MK60_flash.o [1]
+flash_erase_sector      0x1fff'0e73    0x58  Code  Gb  MK60_flash.o [1]
+flash_init              0x1fff'0e49    0x2a  Code  Gb  MK60_flash.o [1]
+flash_write             0x1fff'0ecb    0x96  Code  Gb  MK60_flash.o [1]
 fputc                        0x2c97    0x14  Code  Gb  MK60_conf.o [1]
 frexp                        0x4065          Code  Gb  frexp.o [3]
 frexpl                       0x4065          Code  Gb  frexp.o [3]
-ftm_mod                 0x1fff'5fe4     0xc  Data  Lc  MK60_ftm.o [1]
-ftm_pwm_duty                 0x7c6b    0xf6  Code  Gb  MK60_ftm.o [1]
-ftm_pwm_init                 0x7ae1   0x18a  Code  Gb  MK60_ftm.o [1]
+ftm_mod                 0x1fff'5fdc     0xc  Data  Lc  MK60_ftm.o [1]
+ftm_pwm_duty                 0x7c63    0xf6  Code  Gb  MK60_ftm.o [1]
+ftm_pwm_init                 0x7ad9   0x18a  Code  Gb  MK60_ftm.o [1]
 get_config                   0x188f    0x5e  Code  Gb  SDUWH_MT9V032.o [1]
 gpio_get                     0x2e89    0x3c  Code  Gb  MK60_gpio.o [1]
 gpio_init                    0x2d99    0xb6  Code  Gb  MK60_gpio.o [1]
 gpio_turn                    0x2e4f    0x3a  Code  Gb  MK60_gpio.o [1]
-i                       0x1fff'86c4     0x2  Data  Gb  camera.o [1]
-image                   0x1fff'5ff8  0x2580  Data  Gb  SDUWH_MT9V032.o [1]
-image_threshold         0x1fff'86ca     0x1  Data  Gb  camera.o [1]
-img                     0x1fff'14e4  0x2580  Data  Gb  main.o [1]
-imgbuff                 0x1fff'3a64  0x2580  Data  Gb  main.o [1]
+i                       0x1fff'86bc     0x2  Data  Gb  camera.o [1]
+image                   0x1fff'5ff0  0x2580  Data  Gb  SDUWH_MT9V032.o [1]
+image_threshold         0x1fff'86c2     0x1  Data  Gb  camera.o [1]
+img                     0x1fff'14dc  0x2580  Data  Gb  main.o [1]
+imgbuff                 0x1fff'3a5c  0x2580  Data  Gb  main.o [1]
 imgsize                 0x1fff'0418     0x4  Data  Gb  LCD.o [1]
-j                       0x1fff'86c6     0x2  Data  Gb  camera.o [1]
-jj                      0x1fff'86cb     0x1  Data  Gb  camera.o [1]
+j                       0x1fff'86be     0x2  Data  Gb  camera.o [1]
+jj                      0x1fff'86c3     0x1  Data  Gb  camera.o [1]
 key_check                    0x3105    0x2a  Code  Gb  VCAN_key.o [1]
 key_get                      0x30e9    0x1c  Code  Gb  VCAN_key.o [1]
 key_init                     0x3091    0x58  Code  Gb  VCAN_key.o [1]
 led_init                     0x2fe9    0x40  Code  Gb  VCAN_LED.o [1]
 led_turn                     0x3029    0x38  Code  Gb  VCAN_LED.o [1]
 localeconv                   0x4361     0x4  Code  Gb  xlocale_c.o [2]
-main                         0x8869    0x4c  Code  Gb  main.o [1]
+main                         0x8919    0x4c  Code  Gb  main.o [1]
 mcg_cfg                 0x1fff'0b50    0x44  Data  Gb  MK60_mcg.o [1]
 mcg_div                 0x1fff'0b94     0x4  Data  Gb  MK60_mcg.o [1]
-mcg_div_count                0x7619   0x300  Code  Gb  MK60_mcg.o [1]
+mcg_div_count                0x7611   0x300  Code  Gb  MK60_mcg.o [1]
 memchr                       0x3ddd          Code  Gb  memchr.o [4]
-mid_line                0x1fff'1484    0x5c  Data  Gb  LCD.o [1]
+mid_line                0x1fff'147c    0x5c  Data  Gb  LCD.o [1]
 mt9v032_cof_uart_interrupt
                              0x1839    0x56  Code  Gb  SDUWH_MT9V032.o [1]
-mt9v032_finish_flag     0x1fff'86cf     0x1  Data  Gb  SDUWH_MT9V032.o [1]
-now_MT9V032_H           0x1fff'86c8     0x2  Data  Gb  SDUWH_MT9V032.o [1]
-obuf                    0x1fff'8674    0x50  Data  Lc  xfiles.o [2]
+mt9v032_finish_flag     0x1fff'86c7     0x1  Data  Gb  SDUWH_MT9V032.o [1]
+now_MT9V032_H           0x1fff'86c0     0x2  Data  Gb  SDUWH_MT9V032.o [1]
+obuf                    0x1fff'866c    0x50  Data  Lc  xfiles.o [2]
 otsuThreshold                0x1a99   0x220  Code  Gb  SDUWH_MT9V032.o [1]
 pit_time_get                 0x1d31    0x68  Code  Gb  MK60_PIT.o [1]
 pit_time_start               0x1cb9    0x78  Code  Gb  MK60_PIT.o [1]
-pll_init                     0x7919    0x96  Code  Gb  MK60_mcg.o [1]
+pll_init                     0x7911    0x96  Code  Gb  MK60_mcg.o [1]
 port_init                    0x245d    0x48  Code  Gb  MK60_port.o [1]
 port_init_NoALT              0x24a5    0x68  Code  Gb  MK60_port.o [1]
 printf                       0x3069    0x28  Code  Gb  printf.o [2]
-putchar                      0x8cd5     0xc  Code  Gb  putchar.o [2]
-receive                 0x1fff'857c     0x4  Data  Gb  SDUWH_MT9V032.o [1]
-receive_num             0x1fff'86ce     0x1  Data  Gb  SDUWH_MT9V032.o [1]
+putchar                      0x8dbd     0xc  Code  Gb  putchar.o [2]
+receive                 0x1fff'8574     0x4  Data  Gb  SDUWH_MT9V032.o [1]
+receive_num             0x1fff'86c6     0x1  Data  Gb  SDUWH_MT9V032.o [1]
 scale                        0x37c9    0x46  Code  Lc  xprintflarge_nomb.o [2]
-sec_hand                0x1fff'8670     0x4  Data  Lc  xfail_s.o [2]
-set_sys_dividers        0x1fff'0f99    0x48  Code  Gb  MK60_mcg.o [1]
+sec_hand                0x1fff'8668     0x4  Data  Lc  xfail_s.o [2]
+set_sys_dividers        0x1fff'0f91    0x48  Code  Gb  MK60_mcg.o [1]
 set_vector_handler           0x2187    0x22  Code  Gb  misc.o [1]
-site                    0x1fff'14e0     0x4  Data  Gb  LCD.o [1]
+site                    0x1fff'14d8     0x4  Data  Gb  LCD.o [1]
 size                    0x1fff'041c     0x4  Data  Gb  LCD.o [1]
-st7735s_dir             0x1fff'86d5     0x1  Data  Gb  VCAN_LCD_ST7735S.o [1]
-st7735s_h               0x1fff'0e1c     0x2  Data  Gb  VCAN_LCD_ST7735S.o [1]
-st7735s_w               0x1fff'0e1e     0x2  Data  Gb  VCAN_LCD_ST7735S.o [1]
-start                        0x8711    0x22  Code  Gb  system_MK60DZ10.o [1]
+st7735s_dir             0x1fff'86cd     0x1  Data  Gb  VCAN_LCD_ST7735S.o [1]
+st7735s_h               0x1fff'0e14     0x2  Data  Gb  VCAN_LCD_ST7735S.o [1]
+st7735s_w               0x1fff'0e16     0x2  Data  Gb  VCAN_LCD_ST7735S.o [1]
+start                        0x87c1    0x22  Code  Gb  system_MK60DZ10.o [1]
 start_check                  0x2cab    0x9c  Code  Gb  MK60_conf.o [1]
-steer_error_0           0x1fff'0fe0     0x4  Data  Gb  adc.o [1]
-steer_error_1           0x1fff'0fec     0x4  Data  Gb  adc.o [1]
-steer_error_2           0x1fff'0ff0     0x4  Data  Gb  adc.o [1]
-steer_error_3           0x1fff'0ff4     0x4  Data  Gb  adc.o [1]
+steer_error_0           0x1fff'0fd8     0x4  Data  Gb  adc.o [1]
+steer_error_1           0x1fff'0fe4     0x4  Data  Gb  adc.o [1]
+steer_error_2           0x1fff'0fe8     0x4  Data  Gb  adc.o [1]
+steer_error_3           0x1fff'0fec     0x4  Data  Gb  adc.o [1]
 strchr                       0x3d4d          Code  Gb  strchr.o [4]
 strlen                       0x3da5          Code  Gb  strlen.o [4]
-sysinit                      0x8733    0x38  Code  Gb  system_MK60DZ10.o [1]
+sysinit                      0x87e3    0x38  Code  Gb  system_MK60DZ10.o [1]
 systick_delay                0x21b5    0x32  Code  Gb  MK60_SysTick.o [1]
 systick_delay_ms             0x21e7    0x18  Code  Gb  MK60_SysTick.o [1]
-time1                   0x1fff'0ff8     0x4  Data  Gb  camera.o [1]
-time2                   0x1fff'0ffc     0x4  Data  Gb  camera.o [1]
+time1                   0x1fff'0ff0     0x4  Data  Gb  camera.o [1]
+time2                   0x1fff'0ff4     0x4  Data  Gb  camera.o [1]
 uart_getchar                 0x20b7    0x20  Code  Gb  MK60_uart.o [1]
 uart_init                    0x1ec1   0x1f6  Code  Gb  MK60_uart.o [1]
 uart_putbuff                 0x20f3    0x26  Code  Gb  MK60_uart.o [1]
 uart_putchar                 0x20d7    0x1c  Code  Gb  MK60_uart.o [1]
-uart_receive_flag       0x1fff'0e20     0x1  Data  Gb  SDUWH_MT9V032.o [1]
+uart_receive_flag       0x1fff'0e18     0x1  Data  Gb  SDUWH_MT9V032.o [1]
 uart_rx_irq_en               0x2119    0x2e  Code  Gb  MK60_uart.o [1]
 vector_str              0x1fff'0428   0x708  Data  Gb  MK60_conf.o [1]
-wdog_disable                 0x8829    0x14  Code  Gb  MK60_wdog.o [1]
-wdog_unlock                  0x883d    0x20  Code  Lc  MK60_wdog.o [1]
+wdog_disable                 0x88d9    0x14  Code  Gb  MK60_wdog.o [1]
+wdog_unlock                  0x88ed    0x20  Code  Lc  MK60_wdog.o [1]
 write_vtor                   0x2165    0x22  Code  Gb  misc.o [1]
 
 
@@ -799,10 +801,10 @@ write_vtor                   0x2165    0x22  Code  Gb  misc.o [1]
 [3] = m7M_tl.a
 [4] = rt7M_tl.a
 
-  29 850 bytes of readonly  code memory
+  30 090 bytes of readonly  code memory
      444 bytes of readwrite code memory
-   6 310 bytes of readonly  data memory
-  33 031 bytes of readwrite data memory
+   6 302 bytes of readonly  data memory
+  33 023 bytes of readwrite data memory
 
 Errors: none
 Warnings: none

@@ -9,16 +9,15 @@
 
 int steer_error_0;          // ±£´æÆ«²î
 //int steer_duty;           // ±£´æ¶æ»ú PWM Êä³ö
-int steer_P = 8;          // ¶æ»ú PD ¿ØÖÆµÄ P ²ÎÊý 
 int ADL_V;                // ±£´æ×ó±ßµç¸ÐµÄ²É¼¯Öµ
 int ADR_V;                // ±£´æÓÒ±ßµç¸ÐµÄ²É¼¯Öµ
 int steer_error_1;
 int steer_error_2 = 0;
 int steer_error_3;
-//23333
+
 void adc(void)
 {
-LastError = steer_error_0;
+LastError = 0;
 ADL_V = adc_once(ADL, ADC_12bit);    //ADC ²É¼¯×óÓÒÁ½¸öµç¸Ð¸ÐÓ¦µçÑ¹Öµ
 ADR_V = adc_once(ADR, ADC_12bit);    
         
@@ -26,6 +25,7 @@ steer_error_0 = 100*(ADR_V - ADL_V)/(ADL_V + ADR_V);       //Æ«²îµÈÓÚ×óÓÒµç¸ÐÖ®²
 steer_error_1 = steer_error_0-LastError;
 steer_error_2 = steer_error_1 + steer_error_2;
 steer_error_3 = steer_error_2 + 1000;
+LastError = steer_error_0;
 //steer_duty  = S3010_MID + steer_P * steer_error;  //¼ÆËã¶æ»úÊä³öµÄ PWM
 }
 

@@ -1185,10 +1185,6 @@
             <name>$PROJ_DIR$\..\..\App\Track.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 159</file>
-                </tool>
-                <tool>
                     <name>__cstat</name>
                     <file> 279</file>
                 </tool>
@@ -1235,10 +1231,6 @@
             <name>$PROJ_DIR$\..\..\App\adc.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 291</file>
-                </tool>
-                <tool>
                     <name>__cstat</name>
                     <file> 167</file>
                 </tool>
@@ -1254,17 +1246,13 @@
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 101 344 52 242 186 292 95 258 259 162 35 208 134 72 28 98 282 37 303 309 144 179 118 161 275 56 315 145 189 77 169 96 252 240 194 171 197 210 86 66 91 59 221 67 332 293 225 323 215 335 50 89 196 65 166 115 100 146 199 141 265 81 207 181 261 107 121 120 302 317 316 206 218 113 78 34 157 133 126 347 312 152 76</file>
+                    <file> 101 113 77 52 242 186 292 95 121 28 35 208 207 317 37 303 309 144 100 145 261 302 206 157 56 179 312 152 169 96 252 240 194 171 197 210 86 66 146 59 199 141 67 265 81 181 107 120 282 316 218 78 34 133 126 347 76 258 91 221 134 332 118 293 259 225 161 323 72 275 215 344 335 50 162 98 89 315 196 189 65 166 115</file>
                 </tool>
             </inputs>
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\App\motor.c</name>
             <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 135</file>
-                </tool>
                 <tool>
                     <name>__cstat</name>
                     <file> 237</file>
@@ -1289,10 +1277,6 @@
             <name>$PROJ_DIR$\..\..\App\camera.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 109</file>
-                </tool>
-                <tool>
                     <name>__cstat</name>
                     <file> 288</file>
                 </tool>
@@ -1316,10 +1300,6 @@
             <name>$PROJ_DIR$\..\..\App\all init.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 124</file>
-                </tool>
-                <tool>
                     <name>__cstat</name>
                     <file> 243</file>
                 </tool>
@@ -1335,7 +1315,7 @@
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 194 292 113 77 66 96 144 121 28 210 242 207 317 101 252 240 171 197 86 100 145 261 302 206 37 157 56 179 312 152 169 303 186 35 309 52 208 95 146 59 199 141 67 265 81 181 107 120 282 316 218 78 34 133 126 347 76 258 91 221 134 332 118 293 259 225 161 323 72 275 215 344 335 50 162 98 89 315 196 189 65 166 115</file>
+                    <file> 113 77 197 252 171 292 121 28 101 240 242 144 86 207 317 96 194 210 66 100 145 261 302 206 37 157 56 179 312 152 169 303 186 35 309 52 208 95 146 59 199 141 67 265 81 181 107 120 282 316 218 78 34 133 126 347 76 258 91 221 134 332 118 293 259 225 161 323 72 275 215 344 335 50 162 98 89 315 196 189 65 166 115</file>
                 </tool>
             </inputs>
         </file>
@@ -1549,10 +1529,6 @@
             <name>$PROJ_DIR$\..\..\App\LCD.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 102</file>
-                </tool>
-                <tool>
                     <name>__cstat</name>
                     <file> 172</file>
                 </tool>
@@ -1575,10 +1551,6 @@
         <file>
             <name>$PROJ_DIR$\..\..\App\main.c</name>
             <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 71</file>
-                </tool>
                 <tool>
                     <name>__cstat</name>
                     <file> 246</file>
@@ -1684,10 +1656,6 @@
             <name>$PROJ_DIR$\..\..\App\steer.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 62</file>
-                </tool>
-                <tool>
                     <name>__cstat</name>
                     <file> 173</file>
                 </tool>
@@ -1730,10 +1698,6 @@
             <name>$PROJ_DIR$\..\..\App\controlplan.c</name>
             <outputs>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 354</file>
-                </tool>
-                <tool>
                     <name>__cstat</name>
                     <file> 353</file>
                 </tool>
@@ -1749,7 +1713,7 @@
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 101 344 52 242 186 292 95 258 259 162 35 208 134 72 28 98 282 34 303 309 144 179 118 161 275 56 315 145 189 77 169 96 252 240 194 171 197 210 86 66 91 59 221 67 332 293 225 323 215 335 50 89 196 65 166 115 100 146 199 141 265 81 207 181 261 107 121 120 302 317 316 206 218 113 78 37 157 133 126 347 312 152 76</file>
+                    <file> 210 113 77 242 292 121 28 96 194 144 66 207 317 34 101 252 240 171 197 86 100 145 261 302 206 37 157 56 179 312 152 169 303 186 35 309 52 208 95 146 59 199 141 67 265 81 181 107 120 282 316 218 78 133 126 347 76 258 91 221 134 332 118 293 259 225 161 323 72 275 215 344 335 50 162 98 89 315 196 189 65 166 115</file>
                 </tool>
             </inputs>
         </file>
