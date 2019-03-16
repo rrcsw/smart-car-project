@@ -21,7 +21,7 @@ extern uint8 image_threshold;
 
 
 
-
+//
 
  /*LCD液晶变量定义*/
     Site_t site = {0, 0};                           //LCD显示图像左上角位置

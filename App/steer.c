@@ -20,7 +20,7 @@ void steer_control()
    ftm_pwm_duty(STEER_FTM ,STEER_CH, steer_duty);  //舵机输出控制
 }
 **/
-
+//
 /*********define for SteerControl**********/
 
 float  KP=12;//舵机方向比例系数，影响舵机的打角范围//15

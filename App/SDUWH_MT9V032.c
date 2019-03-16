@@ -1,5 +1,5 @@
 #include "SDUWH_MT9V032.h"
-
+//
 uint8   image[MT9V032_H][MT9V032_W];      //图像数组
 uint8   *MT9V032_imgbuff;                 //用于将图像输出,保证能不会被下次中断采集更改数据
 uint8   receive[3];
