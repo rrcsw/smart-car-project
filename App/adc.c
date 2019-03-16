@@ -1,6 +1,5 @@
 #include "common.h"        
-#include "include.h" 
-#include "steer.h"
+#include "include.h"     
 
 /*********** ADC 采集口定义  **************/
 #define ADL     ADC1_SE16    //  对应 PTE1 引脚 ,具体ad采集口由你们的电路决定
@@ -32,7 +31,7 @@ steer_error_3 = steer_error_2 + 1000;
 void AdcControl()
 {
   
-   SteerPwmAdd=((KP*steer_error_0)+KD*(steer_error_1));//舵机的pd控制器
+   SteerPwmAdd=((KP*steer_error_0)+KI*(steer_error_1));//舵机的pd控制器
            
         SteerPwm=(uint32)(SteerPwmAdd+SteerMidle);
         
