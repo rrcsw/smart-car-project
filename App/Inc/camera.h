@@ -1,6 +1,6 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
-
+//
 /*** ∫Í∂®“Â ****/ 
 
 #define Black_Point 0

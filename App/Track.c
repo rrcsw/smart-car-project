@@ -1438,7 +1438,7 @@ void ObstacleRepair()
 
 //起跑线识别
 //用近处的几行，全行扫遍跳变数
-
+////
 unsigned char StartingLineRecognition()
 {
  int i,j;
