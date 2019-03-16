@@ -3,20 +3,26 @@
 #include "camera.h"
 
 int plan=1;    //1　摄像头控制方案
-					  //2　电磁控制方案
+int Sub;					  //2　电磁控制方案
 					  //3  路障躲避方案
 
 void start_adc()
 {     
     
-    if (BlackEndRR<=45&&BlackEndM<=45&&BlackEndLL<=45&BlackEndL<=45&&BlackEndR<=45)
+    if (BlackEndML<=50&&BlackEndM<=50&&BlackEndMR<=50&BlackEndR<=50&&BlackEndL<=50)
     {
+      Sub=ABS(BlackEndR-BlackEndL);
+      if(Sub<=10)
       plan=2;
-       ftm_pwm_duty(FTM0,FTM_CH5,100);
-        ftm_pwm_duty(FTM0,FTM_CH6,100); 
+      else if (BlackEndLL<=8&&BlackEndM<=8&&BlackEndRR<=8&BlackEndR<=8&&BlackEndL<=8)
+      plan=2;
+      else
+        plan=1;
+      
+       
     }
-    else
-     {plan=1;}
+
+    
     /***
 	int i, j;
 	for (i = 0;i < RowMax - 3;i++)

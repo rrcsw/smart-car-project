@@ -5,7 +5,7 @@
 #include "include.h"
 
 #define ObstacleOpen  1//打开障碍
-#define StartingLineOpen  0//打开起跑线识别
+#define StartingLineOpen  1//打开起跑线识别
 
 
 #define ClossRecognition1   0 //十字识别方式1

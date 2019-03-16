@@ -1446,10 +1446,10 @@ unsigned char StartingLineRecognition()
  unsigned char start;
  unsigned char end;
  unsigned char hop1,hop2,hop3,hop4;
- hop1=0;hop2=0;,hop3=0;hop4=0;
+ hop1=0;hop2=0;hop3=0;hop4=0;
  StartingLineflag=0;
  start=0;end=0;
- HopNumber=0;  
+ int HopNumber=0;  
   for(i=56;i>LastLine;i--)
   {
     if(i==56)
