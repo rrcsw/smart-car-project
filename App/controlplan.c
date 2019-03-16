@@ -1,6 +1,3 @@
-#include "common.h"
-#include "include.h"
-
 int controlplan = 1;  //1　摄像头控制方案
 					  //2　电磁控制方案
 					  //3  路障躲避方案
