@@ -46,7 +46,7 @@ int MotorPwmLeft=0;
 
 float LeftMotorPwmAdd=0;
 float RightMotorPwmAdd=0;
-
+float MotorError=0.0;
 
 /****电机初始化******/
 /*****
@@ -73,11 +73,11 @@ int32  OpendLoopPwmF; //开环右边电机的PWM值
 void MotorControlOpenLoop(void)
 {
 //  int ErrorError=0;
-  
+  MotorError=-ABS(Error);
 
   if(plan==1)
   { OpendLoopPwmB=100;
-     OpendLoopPwmF=200;
+     OpendLoopPwmF=300;
    
     
 
@@ -89,17 +89,16 @@ void MotorControlOpenLoop(void)
       
       OpendLoopPwmF=(int)(OpendLoopPwmF+(OpendLoopPwmF*Error*000.1));
             
-      if(OpendLoopPwmF>=250)  OpendLoopPwmF=250;
-      if(OpendLoopPwmF<=175)    OpendLoopPwmF=175;
+      if(OpendLoopPwmF>=300)  OpendLoopPwmF=300;
+      if(OpendLoopPwmF<=180)    OpendLoopPwmF=180;
       
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
       ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); //PTC2,左电机 
   }
-  if(
-     plan==2)
+  if(plan==2)
   {
     OpendLoopPwmB=100;
-    OpendLoopPwmF=175;
+    OpendLoopPwmF=165;
     ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
     ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); 
   }

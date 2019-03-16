@@ -23,7 +23,10 @@ extern void steer_control();
 
 void main()
 {
-
+  for(int i=0;i<10000;){
+    i++;
+    for(int j=0;j<2000;){
+      j++;}}    
      all_init();                                       //³õÊ¼»¯
 /**********     
       while(1)

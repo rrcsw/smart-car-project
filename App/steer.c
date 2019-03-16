@@ -79,16 +79,16 @@ float Weight[60]={
 
 #if 1
 float Weight[90]={  
+                     
                      0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,1,1,1,1,1,1,1,
+                    0,0,0,0,1,1,1,1,1,1,
                     2,2,2,2,1,1,2,2,2,2,
                     2.5,2,2,2,2,2,2,2,2,2.5,
                     2.5,2,1,2,1,3,2,1,2,2.5,
                     3,1,2,3,3,2,3,2,1,3,
                     3,1,2,3,3,2,3,2,1,3,
-                    3,2,3,2,3,2,2,2,1,1,
-                    2,2,1,1,1,1,1,1,1,1,};
-
+                    3,2,3,2,3,2,2,2,2,1,
+                    2,2,3,1,1,1,1,1,1,1,};
 
 
 #endif
@@ -252,15 +252,16 @@ void SteerControl(void)
 
 void NormalControl()
 {
+  
    SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//¶æ»úµÄpd¿ØÖÆÆ÷
        
-        if(SteerPwmAdd>=160)
+        if(SteerPwmAdd>=180)
           
-           SteerPwmAdd=160;
+           SteerPwmAdd=180;
         
-        if(SteerPwmAdd<=-160)
+        if(SteerPwmAdd<=-180)
           
-           SteerPwmAdd=-160;
+           SteerPwmAdd=-180;
             
         SteerPwm=(uint32)(SteerPwmAdd+SteerMidle);
         

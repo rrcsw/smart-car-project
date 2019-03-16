@@ -9,9 +9,13 @@ int plan=1;    //1　摄像头控制方案
 void start_adc()
 {     
     
-    if (BlackEndRR<=3&&BlackEndR<=3&&BlackEndLL<=3)
-    {plan=2;}
-     else
+    if (BlackEndRR<=45&&BlackEndM<=45&&BlackEndLL<=45&BlackEndL<=45&&BlackEndR<=45)
+    {
+      plan=2;
+       ftm_pwm_duty(FTM0,FTM_CH5,100);
+        ftm_pwm_duty(FTM0,FTM_CH6,100); 
+    }
+    else
      {plan=1;}
     /***
 	int i, j;
