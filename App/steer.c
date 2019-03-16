@@ -24,14 +24,14 @@ void steer_control()
 /*********define for SteerControl**********/
 
 float  KP=12;//舵机方向比例系数，影响舵机的打角范围//15
-float  KD=16;//8;//10//7.5//舵机方向微分系数,影响舵机的打角反应
+float  KD=8;//10//7.5//舵机方向微分系数,影响舵机的打角反应
 float  SteerPwmAdd=0.0;//舵机pwm增量
 float  Error;//偏差值
 float  LastError;//上次的偏差
 float  WeightSum=0;
 float  CenterMeanValue=0;
 float  CenterSum=0;
-float  J=0.0500;//J=0.0300;//调节p和偏差的关系，越大，作用越强
+float  J=0.0300;//调节p和偏差的关系，越大，作用越强
 float  JD=0.0400;//调节p和偏差的关系，越大，作用越强
 float  BasicP=3.0; //基本的P值
 float  BasicD=6.5; //基本的P值
@@ -52,7 +52,7 @@ float Weight[60]={
                    2.1,2.1,2.1,1,1,2,1,1,1,1,//40-49行
                   1,0,0,0,0,};//最近十行*///不压线，用于弯道
 #endif
-/****
+
 #if 1
 
 float Weight[60]={ 
@@ -69,26 +69,11 @@ float Weight[60]={
                      1,1,1,1,1,1,1,1,1,1,};          //最近十行
 
 
-****/
-
-
-#if 1
-float Weight[90]={  
-                     0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,1,1,1,1,1,1,1,
-                    2,2,2,2,1,1,2,2,2,2,
-                    2.5,2,2,2,2,2,2,2,2,2.5,
-                    2.5,2,1,2,1,3,2,1,2,2.5,
-                    3,1,2,3,3,2,3,2,1,3,
-                    3,1,2,3,3,2,3,2,1,3,
-                    3,2,3,2,3,2,2,2,1,1,
-                    2,2,1,1,1,1,1,1,1,1,};
-
 
 
 #endif
 
-
+#if 1
 void CalculateError(void)
 
 {
@@ -120,10 +105,10 @@ void CalculateError(void)
         }
       
       }
-   
-      else if(StrightIntoCrossL)
+    ****/
+      /***else***/ if(StrightIntoCrossL)
       {
-         for(i=88;i>InflectionPointL.InflectionPointRow;i--)
+         for(i=58;i>InflectionPointL.InflectionPointRow;i--)
         {
                CenterSum+=mid_line[i]*Weight[i];             
                WeightSum+=Weight[i];
@@ -133,7 +118,7 @@ void CalculateError(void)
       
       else if(StrightIntoCrossR)
       {
-        for(i=88;i>InflectionPointR.InflectionPointRow;i--)
+        for(i=58;i>InflectionPointR.InflectionPointRow;i--)
         {
                CenterSum+=mid_line[i]*Weight[i];             
                WeightSum+=Weight[i];
@@ -142,14 +127,14 @@ void CalculateError(void)
       }
       else if(StrightIntoCrossLR)
       {
-        for(i=88;i>(InflectionPointR.InflectionPointRow+InflectionPointR.InflectionPointRow)/2;i--)
+        for(i=58;i>(InflectionPointR.InflectionPointRow+InflectionPointR.InflectionPointRow)/2;i--)
         {
                CenterSum+=mid_line[i]*Weight[i];             
                WeightSum+=Weight[i];
         }
       
       }
-       
+      
 
        else if(Cross.CrossFlag)
        {
@@ -162,10 +147,9 @@ void CalculateError(void)
        }
       
       else
-
       {
-       ****/     
-        for(i=88;i>LastLine;i--)
+            
+        for(i=57;i>LastLine;i--)
           
         {      
                CenterSum+=mid_line[i]*Weight[i];
@@ -173,18 +157,18 @@ void CalculateError(void)
                WeightSum+=Weight[i];       
          }
       
-      
+      }
       
        if(WeightSum!=0)
          
        {
-             CenterMeanValue=(CenterSum/WeightSum);//算出加权平均后中线的值      mid_line[i];
+             CenterMeanValue=(CenterSum/WeightSum);//算出加权平均后中线的值
            
         }
             
              LastError=Error;
       
-             Error=(59-CenterMeanValue);// 一场图像偏差值 600
+             Error=(40-CenterMeanValue);// 一场图像偏差值 
              
              if(Error>=30.0)//偏差限幅
                 
@@ -204,7 +188,7 @@ void CalculateError(void)
                     
 }
                      
-            
+#endif                
      
 
 
@@ -230,7 +214,6 @@ void SteerControl(void)
     
         CalculateError(); 
         NormalControl();
-        
         TurnBack();
           
            ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);//舵机pwm更新
@@ -243,13 +226,13 @@ void NormalControl()
 {
    SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器
        
-        if(SteerPwmAdd>=160)
+        if(SteerPwmAdd>=180)
           
-           SteerPwmAdd=160;
+           SteerPwmAdd=180;
         
-        if(SteerPwmAdd<=-160)
+        if(SteerPwmAdd<=-180)
           
-           SteerPwmAdd=-160;
+           SteerPwmAdd=-180;
             
         SteerPwm=(uint32)(SteerPwmAdd+SteerMidle);
         
@@ -268,51 +251,26 @@ void TurnBack()
   extern uint16 i;
   extern uint16 j;
   extern uint32 SteerPwm;
-
- extern int  BlackEndRR  ; 
-  extern int BlackEndLL  ;  
-  extern int BlackEndL;
-  extern int BlackEndR;
-  extern int BlackEndM ;   
   int LoseLeft=0;
   int LoseRight=0;
-   
-  if (BlackEndR==0&&BlackEndLL>=5&&BlackEndL>=0)
+  
+  for(i=RowMax;i>=55;i--)//首先找前五行，全行扫描
   {
-    SteerPwm=SteerMin;
-    LoseLeft=55;
-  }
-  else {LoseLeft=0;}
-  if (BlackEndL==0&&BlackEndRR>=10&&BlackEndR>=0)
-  { 
-    SteerPwm=SteerMax;
-    LoseRight=55;
-  }
-  else {LoseRight=0;}
-  
-  if (LoseLeft>=50)
-    SteerPwm=SteerMin;
-  if (LoseRight>=50)
-    SteerPwm=SteerMax;
-
-  
-    
-  /**
-    if(img[90][j]==White_Point && img[90][j+1]==Black_Point&&img[90][j+2]==Black_Point)
+    if(img[60][j]==White_Point && img[60][j+1]==Black_Point&&img[60][j+2]==Black_Point)
     {
-      if(img[70][0]==Black_Point&&img[70][120]==Black_Point&&img[70][40]==Black_Point&&img[70][80]==Black_Point)
+      if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
       {  
-      LoseLeft=120-j;
+      LoseLeft=80-j;
       SteerPwm=SteerMin;//向左打死
       }
       else
       {
-        LoseLeft=120-j;
+        LoseLeft=80-j;
       }
     }
-     else if(img[90][j]==White_Point && img[90][j-1]==Black_Point&&img[90][j-2]==Black_Point)
+     else if(img[60][j]==White_Point && img[60][j-1]==Black_Point&&img[60][j-2]==Black_Point)
      {
-       if(img[70][0]==Black_Point&&img[70][120]==Black_Point&&img[70][40]==Black_Point&&img[70][80]==Black_Point)
+       if(img[55][0]==Black_Point&&img[55][80]==Black_Point)
        {
          LoseRight=j;
          SteerPwm=SteerMax;//向右打死
@@ -324,18 +282,15 @@ void TurnBack()
      }
      
   
-      if(LoseLeft>=50)
+      if(LoseLeft>=40)
       {
         SteerPwm=SteerMin;//向左打死
       }
-      else if(LoseRight>=50)
+      else if(LoseRight>=40)
         {
         SteerPwm=SteerMax;//向右打死
       }
-    ****/
+    
+  }
   
-  
-
 }
-
-  

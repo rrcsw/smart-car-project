@@ -67,8 +67,8 @@ void    MT9V032_camera_init();          //摄像头的内部初始化
 
 //配置摄像头 属性
 #define MT9V032_DMA_CH       DMA_CH0                               //定义摄像头的DMA采集通道
-#define MT9V032_W            120                                    //定义摄像头图像宽度  范围1-752     K60采集不允许超过188
-#define MT9V032_H            80                                    //定义摄像头图像高度  范围1-480
+#define MT9V032_W            80                                    //定义摄像头图像宽度  范围1-752     K60采集不允许超过188
+#define MT9V032_H            60                                    //定义摄像头图像高度  范围1-480
 #define MT9V032_SIZE         (MT9V032_W * MT9V032_H)               //图像占用空间大小,不是压缩数据,所以是山外的八倍
 #define MT9V032_DMA_NUM      (MT9V032_SIZE)                        //DMA采集次数
 

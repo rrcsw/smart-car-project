@@ -7120,9 +7120,6 @@
     <group>
         <name>App</name>
         <file>
-            <name>$PROJ_DIR$\..\..\App\adc.c</name>
-        </file>
-        <file>
             <name>$PROJ_DIR$\..\..\App\all init.c</name>
         </file>
         <file>
