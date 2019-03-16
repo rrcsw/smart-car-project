@@ -95,11 +95,17 @@ void MotorControlOpenLoop(void)
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
       ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); //PTC2,×óµç»ú 
   }
-  if(
-     plan==2)
+  if(plan==2)
   {
     OpendLoopPwmB=100;
     OpendLoopPwmF=175;
+    ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
+    ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); 
+  }
+  if(plan==4)
+  {
+    OpendLoopPwmB=100;
+    OpendLoopPwmF=200;
     ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
     ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); 
   }

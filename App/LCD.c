@@ -17,7 +17,8 @@ extern float  CenterMeanValue;
 extern float  CenterSum;
 extern uint8 image_threshold;
 extern int plan;
-
+extern int getadc_t1;
+extern int getadc_t2;
 
 
 
@@ -46,23 +47,23 @@ void LCD_Binarization()
         LCD_num_BC(site,plan,8,BLUE,RED);           //偏差
         
         site.x=20;site.y=100;
-        LCD_num_BC(site,RightLose+AllLose,8,BLUE,RED);        //阈值         //舵机输出  中值690
+        LCD_num_BC(site,BlackEndML,8,BLUE,RED);        //阈值         //舵机输出  中值690
         
-        site.x=50;site.y=100;
-        LCD_num_BC(site,AllLose,8,BLUE,RED);         //右边界丢失数量
+        site.x=40;site.y=100;
+        LCD_num_BC(site,BlackEndM,8,BLUE,RED);         //右边界丢失数量
+        
+        site.x=60;site.y=100;
+        LCD_num_BC(site,BlackEndMR,8,BLUE,RED);            //两边全丢数量
+        
+        site.x=80;site.y=100;
+        LCD_num_BC(site,(getadc_t2-getadc_t1)/1000,8,BLUE,RED);            //中线加权值
         
         //site.x=70;site.y=100;
-        //LCD_num_BC(site,AllLose,8,BLUE,RED);            //两边全丢数量
-        /*
-        site.x=50;site.y=100;
-        LCD_num_BC(site,CenterMeanValue,8,BLUE,RED);            //中线加权值
+       // LCD_num_BC(site,SteerPwmAdd,8,BLUE,RED);  //Pwm改变量
         
-        site.x=70;site.y=100;
-        LCD_num_BC(site,SteerPwmAdd,8,BLUE,RED);  //Pwm改变量
+       //site.x=100;site.y=100;
+        //LCD_num_BC(site,getadc_t2,8,BLUE,RED);//kp
         
-       site.x=100;site.y=100;
-        LCD_num_BC(site,KP,8,BLUE,RED);//kp
-        */
        // site.x=110;site.y=100;
         //LCD_num_BC(site,controlplan,8,BLUE,RED);//kd
         

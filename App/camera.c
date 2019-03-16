@@ -202,17 +202,17 @@ void GetEndParam()//获取黑线截止行
 
   int i=0;
 
-  BlackEndMR   = 0;//清零
-  BlackEndML   = 0;
-  BlackEndLL   = 0;
-  BlackEndRR   = 0;
-  BlackEndL    = 0;
-  BlackEndM    = 0;
-  BlackEndR    = 0;
+  BlackEndMR   = 0;//清零 75
+  BlackEndML   = 0;//45
+  BlackEndLL   = 0;//15
+  BlackEndRR   = 0;//105
+  BlackEndL    = 0;//30
+  BlackEndM    = 0;//60
+  BlackEndR    = 0;//90
   
   for (i = RowMax-1; i >= 3 ; i--)
   {
-	if(img[i][ColumnMax/2] == White_Point && !MEndFlag )//!MEndFlag=1 //40
+	if(img[i][ColumnMax/2] == White_Point && !MEndFlag )//!MEndFlag=1 //60
         {
 		BlackEndM++;//中黑线截至行
         }

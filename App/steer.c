@@ -232,7 +232,7 @@ void CalculateError(void)
 
 void SteerControl(void)
 {
-  if(plan==1)
+  if(plan == 1)
   {
          CalculateError(); 
         NormalControl();
@@ -243,13 +243,30 @@ void SteerControl(void)
            
            LastSteerSwm=SteerPwm;//记录pwm值
   }   
-  if(plan==2)
+  if(plan == 2)
   {
       AdcControl();
       ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);
   }
+  
+  if(plan == 3)
+  {
+  ftm_pwm_duty(FTM0,FTM_CH5,100);
+  ftm_pwm_duty(FTM0,FTM_CH6,170); 
+  ftm_pwm_duty(FTM1,STEER_CH,SteerMax);
+  pit_delay_ms(PIT0, 5000);
+  ftm_pwm_duty(FTM1,STEER_CH,SteerMin);
+  pit_delay_ms(PIT0, 5000);
+  }
+    if(plan ==4)
+  {
+      AdcControl();
+      ftm_pwm_duty(FTM1,STEER_CH,SteerPwm);
+  }
+
 }
 
+  
 void NormalControl()
 {
    SteerPwmAdd=-((KP*Error)+KD*(Error-LastError));//舵机的pd控制器

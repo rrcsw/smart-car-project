@@ -3,6 +3,7 @@
 #include "common.h"
 #include "include.h"
 #include "math.h"
+#include "MK60_pit.h"
 
 uint8 img[CAMERA_H][CAMERA_W];                           //由于鹰眼摄像头是一字节8个像素，因而需要解压为 1
 uint8 imgbuff[CAMERA_SIZE];                             //定义存储接收图像的数组
@@ -25,6 +26,7 @@ void main()
 {
 
      all_init();                                       //初始化
+     pit_time_start (PIT0); //开始计时
 /**********     
       while(1)
       {
