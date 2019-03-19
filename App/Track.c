@@ -1450,11 +1450,11 @@ unsigned char StartingLineRecognition()
  StartingLineflag=0;
  start=0;end=0;
  int HopNumber=0;  
-  for(i=56;i>LastLine;i--)
+  for(i=86;i>LastLine;i--)
   {
-    if(i==56)
+    if(i==86)
     {
-     start=LeftEdge[56];end=RightEdge[56];
+     start=LeftEdge[86];end=RightEdge[86];
     }
     
     else if(LeftEdge[i+1]!=0&&RightEdge[i+1]!=80)
@@ -1464,7 +1464,7 @@ unsigned char StartingLineRecognition()
     
     else
     {
-     start=LeftEdge[56];end=RightEdge[56];
+     start=LeftEdge[86];end=RightEdge[86];
     }
     for(j=start;j<end;j++)
    {
@@ -1485,7 +1485,7 @@ unsigned char StartingLineRecognition()
      
       if(img[i][jj]==Black_Point&&img[i][jj+1]==White_Point)
      {
-       
+       HopNumber++£»
      }
      j++;
    }

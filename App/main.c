@@ -45,6 +45,7 @@ while(1)
       GetEndParam();             //获取黑线截止行
       adc();
       start_adc();
+      
       if(!StartingLineFlag)
               {
                CrossRecognition(&Cross);//十字识别

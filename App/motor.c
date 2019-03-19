@@ -89,7 +89,7 @@ void MotorControlOpenLoop(void)
       
       OpendLoopPwmF=(int)(OpendLoopPwmF+(OpendLoopPwmF*Error*000.1));
             
-      if(OpendLoopPwmF>=240)  OpendLoopPwmF=240;
+      if(OpendLoopPwmF>=250)  OpendLoopPwmF=250;
       if(OpendLoopPwmF<=185)    OpendLoopPwmF=185;
       
       ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
@@ -98,7 +98,7 @@ void MotorControlOpenLoop(void)
   if(plan==2)
   {
     OpendLoopPwmB=100;
-    OpendLoopPwmF=165;
+    OpendLoopPwmF=175;
     ftm_pwm_duty(FTM0,FTM_CH5,OpendLoopPwmB);
     ftm_pwm_duty(FTM0,FTM_CH6,OpendLoopPwmF); 
   }
